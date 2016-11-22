@@ -45,7 +45,7 @@
 	<dubbo:reference interface="com.wangsong.system.service.RoleService"		id="roleService" check="false"></dubbo:reference>
 	<dubbo:reference interface="com.wangsong.system.service.ScheduleJobService"		id="scheduleJobService" check="false"></dubbo:reference>
 	<dubbo:reference interface="com.wangsong.system.service.UserService"		id="userService" check="false"></dubbo:reference>
-	<dubbo:reference interface="com.wangsong.activiti.service.ActivitiService" id="activitiService" check="false"></dubbo:reference>
+	<dubbo:reference interface="com.wangsong.activiti.service.ActivitiService"		id="activitiService" check="false"></dubbo:reference>
 	<dubbo:reference interface="com.wangsong.activiti.service.LeaveService"	id="leaveService" check="false"></dubbo:reference>
 	
 	<import resource="classpath:shiro/spring-shiro.xml" />

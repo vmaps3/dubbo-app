@@ -1,12 +1,14 @@
 package com.wangsong.system.service.impl;
 
 import org.apache.shiro.authc.*;
+
 import org.apache.shiro.authz.AuthorizationInfo;
 import org.apache.shiro.authz.SimpleAuthorizationInfo;
 import org.apache.shiro.realm.AuthorizingRealm;
 import org.apache.shiro.subject.PrincipalCollection;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Service;
 
 import com.wangsong.system.model.Resources;
@@ -17,13 +19,14 @@ import com.wangsong.system.service.UserService;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
-
 public class ShiroDbRealm extends AuthorizingRealm {
 
 	@Autowired
+	@Lazy
 	private UserService userService;
 
 	@Autowired
+	@Lazy
 	private ResourcesService resourcesService;
 
 	@Override

@@ -7,6 +7,7 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -22,6 +23,7 @@ import com.wangsong.system.service.UserService;
 @RequestMapping("/system/user")
 public class UserController extends BaseController{
 	@Autowired
+	@Lazy
 	private UserService userService;
 	
 	@RequestMapping(value="/toList")
