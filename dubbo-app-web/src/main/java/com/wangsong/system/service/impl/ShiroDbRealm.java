@@ -22,11 +22,9 @@ import java.util.Set;
 public class ShiroDbRealm extends AuthorizingRealm {
 
 	@Autowired
-	@Lazy
 	private UserService userService;
 
 	@Autowired
-	@Lazy
 	private ResourcesService resourcesService;
 
 	@Override

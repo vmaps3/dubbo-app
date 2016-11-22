@@ -38,7 +38,7 @@
 	<!-- 使用zookeeper注册中心暴露服务地址 -->
 	<dubbo:registry address="${dubbo.registry}"></dubbo:registry>
 	<dubbo:protocol name="dubbo" port="${dubbo.protocol}" />
-	<!-- 要引用的服务 -->
+	 <!-- 要引用的服务 -->
 	<dubbo:reference interface="com.wangsong.system.service.DictService"		id="dictService" check="false"></dubbo:reference>
 	<dubbo:reference interface="com.wangsong.system.service.LogService"		id="logService" check="false"></dubbo:reference>
 	<dubbo:reference interface="com.wangsong.system.service.ResourcesService"		id="resourcesService" check="false"></dubbo:reference>
@@ -47,6 +47,8 @@
 	<dubbo:reference interface="com.wangsong.system.service.UserService"		id="userService" check="false"></dubbo:reference>
 	<dubbo:reference interface="com.wangsong.activiti.service.ActivitiService"		id="activitiService" check="false"></dubbo:reference>
 	<dubbo:reference interface="com.wangsong.activiti.service.LeaveService"	id="leaveService" check="false"></dubbo:reference>
+	
+	
 	
 	<import resource="classpath:shiro/spring-shiro.xml" />
 

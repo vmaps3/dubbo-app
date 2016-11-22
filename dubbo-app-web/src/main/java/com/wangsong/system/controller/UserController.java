@@ -3,6 +3,7 @@ package com.wangsong.system.controller;
 import java.util.HashMap;
 import java.util.Map;
 
+import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 
 import org.apache.shiro.authz.annotation.RequiresPermissions;
@@ -23,7 +24,6 @@ import com.wangsong.system.service.UserService;
 @RequestMapping("/system/user")
 public class UserController extends BaseController{
 	@Autowired
-	@Lazy
 	private UserService userService;
 	
 	@RequestMapping(value="/toList")
