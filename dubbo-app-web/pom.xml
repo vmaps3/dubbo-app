@@ -7,99 +7,26 @@
 	<version>0.0.1-SNAPSHOT</version>
 	<name></name>
 	<url>http://maven.apache.org</url>
-	<properties>
-		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-		<mysql.driver.version>5.1.30</mysql.driver.version>
-		<spring.version>4.0.3.RELEASE</spring.version>
-		<mybatis.version>3.1.1</mybatis.version>
-		<mybatisspring.version>1.1.1</mybatisspring.version>
-	</properties>
+	<!-- 设定主仓库，按设定顺序进行查找。 -->
+	<repositories>
+		<repository>
+			<id>repos</id>
+			<name>Repository</name>
+			<url>http://maven.aliyun.com/nexus/content/groups/public</url>
+		</repository>
+	</repositories>
+	<!-- 设定插件仓库 -->
+	<pluginRepositories> 
+		<pluginRepository>
+			<id>repos</id>
+			<name>Repository</name>
+			<url>http://maven.aliyun.com/nexus/content/groups/public</url>
+		</pluginRepository>
+	</pluginRepositories> 
+	
 
 	<dependencies>
-		<dependency>
-			<groupId>org.springframework</groupId>
-			<artifactId>spring-core</artifactId>
-			<version>${spring.version}</version>
-		</dependency>
-		<dependency>
-			<groupId>org.springframework</groupId>
-			<artifactId>spring-webmvc</artifactId>
-			<version>${spring.version}</version>
-		</dependency>
-		<dependency>
-			<groupId>org.springframework</groupId>
-			<artifactId>spring-test</artifactId>
-			<version>${spring.version}</version>
-		</dependency>
-		<dependency>
-			<groupId>org.mybatis</groupId>
-			<artifactId>mybatis</artifactId>
-			<version>${mybatis.version}</version>
-		</dependency>
-		<dependency>
-			<groupId>org.mybatis</groupId>
-			<artifactId>mybatis-spring</artifactId>
-			<version>${mybatisspring.version}</version>
-		</dependency>
-
-		<dependency>
-			<groupId>junit</groupId>
-			<artifactId>junit</artifactId>
-			<version>4.11</version>
-			<scope>test</scope>
-		</dependency>
-		<dependency>
-			<groupId>com.alibaba</groupId>
-			<artifactId>druid</artifactId>
-			<version>0.2.26</version>
-		</dependency>
-		<dependency>
-			<groupId>org.aspectj</groupId>
-			<artifactId>aspectjweaver</artifactId>
-			<version>1.8.1</version>
-		</dependency>
-		<dependency>
-			<groupId>javax.servlet</groupId>
-			<artifactId>jstl</artifactId>
-			<version>1.2</version>
-		</dependency>
-		<dependency>
-			<groupId>javax.servlet</groupId>
-			<artifactId>servlet-api</artifactId>
-			<version>3.0-alpha-1</version>
-		</dependency>
-		<dependency>
-			<groupId>javax.servlet.jsp</groupId>
-			<artifactId>jsp-api</artifactId>
-			<version>2.2.1-b03</version>
-			<scope>provided</scope>
-		</dependency>
-		<dependency>
-			<groupId>commons-fileupload</groupId>
-			<artifactId>commons-fileupload</artifactId>
-			<version>1.3.1</version>
-		</dependency>
-		<dependency>
-			<groupId>log4j</groupId>
-			<artifactId>log4j</artifactId>
-			<version>1.2.17</version>
-		</dependency>
-		<dependency>
-			<groupId>com.alibaba</groupId>
-			<artifactId>fastjson</artifactId>
-			<version>1.1.41</version>
-		</dependency>
-		<dependency>
-			<groupId>org.codehaus.jackson</groupId>
-			<artifactId>jackson-mapper-asl</artifactId>
-			<version>1.9.13</version>
-		</dependency>
-		<dependency>
-			<groupId>mysql</groupId>
-			<artifactId>mysql-connector-java</artifactId>
-			<version>${mysql.driver.version}</version>
-			<scope>runtime</scope>
-		</dependency>
+		
 		<dependency>
 			<groupId>com.alibaba</groupId>
 			<artifactId>dubbo</artifactId>
@@ -123,28 +50,13 @@
 			<artifactId>zkclient</artifactId>
 			<version>0.1</version>
 		</dependency>
+		
 		<dependency>
 			<groupId>com.wangsong</groupId>
-			<artifactId>dubbo-app-biz-api</artifactId>
+			<artifactId>dubbo-app-api</artifactId>
 			<version>0.0.1-SNAPSHOT</version>
 		</dependency>
-		<dependency>
-			<groupId>com.wangsong</groupId>
-			<artifactId>dubbo-app-sys-api</artifactId>
-			<version>0.0.1-SNAPSHOT</version>
-		</dependency>
-		<!-- Redis -->
-		<dependency>
-			<groupId>org.springframework.data</groupId>
-			<artifactId>spring-data-redis</artifactId>
-			<version>1.4.2.RELEASE</version>
-		</dependency>
-
-		<dependency>
-			<groupId>redis.clients</groupId>
-			<artifactId>jedis</artifactId>
-			<version>2.5.2</version>
-		</dependency>
+	
 
 		<!-- Spring Session -->
 		<dependency>
@@ -153,11 +65,6 @@
 			<version>1.0.2.RELEASE</version>
 		</dependency>
 
-		<dependency>
-			<groupId>org.apache.commons</groupId>
-			<artifactId>commons-pool2</artifactId>
-			<version>2.2</version>
-		</dependency>
 	</dependencies>
 	<build>
 		<plugins>

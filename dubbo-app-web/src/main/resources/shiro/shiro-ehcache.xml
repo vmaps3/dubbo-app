@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.2.xsd"
+       default-lazy-init="true">
+	<!-- 用户授权信息Cache, 采用EhCache -->
+		<!--安全管理器-->
+	<bean id="securityManager" class="org.apache.shiro.web.mgt.DefaultWebSecurityManager">
+	    <!--设置自定义Realm-->
+	   <property name="realm" ref="shiroDbRealm"/>
+	   <!--将缓存管理器，交给安全管理器-->
+	    <property name="cacheManager" ref="shiroEhcacheManager"/>
+		<property name="sessionManager" ref="sessionManager"/>
+	</bean>
+   	<bean id="sessionManager"
+		class="org.apache.shiro.web.session.mgt.DefaultWebSessionManager">
+		<!-- 会话超时时间，单位：毫秒 -->
+		<property name="globalSessionTimeout" value="60000" />
+	</bean>
+	<bean id="shiroEhcacheManager" class="org.apache.shiro.cache.ehcache.EhCacheManager">
+		<property name="cacheManagerConfigFile" value="classpath:shiro/ehcache.xml"/>
+	</bean>
+</beans>

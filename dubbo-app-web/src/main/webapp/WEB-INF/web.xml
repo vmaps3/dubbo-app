@@ -4,7 +4,9 @@
   
   	<context-param>
 		<param-name>contextConfigLocation</param-name>
-		<param-value>classpath:spring.xml</param-value>
+		<param-value>
+			classpath:spring.xml
+		</param-value>
   	</context-param>
 	
 	<filter>
@@ -24,7 +26,21 @@
 		<description>spring listener</description>
 		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
 	</listener>
-	
+	<!--Shiro过滤器-->
+    <filter>
+        <filter-name>shiroFilter</filter-name>
+        <filter-class>org.springframework.web.filter.DelegatingFilterProxy</filter-class>
+        <init-param>
+            <param-name>targetFilterLifecycle</param-name>
+            <param-value>true</param-value>
+        </init-param>
+    </filter>
+    <filter-mapping>
+        <filter-name>shiroFilter</filter-name>
+        <url-pattern>/*</url-pattern>
+        <dispatcher>REQUEST</dispatcher>
+        <dispatcher>FORWARD</dispatcher>
+    </filter-mapping>
 	<servlet>
 		<description>spring mvc servlet</description>
 		<servlet-name>springmvc</servlet-name>
@@ -38,19 +54,17 @@
 	</servlet>
 	<servlet-mapping>
 		<servlet-name>springmvc</servlet-name>
-		<url-pattern>*.do</url-pattern>
+		<url-pattern>/</url-pattern>
 	</servlet-mapping>
-	<filter>
-		<filter-name>springSessionRepositoryFilter</filter-name>
-		<filter-class>org.springframework.web.filter.DelegatingFilterProxy</filter-class>
-	</filter>
-	<filter-mapping>
-		<filter-name>springSessionRepositoryFilter</filter-name>
-		<url-pattern>/*</url-pattern>
-	</filter-mapping>
+	<error-page>
+	    <error-code>500</error-code>
+	    <location>/WEB-INF/jsp/common/500.jsp</location>
+	  </error-page>
+	  <error-page>
+	    <error-code>404</error-code>
+	    <location>/WEB-INF/jsp/common/404.jsp</location>
+	  </error-page>
     <welcome-file-list>
-    	<welcome-file>index.html</welcome-file>
-    	<welcome-file>index.htm</welcome-file>
-    	<welcome-file>index.jsp</welcome-file>
+    	<welcome-file>/login.do</welcome-file>
   	</welcome-file-list>
 </web-app>

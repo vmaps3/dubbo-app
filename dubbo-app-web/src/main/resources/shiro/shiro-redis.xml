@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.2.xsd"
+	default-lazy-init="true">
+
+	<!-- shiro securityManager -->
+	<bean id="securityManager" class="org.apache.shiro.web.mgt.DefaultWebSecurityManager">
+
+		<!-- Single realm app. If you have multiple realms, use the 'realms' property 
+			instead. -->
+
+		<!-- sessionManager -->
+		<property name="sessionManager" ref="sessionManager" />
+		<property name="realm" ref="shiroDbRealm" />
+		<!-- cacheManager -->
+		<property name="cacheManager" ref="cacheManager" />
+
+		<!-- By default the servlet container sessions will be used. Uncomment 
+			this line to use shiro's native sessions (see the JavaDoc for more): -->
+		<!-- <property name="sessionMode" value="native"/> -->
+	</bean>
+
+
+
+	<!-- redisSessionDAO -->
+	<bean id="redisSessionDAO" class="com.wangsong.common.shiro.RedisSessionDAO">
+		<property name="redisTemplate" ref="redisTemplate" />
+		<property name="expire" value="${shiro_redis_session}" />
+	</bean>
+
+
+	<!-- sessionManager -->
+	<bean id="sessionManager"
+		class="org.apache.shiro.web.session.mgt.DefaultWebSessionManager">
+		<property name="sessionDAO" ref="redisSessionDAO" />
+	</bean>
+
+	<!-- cacheManager -->
+	<bean id="cacheManager" class="com.wangsong.common.shiro.RedisCacheManager">
+		<property name="redisTemplate" ref="redisTemplate" />
+		<property name="expire" value="${shiro_redis_cache}" />
+	</bean>
+
+
+</beans>

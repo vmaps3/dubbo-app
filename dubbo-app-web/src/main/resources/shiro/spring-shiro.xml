@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.2.xsd"
+       default-lazy-init="true">
+
+    <description>Shiro安全配置</description>
+     <!-- Shiro Filter --> 
+     
+    <bean id="shiroFilter" class="org.apache.shiro.spring.web.ShiroFilterFactoryBean">
+        <!-- 安全管理器 -->
+        <property name="securityManager" ref="securityManager"/>
+        <!-- 默认的登陆访问url -->
+        <property name="loginUrl" value="/login.do"/>
+        <property name="filterChainDefinitions">
+            <value>
+                /common/** = anon <!-- 不需要认证 -->
+                /static/** = anon
+                /login.do = anon
+                /haha/**= anon
+                /** = authc <!-- 需要认证 -->
+            </value>
+        </property>
+    </bean>
+     <!-- 項目自定义的Realm -->
+    <bean id="shiroDbRealm" class="com.wangsong.system.service.impl.ShiroDbRealm"/>
+	
+	<!-- 保证实现了Shiro内部lifecycle函数的bean执行 -->
+	<bean id="lifecycleBeanPostProcessor" class="org.apache.shiro.spring.LifecycleBeanPostProcessor"/>
+	<!-- <import resource="classpath:shiro/shiro-ehcache.xml" /> -->
+	<import resource="classpath:shiro/shiro-redis.xml" />
+</beans>
