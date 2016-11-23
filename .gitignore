@@ -49,3 +49,4 @@ target/
 /dubbo-app-biz-api/.settings/org.eclipse.m2e.core.prefs
 /dubbo-app-biz-api/.settings/org.eclipse.wst.common.component
 /dubbo-app-biz-api/.settings/org.eclipse.wst.common.project.facet.core.xml
+/.settings/org.eclipse.core.resources.prefs
