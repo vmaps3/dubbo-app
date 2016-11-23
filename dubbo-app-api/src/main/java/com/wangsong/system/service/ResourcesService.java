@@ -5,6 +5,7 @@ import java.util.List;
 import com.wangsong.common.model.JsonTreeData;
 import com.wangsong.common.service.BaseService;
 import com.wangsong.system.model.Resources;
+import com.wangsong.system.model.User;
 
 public interface ResourcesService extends BaseService<Resources>{
 
@@ -12,7 +13,7 @@ public interface ResourcesService extends BaseService<Resources>{
 	
 	List<JsonTreeData> findResources();
 
-	List<JsonTreeData> findResourcesEMUByResources();
+	List<JsonTreeData> findResourcesEMUByResources(User user);
 
 	
 }

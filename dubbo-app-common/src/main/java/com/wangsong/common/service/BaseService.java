@@ -11,7 +11,7 @@ public interface BaseService<T> {
 	
 	List<T> selectAll();
 	
-	T selectByPrimaryKey(String id);
+	T selectByPrimaryKey2(String id);
 	
     int insert(T t);
     

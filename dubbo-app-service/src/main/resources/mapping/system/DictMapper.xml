@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.wangsong.system.dao.DictMapper">
+<cache type="com.wangsong.common.mybatis.RedisCache" />  
+<resultMap id="BaseResultMap" type="com.wangsong.system.model.Dict">
+    <id column="id" jdbcType="VARCHAR" property="id" />
+    <result column="code" jdbcType="VARCHAR" property="code" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="type" jdbcType="VARCHAR" property="type" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" >
+    delete from sys_dict
+    where id in
+    <foreach item="id" collection="array" open="(" separator="," close=")">  
+			#{id}  
+		</foreach>  
+  </delete>
+  <insert id="insert" parameterType="com.wangsong.system.model.Dict">
+    insert into sys_dict (id, code, name, 
+      type)
+    values (#{id,jdbcType=VARCHAR}, #{code,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, 
+      #{type,jdbcType=VARCHAR})
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="com.wangsong.system.model.Dict">
+    update sys_dict
+    set code = #{code,jdbcType=VARCHAR},
+      name = #{name,jdbcType=VARCHAR},
+      type = #{type,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select id, code, name, type
+    from sys_dict
+    where id = #{id,jdbcType=VARCHAR}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap">
+    select id, code, name, type
+    from sys_dict
+  </select>
+  
+   <select id="findTCountByT" resultType="java.lang.Integer"  parameterType="com.wangsong.system.model.Dict" >
+    select count(*)
+    from sys_dict 
+    where 1=1
+     <if test="name!= null and name != ''">
+		and	 name like CONCAT('%', #{name,jdbcType=VARCHAR}, '%')
+	</if>
+	<if test="type != null and type != ''">
+		and type = #{type,jdbcType=VARCHAR}
+	</if>
+  </select>
+  <select id="findTByT" parameterType="com.wangsong.system.model.Dict" resultMap="BaseResultMap">
+    select id, code, name, type
+    from sys_dict
+    where 1=1
+    <if test="name!= null and name != ''">
+		and	 name like CONCAT('%', #{name,jdbcType=VARCHAR}, '%')
+	</if>
+	<if test="type != null and type != ''">
+		and type = #{type,jdbcType=VARCHAR}
+	</if>
+  </select>
+  
+   <select id="findTByPage" parameterType="com.wangsong.common.model.Page" resultMap="BaseResultMap">
+    select id, code, name, type
+    from sys_dict
+    where 1=1
+    <if test="t.name!= null and t.name != ''">
+		and	 name like CONCAT('%', #{t.name,jdbcType=VARCHAR}, '%')
+	</if>
+	<if test="t.type != null and t.type != ''">
+		and type = #{t.type,jdbcType=VARCHAR}
+	</if>
+	limit  #{first}, #{pageSize}
+  </select>
+  
+</mapper>

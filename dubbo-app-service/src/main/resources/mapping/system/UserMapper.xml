@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.wangsong.system.dao.UserMapper">
+<cache type="com.wangsong.common.mybatis.RedisCache" />  
+<resultMap id="BaseResultMap" type="com.wangsong.system.model.User">
+    <id column="id" jdbcType="VARCHAR" property="id" />
+    <result column="username" jdbcType="VARCHAR" property="username" />
+    <result column="password" jdbcType="VARCHAR" property="password" />
+  </resultMap>
+  <insert id="insert" parameterType="com.wangsong.system.model.User">
+    insert into sys_user (id, username, password
+      )
+    values (#{id,jdbcType=VARCHAR}, #{username,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}
+      )
+  </insert>
+   <delete id="deleteByPrimaryKey" >
+    delete from sys_user
+    where id in
+    	<foreach item="id" collection="array" open="(" separator="," close=")">  
+			#{id}  
+		</foreach>  
+  </delete>
+  <update id="updateByPrimaryKey" parameterType="com.wangsong.system.model.User">
+    update sys_user
+    set username = #{username,jdbcType=VARCHAR}
+		<if test="password!= null and password != ''">
+			,password = #{password,jdbcType=VARCHAR}
+		</if>
+		 
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select id, username, password
+    from sys_user
+    where id = #{id,jdbcType=VARCHAR}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap"  >
+    select id, username, password
+    from sys_user 
+  </select>
+  
+  <select id="findTCountByT" resultType="java.lang.Integer"  parameterType="com.wangsong.system.model.User">
+    select count(*)
+    from sys_user 
+     where 1=1
+    <if test="username!= null and username != ''">
+		and	 username like CONCAT('%', #{username,jdbcType=VARCHAR}, '%')
+	</if>
+  </select>
+   <select id="findTByT" parameterType="com.wangsong.system.model.User" resultMap="BaseResultMap">
+    select id, username, password
+    from sys_user
+    where 1=1
+    <if test="id!= null and id != ''">
+    	and id = #{id,jdbcType=VARCHAR}
+    </if>
+    <if test="username!= null and username != ''">
+    	and username = #{username,jdbcType=VARCHAR}
+    </if>
+  </select>
+  <select id="findTByPage" parameterType="com.wangsong.common.model.Page" resultMap="BaseResultMap">
+    select id, username, password
+    from sys_user
+    where 1=1
+    <if test="t.username!= null and t.username != ''">
+		and	 username like CONCAT('%', #{t.username,jdbcType=VARCHAR}, '%')
+	</if>
+    limit  #{first}, #{pageSize}
+  </select>
+</mapper>

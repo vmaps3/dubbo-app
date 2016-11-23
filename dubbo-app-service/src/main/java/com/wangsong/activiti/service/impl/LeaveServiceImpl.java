@@ -19,9 +19,9 @@ import com.wangsong.system.service.DictService;
 
 
 /**
- * 字典service
+ * 瀛楀吀service
  * @author ty
- * @date 2015年1月13日
+ * @date 2015骞�1鏈�13鏃�
  */
 @Service("leaveService")
 @Transactional(readOnly=true)
@@ -33,13 +33,13 @@ public class LeaveServiceImpl extends BaseServiceImpl<Leave> implements LeaveSer
 	private ActivitiServiceImpl workflowService;
 	
 	
-	/**更新请假状态，启动流程实例，让启动的流程实例关联业务*/
+	/**鏇存柊璇峰亣鐘舵�侊紝鍚姩娴佺▼瀹炰緥锛岃鍚姩鐨勬祦绋嬪疄渚嬪叧鑱斾笟鍔�*/
 	@Transactional(readOnly = false)
-	public void save(Leave leave) {
+	public void save(Leave leave,User user) {
 		leave.setId(UUID.randomUUID().toString());
 		leaveMapper.insert(leave);
 		Map<String, Object> variables = new HashMap<String, Object>();
-		variables.put("inputUser2", ((User)UserUtil.getUser()).getId().toString());// 表示惟一用户
+		variables.put("inputUser2", user.getId().toString());// 琛ㄧず鎯熶竴鐢ㄦ埛
 		workflowService.startProcessInstanceByKey(leave.getClass().getSimpleName(), leave.getId(),variables);
 	}
 }

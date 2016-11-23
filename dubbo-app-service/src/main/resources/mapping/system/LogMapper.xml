@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.wangsong.system.dao.LogMapper">
+<cache type="com.wangsong.common.mybatis.RedisCache" /> 
+ <resultMap id="BaseResultMap" type="com.wangsong.system.model.Log">
+    <id column="id" jdbcType="VARCHAR" property="id" />
+    <result column="url" jdbcType="VARCHAR" property="url" />
+    <result column="parameter" jdbcType="VARCHAR" property="parameter" />
+    <result column="remote_addr" jdbcType="VARCHAR" property="remoteAddr" />
+    <result column="agent" jdbcType="VARCHAR" property="agent" />
+    <result column="user_id" jdbcType="VARCHAR" property="userId" />
+    <result column="begin_time" jdbcType="TIMESTAMP" property="beginTime" />
+    <result column="end_time" jdbcType="TIMESTAMP" property="endTime" />
+    <result column="username" jdbcType="VARCHAR" property="user.username" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" >
+    delete from sys_log
+    where id in
+    <foreach item="id" collection="array" open="(" separator="," close=")">  
+			#{id}  
+		</foreach>  
+  </delete>
+  <insert id="insert" parameterType="com.wangsong.system.model.Log">
+    insert into sys_log (id, url, 
+      parameter, remote_addr, agent, 
+      user_id, begin_time, end_time
+      )
+    values (#{id,jdbcType=VARCHAR}, #{url,jdbcType=VARCHAR}, 
+      #{parameter,jdbcType=VARCHAR}, #{remoteAddr,jdbcType=VARCHAR}, #{agent,jdbcType=VARCHAR}, 
+      #{userId,jdbcType=VARCHAR}, #{beginTime,jdbcType=TIMESTAMP}, #{endTime,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="com.wangsong.system.model.Log">
+    update sys_log
+    set url = #{url,jdbcType=VARCHAR},
+      parameter = #{parameter,jdbcType=VARCHAR},
+      remote_addr = #{remoteAddr,jdbcType=VARCHAR},
+      agent = #{agent,jdbcType=VARCHAR},
+      user_id = #{userId,jdbcType=VARCHAR},
+      begin_time = #{beginTime,jdbcType=TIMESTAMP},
+      end_time = #{endTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select id, url, parameter, remote_addr, agent, user_id, begin_time, end_time
+    from sys_log
+    where id = #{id,jdbcType=VARCHAR}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap" >
+    select id, url, parameter, remote_addr, agent, user_id, begin_time, end_time
+    from sys_log 
+  </select>
+  <select id="findTByPage" resultMap="BaseResultMap" parameterType="com.wangsong.common.model.Page">
+    select l.id, l.url, l.parameter, l.remote_addr, l.agent, u.username, l.begin_time, l.end_time
+    from sys_log l
+    left join sys_user u on u.id=l.user_id
+
+    ORDER BY begin_time DESC
+    limit  #{first}, #{pageSize}
+  </select>
+  
+  <select id="findTCountByT" resultType="java.lang.Integer"  >
+    select count(*)
+    from sys_log 
+  </select>
+</mapper>

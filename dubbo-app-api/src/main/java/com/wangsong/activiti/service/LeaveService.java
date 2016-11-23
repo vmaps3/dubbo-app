@@ -12,15 +12,16 @@ import com.wangsong.activiti.model.Leave;
 import com.wangsong.common.service.BaseService;
 import com.wangsong.common.service.impl.BaseServiceImpl;
 import com.wangsong.common.util.UserUtil;
+import com.wangsong.system.model.User;
 
 
 
 /**
- * 字典service
+ * 瀛楀吀service
  * @author ty
- * @date 2015年1月13日
+ * @date 2015骞�1鏈�13鏃�
  */
 
 public interface LeaveService extends BaseService<Leave>{
-	public void save(Leave leave) ;
+	public void save(Leave leave,User user) ;
 }

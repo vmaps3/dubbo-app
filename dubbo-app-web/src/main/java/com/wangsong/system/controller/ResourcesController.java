@@ -13,7 +13,9 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.wangsong.common.controller.BaseController;
+import com.wangsong.common.util.UserUtil;
 import com.wangsong.system.model.Resources;
+import com.wangsong.system.model.User;
 import com.wangsong.system.service.ResourcesService;
 
 
@@ -83,13 +85,13 @@ public class ResourcesController extends BaseController {
 	@ResponseBody
 	public Object findResourcesEMUByResources() {
 		
-		return resourcesService.findResourcesEMUByResources();
+		return resourcesService.findResourcesEMUByResources((User)UserUtil.getUser());
 	}
 	
 	@RequestMapping(value="/selectByPrimaryKey")
 	@ResponseBody
 	public Object selectByPrimaryKey(String id) {
-		return resourcesService.selectByPrimaryKey(id);
+		return resourcesService.selectByPrimaryKey2(id);
 	}
 	
 }

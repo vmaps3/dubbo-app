@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.wangsong.system.dao.RoleResourcesMapper">
+<cache type="com.wangsong.common.mybatis.RedisCache" /> 
+<resultMap id="BaseResultMap" type="com.wangsong.system.model.RoleResources">
+    <id column="id" jdbcType="VARCHAR" property="id" />
+    <result column="resources_id" jdbcType="VARCHAR" property="resourcesId" />
+    <result column="role_id" jdbcType="VARCHAR" property="roleId" />
+  </resultMap>
+   <insert id="insert" parameterType="com.wangsong.system.model.RoleResources">
+    insert into sys_role_resources (id, resources_id, role_id
+      )
+    values (#{id,jdbcType=VARCHAR}, #{resourcesId,jdbcType=VARCHAR}, #{roleId,jdbcType=VARCHAR}
+      )
+  </insert>
+  <delete id="deleteByPrimaryKey" parameterType="com.wangsong.system.model.RoleResources">
+    delete from sys_role_resources
+    where id = #{id,jdbcType=VARCHAR}
+  </delete>
+  <update id="updateByPrimaryKey" parameterType="com.wangsong.system.model.RoleResources">
+    update sys_role_resources
+    set resources_id = #{resourcesId,jdbcType=VARCHAR},
+      role_id = #{roleId,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select id, resources_id, role_id
+    from sys_role_resources
+    where id = #{id,jdbcType=VARCHAR}
+  </select>
+  <select id="selectAll"  resultMap="BaseResultMap">
+    select id, resources_id, role_id
+    from sys_role_resources
+  </select>
+ 
+  <select id="findTByT" resultMap="BaseResultMap" parameterType="com.wangsong.system.model.RoleResources" >
+    select id, resources_id, role_id
+    from sys_role_resources 
+    where role_id = #{roleId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByT" >
+    delete from sys_role_resources
+    where role_id in
+    	<foreach item="roleResources" collection="array" open="(" separator="," close=")">  
+			#{roleResources.roleId}  
+		</foreach> 
+		or  resources_id in
+    	<foreach item="roleResources" collection="array" open="(" separator="," close=")">  
+			#{roleResources.resourcesId}  
+		</foreach>  
+  </delete>
+   
+</mapper>

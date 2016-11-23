@@ -86,7 +86,7 @@ public class DictController extends BaseController{
 	@RequestMapping(value="/selectByPrimaryKey")
 	@ResponseBody
 	public Object selectByPrimaryKey(String id) {
-		return dictService.selectByPrimaryKey(id);
+		return dictService.selectByPrimaryKey2(id);
 	}
 	
 }

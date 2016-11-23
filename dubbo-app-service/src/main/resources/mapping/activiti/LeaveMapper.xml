@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.wangsong.activiti.dao.LeaveMapper">
+  <resultMap id="BaseResultMap" type="com.wangsong.activiti.model.Leave">
+    <id column="id" jdbcType="VARCHAR" property="id" />
+    <result column="days" jdbcType="VARCHAR" property="days" />
+    <result column="reason" jdbcType="VARCHAR" property="reason" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from act_leave
+    where id = #{id,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.wangsong.activiti.model.Leave">
+    insert into act_leave (id, days, reason
+      )
+    values (#{id,jdbcType=VARCHAR}, #{days,jdbcType=VARCHAR}, #{reason,jdbcType=VARCHAR}
+      )
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="com.wangsong.activiti.model.Leave">
+    update act_leave
+    set days = #{days,jdbcType=VARCHAR},
+      reason = #{reason,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select id, days, reason
+    from act_leave
+    where id = #{id,jdbcType=VARCHAR}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap">
+    select id, days, reason
+    from act_leave
+  </select>
+</mapper>

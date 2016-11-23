@@ -84,7 +84,7 @@ public interface ActivitiService {
 	public void startProcessInstanceByKey(String name, String id, Map<String, Object> variables);
 
 	// 办理任务
-	public void complete(String name, String id, Map<String, Object> variables, String message);
+	public void complete(String name, String id, Map<String, Object> variables, String message,User user);
 
 	// 通过任务ID获取流程图中表单URL
 	public String findTaskFormKeyByTaskId(String taskId);

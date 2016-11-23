@@ -24,7 +24,7 @@ public abstract class BaseServiceImpl<T> implements BaseService<T>{
 		
 	}
 	@Override
-	public T selectByPrimaryKey(String id){
+	public T selectByPrimaryKey2(String id){
 		return baseMapper.selectByPrimaryKey(id);
 		
 	}

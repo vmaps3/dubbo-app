@@ -96,9 +96,9 @@ public class ResourcesServiceImpl extends BaseServiceImpl <Resources> implements
 	}
 	
 	@Override
-	public List<JsonTreeData> findResourcesEMUByResources() {
+	public List<JsonTreeData> findResourcesEMUByResources(User user) {
 		Resources resources=new Resources();
-		resources.setId(((User)SecurityUtils.getSubject().getPrincipal()).getId());
+		resources.setId(user.getId());
 		resources.setType("1");
 		List<Resources> resourcesList =resourcesMapper.findTByT(resources);
 		List<JsonTreeData> treeDataList = new ArrayList<JsonTreeData>();

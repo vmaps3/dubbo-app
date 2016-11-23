@@ -44,14 +44,14 @@ public class LeaveController extends BaseController{
 	@RequestMapping(value = "/add")
 	@ResponseBody
 	public String create(Leave leave, Model model) {
-		leaveService.save(leave);
+		leaveService.save(leave,(User)UserUtil.getUser());
 		return "success";
 	}
 	
 	@RequestMapping(value="/selectByPrimaryKey")
 	@ResponseBody
 	public Object selectByPrimaryKey(String id) {
-		return leaveService.selectByPrimaryKey(id);
+		return leaveService.selectByPrimaryKey2(id);
 	}
 	
 	@RequestMapping(value = "/toExamine")
@@ -71,7 +71,7 @@ public class LeaveController extends BaseController{
 		Map<String, Object> variables = new HashMap<String, Object>();
 		variables.put("message", buttonValue);
 		variables.put("inputUser", ((User)UserUtil.getUser()).getId().toString());
-		workflowService.complete(leave.getClass().getSimpleName(), leave.getId(),variables,message);
+		workflowService.complete(leave.getClass().getSimpleName(), leave.getId(),variables,message,(User)UserUtil.getUser());
 		return "success";
 	}
 	
@@ -95,7 +95,7 @@ public class LeaveController extends BaseController{
 		Map<String, Object> variables = new HashMap<String, Object>();
 		variables.put("message", buttonValue);
 		variables.put("inputUser", ((User)UserUtil.getUser()).getId().toString());
-		workflowService.complete(leave.getClass().getSimpleName(), leave.getId(),variables,message);
+		workflowService.complete(leave.getClass().getSimpleName(), leave.getId(),variables,message,(User)UserUtil.getUser());
 		return "success";
 	}
 
