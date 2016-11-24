@@ -51,7 +51,7 @@ public class LeaveController extends BaseController{
 	@RequestMapping(value="/selectByPrimaryKey")
 	@ResponseBody
 	public Object selectByPrimaryKey(String id) {
-		return leaveService.selectByPrimaryKey2(id);
+		return leaveService.selectByPrimaryKey(id);
 	}
 	
 	@RequestMapping(value = "/toExamine")

@@ -86,7 +86,7 @@ public class UserServiceImpl extends BaseServiceImpl<User> implements UserServic
 	}
 
 	@Override
-	public User selectByPrimaryKey(String id){
+	public User selectByKey(String id){
 		User u=userMapper.selectByPrimaryKey(id);
 		u.setPassword("");
 		return u;

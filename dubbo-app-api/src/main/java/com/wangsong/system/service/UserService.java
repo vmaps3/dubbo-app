@@ -8,7 +8,7 @@ import com.wangsong.system.model.UserRole;
 
 public interface UserService extends BaseService<User>{
 	
-	User selectByPrimaryKey(String id);
+	User selectByKey(String id);
 	
     int insert(User muser, String[] roleId);
     

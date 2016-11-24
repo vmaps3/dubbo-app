@@ -91,7 +91,7 @@ public class ResourcesController extends BaseController {
 	@RequestMapping(value="/selectByPrimaryKey")
 	@ResponseBody
 	public Object selectByPrimaryKey(String id) {
-		return resourcesService.selectByPrimaryKey2(id);
+		return resourcesService.selectByPrimaryKey(id);
 	}
 	
 }

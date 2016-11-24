@@ -90,7 +90,7 @@ public class RoleController  extends BaseController{
 	@RequestMapping(value="/selectByPrimaryKey")
 	@ResponseBody
 	public Object selectByPrimaryKey(String id) {
-		return roleService.selectByPrimaryKey2(id);
+		return roleService.selectByPrimaryKey(id);
 	}
 	
 	@RequestMapping(value="/findRoleResourcesByRole")

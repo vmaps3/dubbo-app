@@ -63,7 +63,7 @@ public class UserController extends BaseController{
 	@RequestMapping(value="/selectByPrimaryKey")
 	@ResponseBody
 	public Object selectByPrimaryKey(String id) {
-		User muser = userService.selectByPrimaryKey(id);
+		User muser = userService.selectByKey(id);
 		return muser;
 	}
 	
