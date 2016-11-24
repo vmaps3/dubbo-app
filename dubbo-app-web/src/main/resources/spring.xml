@@ -12,17 +12,13 @@
 	<context:property-placeholder location="classpath:config.properties" />
 	<context:component-scan base-package="com.wangsong.*.service" />
 
-	<bean
-		class="org.springframework.session.data.redis.config.annotation.web.http.RedisHttpSessionConfiguration" />
+
 	<bean id="poolConfig" class="redis.clients.jedis.JedisPoolConfig" />
 	<bean id="jedisConnectionFactory"
 		class="org.springframework.data.redis.connection.jedis.JedisConnectionFactory"
 		p:host-name="${redis_host}" p:port="${redis_port}" p:password="${redis_pass}"
 		p:pool-config-ref="poolConfig" />
-	<bean
-		class="org.springframework.session.data.redis.config.annotation.web.http.RedisHttpSessionConfiguration">
-		<property name="maxInactiveIntervalInSeconds" value="600"></property>
-	</bean>
+	
 	 <bean id="redisTemplate" class="org.springframework.data.redis.core.StringRedisTemplate">  
         <property name="connectionFactory"   ref="jedisConnectionFactory" />  
         <property name="keySerializer">
