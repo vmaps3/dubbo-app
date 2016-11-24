@@ -12,6 +12,5 @@
 		<module>dubbo-app-api</module>
 		<module>dubbo-app-service</module>
 		<module>dubbo-app-web</module>
-		
 	</modules>
 </project>
