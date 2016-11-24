@@ -56,7 +56,7 @@
     <div data-options="region:'west',title:'菜单',split:true" style="width:200px;">
     	<div id="tree"></div>
     </div>
-    <div id="tt"   class="easyui-tabs" data-options="region:'center'" style="padding:5px;background:#eee;">
+    <div id="tt"   class="easyui-tabs" data-options="region:'center'" >
     	<div title="首页" style="padding:10px">
 			<p style="font-size:14px">dubbo-app</p>
 			
