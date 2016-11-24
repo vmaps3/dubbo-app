@@ -1,5 +1,7 @@
 package com.wangsong.activiti.service.impl;
 
+import java.io.ByteArrayInputStream;
+import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -36,6 +38,7 @@ import org.springframework.web.multipart.MultipartFile;
 import com.wangsong.activiti.service.ActivitiService;
 import com.wangsong.activiti.service.LeaveService;
 import com.wangsong.common.model.Page;
+import com.wangsong.common.util.ByteToInputStream;
 import com.wangsong.common.util.DateUtils;
 import com.wangsong.common.util.UserUtil;
 import com.wangsong.system.model.User;
@@ -104,13 +107,13 @@ public class ActivitiServiceImpl implements ActivitiService{
 
 	/** 閮ㄧ讲娴佺▼瀹氫箟 */
 	@Transactional(readOnly = false)
-	public void saveNewDeploye(MultipartFile file, String filename) {
+	public void saveNewDeploye(byte[] file, String filename) {
 		try {
 			// 2锛氬皢File绫诲瀷鐨勬枃浠惰浆鍖栨垚ZipInputStream娴�
-			ZipInputStream zipInputStream = new ZipInputStream(file.getInputStream());
+			
 			repositoryService.createDeployment()// 鍒涘缓閮ㄧ讲瀵硅薄
 					.name(filename)// 娣诲姞閮ㄧ讲鍚嶇О
-					.addZipInputStream(zipInputStream)//
+					.addZipInputStream(  new ZipInputStream(new ByteArrayInputStream(file)))//
 					.deploy();// 瀹屾垚閮ㄧ讲
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -174,9 +177,10 @@ public class ActivitiServiceImpl implements ActivitiService{
 		return page;
 	}
 
-	/** 浣跨敤閮ㄧ讲瀵硅薄ID鍜岃祫婧愬浘鐗囧悕绉帮紝鑾峰彇鍥剧墖鐨勮緭鍏ユ祦 */
-	public InputStream findImageInputStream(String deploymentId, String imageName) {
-		return repositoryService.getResourceAsStream(deploymentId, imageName);
+	/** 浣跨敤閮ㄧ讲瀵硅薄ID鍜岃祫婧愬浘鐗囧悕绉帮紝鑾峰彇鍥剧墖鐨勮緭鍏ユ祦 
+	 * @throws IOException */
+	public byte[]  findImageInputStream(String deploymentId, String imageName) throws IOException {
+		return ByteToInputStream.input2byte(repositoryService.getResourceAsStream(deploymentId, imageName));
 	}
 
 	// 淇濆瓨浠诲姟

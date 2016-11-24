@@ -1,5 +1,6 @@
 package com.wangsong.activiti.service;
 
+import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -65,7 +66,7 @@ public interface ActivitiService {
 
 	public HistoricProcessInstance findHistoricProcessInstanceByBusinessKey(String businessKey);
 
-	public void saveNewDeploye(MultipartFile file, String filename);
+	public void saveNewDeploye(byte[] file, String filename);
 
 	// 流程部署查询
 	public Page<Map<String, Object>> findDeploymentList(Page<Map<String, Object>> page);
@@ -77,8 +78,9 @@ public interface ActivitiService {
 
 	public Page<Map<String, Object>> findProcessDefinitionList(Page<Map<String, Object>> page);
 
-	/** 使用部署对象ID和资源图片名称，获取图片的输入流 */
-	public InputStream findImageInputStream(String deploymentId, String imageName);
+	/** 使用部署对象ID和资源图片名称，获取图片的输入流 
+	 * @throws IOException */
+	public byte[] findImageInputStream(String deploymentId, String imageName) throws IOException;
 
 	// 保存任务
 	public void startProcessInstanceByKey(String name, String id, Map<String, Object> variables);

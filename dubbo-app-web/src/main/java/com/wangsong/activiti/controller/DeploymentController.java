@@ -1,7 +1,11 @@
 package com.wangsong.activiti.controller;
 
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.List;
 import java.util.Map;
+import java.util.zip.ZipInputStream;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -70,15 +74,17 @@ public class DeploymentController extends BaseController{
 	 * 
 	 * @param dict
 	 * @param model
+	 * @throws IOException 
 	 */
 	@RequestMapping(value = "/add")
 	@ResponseBody
-	public String create(MultipartFile file,String filename, Model model) {
-		workflowService.saveNewDeploye(file ,filename);
+	public String create(MultipartFile file,String filename, Model model) throws IOException {
+		
+		workflowService.saveNewDeploye(file.getBytes()  ,filename);
 		return "success";
 	}
 
-
+	
 	
 	/**
 	 * 删除字典

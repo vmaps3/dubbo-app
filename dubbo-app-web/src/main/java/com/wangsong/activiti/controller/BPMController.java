@@ -29,6 +29,7 @@ import com.wangsong.activiti.service.ActivitiService;
 import com.wangsong.activiti.service.LeaveService;
 import com.wangsong.common.controller.BaseController;
 import com.wangsong.common.model.Page;
+import com.wangsong.common.util.ByteToInputStream;
 import com.wangsong.common.util.UserUtil;
 import com.wangsong.system.model.User;
 
@@ -104,7 +105,9 @@ public class BPMController extends BaseController{
 	public void viewImage(String deploymentId,String diagramResourceName,HttpServletResponse response) throws Exception{
 	
 		//2：获取资源文件表（act_ge_bytearray）中资源图片输入流InputStream
-		InputStream in = workflowService.findImageInputStream(deploymentId,diagramResourceName);
+		
+		byte[] bt=	workflowService.findImageInputStream(deploymentId,diagramResourceName);
+		InputStream in = ByteToInputStream.byte2Input(bt);
 		//3：从response对象获取输出流
 		OutputStream out = response.getOutputStream();
 		//4：将输入流中的数据读取出来，写到输出流中
