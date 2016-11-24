@@ -2,7 +2,7 @@
 
 ##系统介绍
 
-dubbo-app 是J2EE开发基础平台，使用经典技术组合（dubbo、zookeeper、Spring、SpringMVC、MyBatis、Shiro、redis、quartz、activiti、easyui），包括核心模块如：角色用户、权限授权、工作流等。
+dubbo-app 是J2EE分布式开发基础平台，使用经典技术组合（dubbo、zookeeper、Spring、SpringMVC、MyBatis、Shiro、redis、quartz、activiti、easyui），包括核心模块如：角色用户、权限授权、工作流等。
 ##业务功能
 1.用户管理：用户是系统操作者，该功能主要完成系统用户配置。
 2.角色管理：角色菜单权限分配。
