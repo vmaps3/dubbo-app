@@ -1,0 +1,27 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:dubbo="http://code.alibabatech.com/schema/dubbo" xmlns:p="http://www.springframework.org/schema/p"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+	http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+	http://www.springframework.org/schema/context
+	http://www.springframework.org/schema/context/spring-context-3.0.xsd
+	http://code.alibabatech.com/schema/dubbo          
+	http://code.alibabatech.com/schema/dubbo/dubbo.xsd">
+	<dubbo:application name="${dubbo.application}"></dubbo:application>
+	<!-- 使用zookeeper注册中心暴露服务地址 -->
+	<dubbo:registry address="${dubbo.registry}" ></dubbo:registry>
+	<dubbo:protocol name="dubbo" port="${dubbo.protocol}" />
+	<dubbo:consumer check="false" />
+	 <!-- 要引用的服务 -->
+	<dubbo:reference interface="com.wangsong.system.service.DictService"		id="dictService" ></dubbo:reference>
+	<dubbo:reference interface="com.wangsong.system.service.LogService"		id="logService" ></dubbo:reference>
+	<dubbo:reference interface="com.wangsong.system.service.ResourcesService"		id="resourcesService" ></dubbo:reference>
+	<dubbo:reference interface="com.wangsong.system.service.RoleService"		id="roleService" ></dubbo:reference>
+	<dubbo:reference interface="com.wangsong.system.service.ScheduleJobService"		id="scheduleJobService" ></dubbo:reference>
+	<dubbo:reference interface="com.wangsong.system.service.UserService"		id="userService" ></dubbo:reference>
+	<dubbo:reference interface="com.wangsong.activiti.service.ActivitiService"		id="activitiService" ></dubbo:reference>
+	<dubbo:reference interface="com.wangsong.activiti.service.LeaveService"	id="leaveService" ></dubbo:reference>
+	
+
+</beans>
