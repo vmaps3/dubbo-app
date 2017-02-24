@@ -75,3 +75,5 @@ target/
 /dubbo-app-service/.settings/org.eclipse.wst.jsdt.ui.superType.container
 /dubbo-app-service/.settings/org.eclipse.wst.jsdt.ui.superType.name
 /dubbo-app-service/.settings/org.eclipse.wst.validation.prefs
+/dubbo-app-api/.settings/org.eclipse.wst.validation.prefs
+/dubbo-app-common/.settings/org.eclipse.wst.validation.prefs
