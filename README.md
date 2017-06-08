@@ -43,3 +43,5 @@ shiro单机 shiro-ehcahce
 ![](http://git.oschina.net/uploads/images/2016/1116/164633_6dd5c2e9_420150.png "权限右键操作树")
 ![](http://git.oschina.net/uploads/images/2016/1116/164643_80af2995_420150.png "定时器")
 ![](http://git.oschina.net/uploads/images/2016/1116/164653_4314a4a8_420150.png "工作流")
+##qq交流群
+74745979
