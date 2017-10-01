@@ -20,13 +20,9 @@
 	<dubbo:provider/>
 	<!-- 要暴露的服务接口 -->
 	<dubbo:service interface="com.wangsong.system.service.DictService"	ref="dictService" />
-	<dubbo:service interface="com.wangsong.system.service.LogService"		ref="logService" />
 	<dubbo:service interface="com.wangsong.system.service.ResourcesService"		ref="resourcesService" />
 	<dubbo:service interface="com.wangsong.system.service.RoleService"		ref="roleService" />
-	<dubbo:service interface="com.wangsong.system.service.ScheduleJobService"		ref="scheduleJobService" />	
 	<dubbo:service interface="com.wangsong.system.service.UserService"		ref="userService" />
-	<dubbo:service interface="com.wangsong.activiti.service.ActivitiService"		ref="activitiService" />
-	<dubbo:service interface="com.wangsong.activiti.service.LeaveService"		ref="leaveService" />
 
 
 </beans>

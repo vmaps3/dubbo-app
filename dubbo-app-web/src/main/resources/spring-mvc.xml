@@ -50,13 +50,5 @@
 	    <property name="securityManager" ref="securityManager"/>
 	</bean>
 	
-	<!-- 自定义拦截链配置 -->
-    <mvc:interceptors>
-        <mvc:interceptor>
-            <mvc:mapping path="/**"/>
-            <bean class="com.wangsong.system.service.impl.LogInterceptor"></bean>
-        </mvc:interceptor>
-    </mvc:interceptors>
-    
     <mvc:resources mapping="/static/**" location="/static/"/>
 </beans>

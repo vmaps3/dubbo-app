@@ -17,13 +17,9 @@
 	<dubbo:consumer check="false" />
 	 <!-- 要引用的服务 -->
 	<dubbo:reference interface="com.wangsong.system.service.DictService"		id="dictService" ></dubbo:reference>
-	<dubbo:reference interface="com.wangsong.system.service.LogService"		id="logService" ></dubbo:reference>
 	<dubbo:reference interface="com.wangsong.system.service.ResourcesService"		id="resourcesService" ></dubbo:reference>
 	<dubbo:reference interface="com.wangsong.system.service.RoleService"		id="roleService" ></dubbo:reference>
-	<dubbo:reference interface="com.wangsong.system.service.ScheduleJobService"		id="scheduleJobService" ></dubbo:reference>
 	<dubbo:reference interface="com.wangsong.system.service.UserService"		id="userService" ></dubbo:reference>
-	<dubbo:reference interface="com.wangsong.activiti.service.ActivitiService"		id="activitiService" ></dubbo:reference>
-	<dubbo:reference interface="com.wangsong.activiti.service.LeaveService"	id="leaveService" ></dubbo:reference>
 	
 
 </beans>
