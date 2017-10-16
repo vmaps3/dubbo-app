@@ -17,7 +17,7 @@ dubbo-app 是J2EE分布式开发基础平台，使用经典技术组合（dubbo�
 ### MVC springmvc 
 ### ORM mybatis 
 ### 权限 shiro 
-缓存 redis 
+### 缓存 redis 
 ### mybatis二级缓存 mybatis-redis 
 ### shiro集群 shiro-redis 
 ### shiro单机 shiro-ehcahce
