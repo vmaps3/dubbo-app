@@ -1,6 +1,6 @@
 # dubbo-app
 
-##系统介绍
+## 系统介绍
 
 dubbo-app 是J2EE分布式开发基础平台，使用经典技术组合（dubbo、zookeeper、Spring、SpringMVC、MyBatis、Shiro、redis、easyui），包括核心模块如：角色用户、权限授权。
 ##业务功能
