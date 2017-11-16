@@ -66,7 +66,7 @@ public class RedisSessionDAO extends AbstractSessionDAO {
 		Set<String> keys = redisTemplate.keys(this.keyPrefix + "*");
 		if(keys != null && keys.size()>0){
 			for(String key:keys){
-				Session s = (Session)valueOperations.get(keyPrefix+key);
+				Session s = (Session)valueOperations.get(key);
 				sessions.add(s);
 			}
 		}
