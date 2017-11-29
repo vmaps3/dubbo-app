@@ -8,29 +8,14 @@ import org.springframework.transaction.annotation.Transactional;
 import com.wangsong.common.service.impl.BaseServiceImpl;
 import com.wangsong.system.model.Dict;
 import com.wangsong.system.model.DictTransaction;
+import com.wangsong.system.model.DictTransaction2;
 import com.wangsong.system.model.User;
-import com.wangsong.system.service.DictService;
+import com.wangsong.system.service.DictTransaction2Service;
 import com.wangsong.system.service.DictTransactionService;
 import com.wangsong.system.service.UserService;
 
-@Service("dictService")
+@Service("dictTransaction2Service")
 @Transactional
-public class DictServiceImpl extends BaseServiceImpl<Dict> implements DictService{
-	@Autowired
-	private DictTransactionService dictTransactionService;
-	@Autowired
-	private UserService userService;
-	@Override
-	public void test() {
-		Dict dict2=new Dict();
-		insert(dict2);
-		DictTransaction dict=new DictTransaction();
-		int f=dictTransactionService.inset2();
-		if(f==1){
-			throw new RuntimeException();
-		}
-		
-		
-	}
-
+public class DictTransaction2ServiceImpl extends BaseServiceImpl<DictTransaction2> implements DictTransaction2Service{
+	
 }

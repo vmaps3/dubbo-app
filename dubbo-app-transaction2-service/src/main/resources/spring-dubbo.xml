@@ -19,11 +19,8 @@
 	<dubbo:protocol name="dubbo" port="${dubbo.protocol}" />
 	<dubbo:provider/>
 	<!-- 要暴露的服务接口 -->
-	<dubbo:service interface="com.wangsong.system.service.DictService"	ref="dictService" />
-	<dubbo:service interface="com.wangsong.system.service.ResourcesService"		ref="resourcesService" />
-	<dubbo:service interface="com.wangsong.system.service.RoleService"		ref="roleService" />
-	<dubbo:service interface="com.wangsong.system.service.UserService"		ref="userService" />
-	<dubbo:consumer check="false" />
-	<dubbo:reference interface="com.wangsong.system.service.DictTransactionService"		id="dictTransactionService" ></dubbo:reference>
+	<dubbo:service interface="com.wangsong.system.service.DictTransaction2Service"	ref="dictTransaction2Service" />
+	
+
 
 </beans>

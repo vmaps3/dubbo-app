@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" 
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+	xmlns:context="http://www.springframework.org/schema/context" 
+	xmlns:dubbo="http://code.alibabatech.com/schema/dubbo"  
+	xmlns:p="http://www.springframework.org/schema/p"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+		http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+		http://www.springframework.org/schema/context
+		http://www.springframework.org/schema/context/spring-context-3.0.xsd">
+
+	<bean id="poolConfig" class="redis.clients.jedis.JedisPoolConfig" />    
+	<bean id="jedisConnectionFactory" 	
+		class="org.springframework.data.redis.connection.jedis.JedisConnectionFactory" 	
+		p:host-name="${redis_host}" 	
+		p:port="${redis_port}" 	
+		p:password="${redis_pass}"  
+		p:pool-config-ref="poolConfig"/>
+	
+	 <bean id="redisTemplate" class="org.springframework.data.redis.core.StringRedisTemplate">  
+        <property name="connectionFactory"   ref="jedisConnectionFactory" />  
+        <property name="keySerializer">
+			<bean class="org.springframework.data.redis.serializer.StringRedisSerializer"></bean>
+		</property>
+		<property name="valueSerializer">
+			<bean    class="org.springframework.data.redis.serializer.JdkSerializationRedisSerializer" />
+       </property>
+    </bean>  
+
+
+	<bean class="com.wangsong.common.mybatis.RedisCacheTransfer">
+	    <property name="redisTemplate" ref="redisTemplate"/>
+	    <property name="expire" value="${mybatis_redis_cache}"/>
+	</bean>
+  
+</beans>
