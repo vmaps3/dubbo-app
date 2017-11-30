@@ -16,7 +16,6 @@ import com.wangsong.common.controller.BaseController;
 import com.wangsong.common.model.Page;
 import com.wangsong.system.model.Dict;
 import com.wangsong.system.service.DictService;
-import com.wangsong.system.service.DictTransactionService;
 
 @Controller
 @RequestMapping("/system/dict")
@@ -90,9 +89,4 @@ public class DictController extends BaseController{
 		return dictService.selectByPrimaryKey(id);
 	}
 	
-	@RequestMapping(value="/test")
-	@ResponseBody
-	public void test() {
-		dictService.test();
-	}
 }

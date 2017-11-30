@@ -11,8 +11,6 @@
 		<module>dubbo-app-common</module>
 		<module>dubbo-app-api</module>
 		<module>dubbo-app-service</module>
-		<module>dubbo-app-transaction-service</module>
-		<module>dubbo-app-transaction2-service</module>
 		<module>dubbo-app-web</module>
 	</modules>
 </project>

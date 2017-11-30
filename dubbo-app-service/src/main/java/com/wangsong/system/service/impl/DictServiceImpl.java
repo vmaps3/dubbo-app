@@ -16,21 +16,6 @@ import com.wangsong.system.service.UserService;
 @Service("dictService")
 @Transactional
 public class DictServiceImpl extends BaseServiceImpl<Dict> implements DictService{
-	@Autowired
-	private DictTransactionService dictTransactionService;
-	@Autowired
-	private UserService userService;
-	@Override
-	public void test() {
-		Dict dict2=new Dict();
-		insert(dict2);
-		DictTransaction dict=new DictTransaction();
-		int f=dictTransactionService.inset2();
-		if(f==1){
-			throw new RuntimeException();
-		}
-		
-		
-	}
+	
 
 }
