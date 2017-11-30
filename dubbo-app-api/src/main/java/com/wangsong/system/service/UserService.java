@@ -2,22 +2,31 @@ package com.wangsong.system.service;
 
 import java.util.List;
 
-import com.wangsong.common.service.BaseService;
+import com.wangsong.common.model.Result;
 import com.wangsong.system.model.User;
+import com.wangsong.system.model.UserPage;
 import com.wangsong.system.model.UserRole;
+import com.wangsong.system.vo.UserVO;
 
-public interface UserService extends BaseService<User>{
+public interface UserService {
 	
-	User selectByKey(String id);
+	User toUpdatePassword(String principal);
 	
-    int insert(User muser, String[] roleId);
+	Result insertUser(User muser, String[] roleId);
     
-    int update(User muser, String[] roleId);
+    Result updateUser(User muser, String[] roleId);
     
-    int delete(String[] id);
+    Result deleteUser(String[] id);
     
-    List<UserRole> findUserRoleByUser(User user);
+    Result updatePassword(User u);
 
+	Object findTByPage(UserPage user);
 
-	
+	Result index();
+
+	Result unauth();
+
+	UserVO selectByPrimaryKey(String id);
+
+	User findTByT(User user);
 }

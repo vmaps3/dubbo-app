@@ -8,40 +8,39 @@
     <result column="password" jdbcType="VARCHAR" property="password" />
   </resultMap>
   <insert id="insert" parameterType="com.wangsong.system.model.User">
-    insert into sys_user (id, username, password
+    insert into system_user (id, username, password
       )
     values (#{id,jdbcType=VARCHAR}, #{username,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}
       )
   </insert>
-   <delete id="deleteByPrimaryKey" >
-    delete from sys_user
-    where id in
-    	<foreach item="id" collection="array" open="(" separator="," close=")">  
-			#{id}  
-		</foreach>  
+ <delete id="deleteByPrimaryKey" parameterType="com.wangsong.system.model.RoleResources">
+    delete from system_user
+    where id = #{id,jdbcType=VARCHAR}
   </delete>
   <update id="updateByPrimaryKey" parameterType="com.wangsong.system.model.User">
-    update sys_user
+    update system_user
     set username = #{username,jdbcType=VARCHAR}
-		<if test="password!= null and password != ''">
-			,password = #{password,jdbcType=VARCHAR}
-		</if>
-		 
+	,password = #{password,jdbcType=VARCHAR}	 
     where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateNoPasswordByPrimaryKey" parameterType="com.wangsong.system.model.User">
+    update system_user
+    set username = #{username,jdbcType=VARCHAR}
+	where id = #{id,jdbcType=VARCHAR}
   </update>
   <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
     select id, username, password
-    from sys_user
+    from system_user
     where id = #{id,jdbcType=VARCHAR}
   </select>
   <select id="selectAll" resultMap="BaseResultMap"  >
     select id, username, password
-    from sys_user 
+    from system_user 
   </select>
   
-  <select id="findTCountByT" resultType="java.lang.Integer"  parameterType="com.wangsong.system.model.User">
+  <select id="findTCountByT" resultType="java.lang.Integer"  parameterType="com.wangsong.system.model.UserPage">
     select count(*)
-    from sys_user 
+    from system_user 
      where 1=1
     <if test="username!= null and username != ''">
 		and	 username like CONCAT('%', #{username,jdbcType=VARCHAR}, '%')
@@ -49,22 +48,30 @@
   </select>
    <select id="findTByT" parameterType="com.wangsong.system.model.User" resultMap="BaseResultMap">
     select id, username, password
-    from sys_user
-    where 1=1
-    <if test="id!= null and id != ''">
-    	and id = #{id,jdbcType=VARCHAR}
-    </if>
-    <if test="username!= null and username != ''">
-    	and username = #{username,jdbcType=VARCHAR}
-    </if>
+    from system_user
+    where  username = #{username,jdbcType=VARCHAR}
+
   </select>
-  <select id="findTByPage" parameterType="com.wangsong.common.model.Page" resultMap="BaseResultMap">
+  <select id="findTByPage" parameterType="com.wangsong.system.model.UserPage" resultMap="BaseResultMap">
     select id, username, password
-    from sys_user
+    from system_user
     where 1=1
-    <if test="t.username!= null and t.username != ''">
-		and	 username like CONCAT('%', #{t.username,jdbcType=VARCHAR}, '%')
+    <if test="username!= null and username != ''">
+		and	 username like CONCAT('%', #{username,jdbcType=VARCHAR}, '%')
 	</if>
-    limit  #{first}, #{pageSize}
+    limit  #{first}, #{rows}
+  </select>
+    <delete id="deleteBy" >
+    delete from system_user
+    where id in
+    	<foreach item="id" collection="array" open="(" separator="," close=")">  
+			#{id}  
+		</foreach>  
+  </delete>
+  
+   <select id="selectVOByPrimaryKey" parameterType="java.lang.String" resultType="com.wangsong.system.vo.UserVO">
+    select id, username, password
+    from system_user
+    where id = #{id,jdbcType=VARCHAR}
   </select>
 </mapper>

@@ -24,9 +24,6 @@
 	</bean>
 
 
-	<bean class="org.springframework.web.servlet.view.InternalResourceViewResolver" 
-		  p:prefix="/WEB-INF/jsp/" p:suffix=".jsp" />
-
 	<!-- 上传 -->
 	<bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">  
         <property name="defaultEncoding" value="utf-8"></property>   
@@ -37,7 +34,7 @@
 	<bean class="org.springframework.web.servlet.handler.SimpleMappingExceptionResolver"> 
 		<property name="exceptionMappings"> 
 			 <props> 
-				<prop key="org.apache.shiro.authz.UnauthorizedException">common/unauth</prop>
+				<prop key="org.apache.shiro.authz.UnauthorizedException">/unauth.do</prop>
 			 </props> 
 		 </property> 
 	</bean> 
@@ -50,5 +47,4 @@
 	    <property name="securityManager" ref="securityManager"/>
 	</bean>
 	
-    <mvc:resources mapping="/static/**" location="/static/"/>
 </beans>

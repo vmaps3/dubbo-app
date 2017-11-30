@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.wangsong.system.dao.ResourcesMapper">
-<cache type="com.wangsong.common.mybatis.RedisCache" /> 
+<cache type="com.wangsong.common.mybatis.RedisCache" />  
 <resultMap id="BaseResultMap" type="com.wangsong.system.model.Resources">
     <id column="id" jdbcType="VARCHAR" property="id" />
     <result column="pid" jdbcType="VARCHAR" property="pid" />
@@ -11,24 +11,17 @@
    	<result column="sort" jdbcType="VARCHAR" property="sort" />
   </resultMap>
   <insert id="insert" parameterType="com.wangsong.system.model.Resources">
-    insert into sys_resources (id, pid, name, 
+    insert into system_resources (id, pid, name, 
       url,type,sort)
     values (#{id,jdbcType=VARCHAR}, #{pid,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, 
       #{url,jdbcType=VARCHAR},#{type,jdbcType=VARCHAR},#{sort,jdbcType=VARCHAR})
   </insert>
-  <delete id="deleteByPrimaryKey" >
-    delete from sys_resources
-    where id in 
-    	<foreach item="id" collection="array" open="(" separator="," close=")">  
-			#{id}  
-		</foreach>  
-	or pid in
-		 <foreach item="id" collection="array" open="(" separator="," close=")">  
-			#{id}  
-		</foreach>  
+   <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from system_resources
+    where id = #{id,jdbcType=VARCHAR}
   </delete>
   <update id="updateByPrimaryKey" parameterType="com.wangsong.system.model.Resources">
-    update sys_resources
+    update system_resources
     set pid = #{pid,jdbcType=VARCHAR},
       name = #{name,jdbcType=VARCHAR},
       url = #{url,jdbcType=VARCHAR},
@@ -38,24 +31,25 @@
   </update>
   <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
     select id, pid, name, url,type,sort
-    from sys_resources
+    from system_resources
     where id = #{id,jdbcType=VARCHAR}
   </select>
   <select id="selectAll" resultMap="BaseResultMap">
     select id, pid, name, url,type,sort
-    from sys_resources
-    ORDER BY sys_resources.sort
-  </select>
-   
-  <select id="findTByT" parameterType="com.wangsong.system.model.Resources" resultMap="BaseResultMap">
-    select  sys_resources.id, sys_resources.pid, sys_resources.name, sys_resources.url,sys_resources.type,sys_resources.sort
-    from sys_resources,sys_role_resources,sys_user_role
-    where sys_resources.id=sys_role_resources.resources_id
-    and sys_user_role.role_id=sys_role_resources.role_id
-    and sys_resources.type = #{type,jdbcType=VARCHAR}
-    and sys_user_role.user_id = #{id,jdbcType=VARCHAR}
-    ORDER BY sys_resources.sort
+    from system_resources
+    ORDER BY system_resources.sort
   </select>
   
+   <delete id="deleteBy" >
+    delete from system_resources
+    where id in 
+    	<foreach item="id" collection="array" open="(" separator="," close=")">  
+			#{id}  
+		</foreach>  
+	or pid in
+		 <foreach item="id" collection="array" open="(" separator="," close=")">  
+			#{id}  
+		</foreach>  
+  </delete>
   
 </mapper>

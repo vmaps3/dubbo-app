@@ -2,28 +2,36 @@ package com.wangsong.system.model;
 
 import java.io.Serializable;
 
+
+
 public class Resources  implements Serializable{
     /**
 	 * 
 	 */
 	private static final long serialVersionUID = 4125580367922291000L;
-
 	private String id;
-
     private String pid;
-
     private String name;
-
     private String url;
-    
     private String type;
-    
     private String sort;
     
-    public String getType() {
-		return type;
+    public Resources(String id, String pid, String name, String url, String type, String sort) {
+		super();
+		this.id = id;
+		this.pid = pid;
+		this.name = name;
+		this.url = url;
+		this.type = type;
+		this.sort = sort;
 	}
 
+	public String getType() {
+		return type;
+	}
+	public Resources(){
+		
+	}
 	public void setType(String type) {
 		 this.type = type == null ? null : type.trim();
 	}

@@ -12,7 +12,20 @@ public class JsonTreeData implements Serializable{
     public Attributes attributes;
     public List<JsonTreeData> children;       //
      
-    public String getId() {
+    public JsonTreeData(String id, String pid, String text, String state, Attributes attributes,
+			List<JsonTreeData> children) {
+		super();
+		this.id = id;
+		this.pid = pid;
+		this.text = text;
+		this.state = state;
+		this.attributes = attributes;
+		this.children = children;
+	}
+    public JsonTreeData(){
+    	
+    }
+	public String getId() {
         return id;
     }
     public void setId(String id) {

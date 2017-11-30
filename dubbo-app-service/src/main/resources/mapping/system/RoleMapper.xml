@@ -1,40 +1,38 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.wangsong.system.dao.RoleMapper">
-<cache type="com.wangsong.common.mybatis.RedisCache" /> 
+<cache type="com.wangsong.common.mybatis.RedisCache" />  
 <resultMap id="BaseResultMap" type="com.wangsong.system.model.Role">
     <id column="id" jdbcType="VARCHAR" property="id" />
     <result column="name" jdbcType="VARCHAR" property="name" />
   </resultMap>
   <insert id="insert" parameterType="com.wangsong.system.model.Role">
-    insert into sys_role (id, name)
+    insert into system_role (id, name)
     values (#{id,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR})
   </insert>
-    <delete id="deleteByPrimaryKey" >
-    delete from sys_role
-    where id in
-    	<foreach item="id" collection="array" open="(" separator="," close=")">  
-			#{id}  
-		</foreach>  
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from system_role
+    where id = #{id,jdbcType=VARCHAR}
   </delete>
+   
   <update id="updateByPrimaryKey" parameterType="com.wangsong.system.model.Role">
-    update sys_role
+    update system_role
     set name = #{name,jdbcType=VARCHAR}
     where id = #{id,jdbcType=VARCHAR}
   </update>
   <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
     select id, name
-    from sys_role
+    from system_role
     where id = #{id,jdbcType=VARCHAR}
   </select>
   <select id="selectAll" resultMap="BaseResultMap">
     select id, name
-    from sys_role
+    from system_role
   </select>
   
-  <select id="findTCountByT" resultType="java.lang.Integer" >
+  <select id="findTCountByT" resultType="java.lang.Integer" parameterType="com.wangsong.system.model.RolePage">
     select count(*)
-    from sys_role
+    from system_role
      where 1=1
     <if test="name!= null and name != ''">
 		and	 name like CONCAT('%', #{name,jdbcType=VARCHAR}, '%')
@@ -42,13 +40,26 @@
     
   </select>
   
-   <select id="findTByPage" parameterType="com.wangsong.common.model.Page" resultMap="BaseResultMap">
+   <select id="findTByPage" parameterType="com.wangsong.system.model.RolePage" resultMap="BaseResultMap">
     select id, name
-    from sys_role
+    from system_role
     where 1=1
-    <if test="t.name!= null and t.name != ''">
-		and	 name like CONCAT('%', #{t.name,jdbcType=VARCHAR}, '%')
+    <if test="name!= null and name != ''">
+		and	 name like CONCAT('%', #{name,jdbcType=VARCHAR}, '%')
 	</if>
-     limit  #{first}, #{pageSize}
+     limit  #{first}, #{rows}
+  </select>
+   <delete id="deleteBy" >
+    delete from system_role
+    where id in
+    	<foreach item="id" collection="array" open="(" separator="," close=")">  
+			#{id}  
+		</foreach>  
+  </delete>
+  
+  <select id="selectRoleVOByPrimaryKey" parameterType="java.lang.String" resultType="com.wangsong.system.vo.RoleVO">
+    select id, name
+    from system_role
+    where id = #{id,jdbcType=VARCHAR}
   </select>
 </mapper>

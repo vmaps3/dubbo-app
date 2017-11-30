@@ -2,18 +2,16 @@ package com.wangsong.system.model;
 
 import java.io.Serializable;
 
+
+
 public class Dict  implements Serializable{
     /**
 	 * 
 	 */
 	private static final long serialVersionUID = 3138060792826655366L;
-
 	private String id;
-
     private String name;
-
     private String type;
-    
     private String code;
 
     public String getId() {

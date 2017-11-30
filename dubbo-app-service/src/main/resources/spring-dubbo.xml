@@ -23,5 +23,7 @@
 	<dubbo:service interface="com.wangsong.system.service.ResourcesService"		ref="resourcesService" />
 	<dubbo:service interface="com.wangsong.system.service.RoleService"		ref="roleService" />
 	<dubbo:service interface="com.wangsong.system.service.UserService"		ref="userService" />
+	
+	
 
 </beans>

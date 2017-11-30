@@ -7,19 +7,22 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.wangsong.common.service.impl.BaseServiceImpl;
+import com.wangsong.common.model.GetEasyUIData;
+import com.wangsong.common.model.Result;
 import com.wangsong.system.dao.RoleMapper;
 import com.wangsong.system.dao.RoleResourcesMapper;
 import com.wangsong.system.dao.UserRoleMapper;
 import com.wangsong.system.model.Role;
+import com.wangsong.system.model.RolePage;
 import com.wangsong.system.model.RoleResources;
 import com.wangsong.system.model.UserRole;
 import com.wangsong.system.service.RoleService;
+import com.wangsong.system.vo.RoleVO;
 
 
 @Service("roleService")
 @Transactional
-public class RoleServiceImpl extends BaseServiceImpl<Role> implements RoleService {
+public class RoleServiceImpl  implements RoleService {
 	@Autowired
 	private RoleMapper roleMapper;
 	@Autowired
@@ -28,71 +31,65 @@ public class RoleServiceImpl extends BaseServiceImpl<Role> implements RoleServic
 	private RoleResourcesMapper roleResourcesMapper;
 	
 	
-	@Override
-	public List<Role> selectAll() {
-		
-		return roleMapper.selectAll();
-	}
 
 	@Override
-	public int insert(Role role, String[] resourcesId) {
-		String id = UUID.randomUUID().toString();
-		role.setId(id);
-		if(resourcesId!=null){
-			for(int i=0;i<resourcesId.length;i++){
-				RoleResources roleResources=new RoleResources();
-				roleResources.setId(UUID.randomUUID().toString());
-				roleResources.setResourcesId(resourcesId[i]);
-				roleResources.setRoleId(id);
-				roleResourcesMapper.insert(roleResources);
-			}
+	public Result insertRole(Role role, String[] resourcesId) {
+		role.setId(UUID.randomUUID().toString());
+		roleMapper.insert(role);
+		if(resourcesId==null){
+			return  new Result("success",null);
 		}
-		
-		return roleMapper.insert(role);
-	}
-
-	@Override
-	public int update(Role role,String[] resourcesId) {
-		RoleResources roleResources2=new RoleResources();
-		roleResources2.setRoleId(role.getId());
-		roleResourcesMapper.deleteByT(new RoleResources[]{roleResources2});
-		if(resourcesId!=null){
-			for(int i=0;i<resourcesId.length;i++){
-				RoleResources roleResources=new RoleResources();
-				roleResources.setId(UUID.randomUUID().toString());
-				roleResources.setRoleId(role.getId());
-				roleResources.setResourcesId(resourcesId[i]);
-				roleResourcesMapper.insert(roleResources);
-			}
+		for(int i=0;i<resourcesId.length;i++){		
+			roleResourcesMapper.insert(new RoleResources(UUID.randomUUID().toString()
+					,resourcesId[i],role.getId()));
 		}
-		return roleMapper.updateByPrimaryKey(role);
+		return  new Result("success",null);
 	}
 
 	@Override
-	public int delete(String[] id) {
+	public Result updateRole(Role role,String[] resourcesId) {
+		roleResourcesMapper.deleteByT(new RoleResources[]{new RoleResources(null,null,role.getId())});
+		roleMapper.updateByPrimaryKey(role);
+		if(resourcesId==null){
+			return  new Result("success",null);
+		}
+		for(int i=0;i<resourcesId.length;i++){
+			roleResourcesMapper.insert(new RoleResources(UUID.randomUUID().toString(),resourcesId[i],role.getId()));
+		}
+		return  new Result("success",null);
+	}
+
+	@Override
+	public Result deleteRole(String[] id) {
 		RoleResources[] r=new RoleResources[id.length];
 		UserRole[] u=new UserRole[id.length];
 		for(int i=0;i<id.length;i++){
-			RoleResources roleResources=new RoleResources();
-			UserRole userRole=new UserRole();
-			roleResources.setRoleId(id[i]);
-			userRole.setRoleId(id[i]);
-			r[i]=roleResources;
-			u[i]=userRole;
+			r[i]=new RoleResources(null,null,id[i]);
+			u[i]=new UserRole(null,null,id[i]);
 		}
 
 		userRoleMapper.deleteByT(u);
 		roleResourcesMapper.deleteByT(r);
-		return roleMapper.deleteByPrimaryKey(id);
+		roleMapper.deleteBy(id);
+		return  new Result("success",null);
 	}
-
-
 
 	@Override
-	public List<RoleResources> findRoleResourcesByRole(Role role) {
-		RoleResources roleResources=new RoleResources();
-		roleResources.setRoleId(role.getId());
-		return roleResourcesMapper.findTByT(roleResources);
+	public Object findTByPage(RolePage role) {
+		role.setFirst((role.getPage() - 1) * role.getRows());
+		return new GetEasyUIData(roleMapper.findTByPage(role)
+				,roleMapper.findTCountByT(role));
 	}
 
+	@Override
+	public RoleVO selectByPrimaryKey(String id) {
+		RoleVO role=roleMapper.selectRoleVOByPrimaryKey(id);
+		role.setRoleResourcesList(roleResourcesMapper.findTByT(new RoleResources(null,null,id)));
+		return role;
+	}
+
+	@Override
+	public List<Role> selectAll() {
+		return roleMapper.selectAll();
+	}
 }

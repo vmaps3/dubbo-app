@@ -10,7 +10,7 @@ public class TreeNodeUtil {
     public final static List<JsonTreeData> getfatherNode(List<JsonTreeData> treeDataList) {
         List<JsonTreeData> newTreeDataList = new ArrayList<JsonTreeData>();
         for (JsonTreeData jsonTreeData : treeDataList) {
-            if(jsonTreeData.getPid() .equals("")) {
+            if(jsonTreeData.getPid() .equals("0")) {
                 //获取父节点下的子节点
                 jsonTreeData.setChildren(getChildrenNode(jsonTreeData.getId(),treeDataList));
                 jsonTreeData.setState("open");

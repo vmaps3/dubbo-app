@@ -1,15 +1,11 @@
 package com.wangsong.system.service.impl;
 
 import org.apache.shiro.authc.*;
-
 import org.apache.shiro.authz.AuthorizationInfo;
 import org.apache.shiro.authz.SimpleAuthorizationInfo;
 import org.apache.shiro.realm.AuthorizingRealm;
 import org.apache.shiro.subject.PrincipalCollection;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.context.annotation.Lazy;
-import org.springframework.stereotype.Service;
 
 import com.wangsong.system.model.Resources;
 import com.wangsong.system.model.User;
@@ -19,7 +15,9 @@ import com.wangsong.system.service.UserService;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+
 public class ShiroDbRealm extends AuthorizingRealm {
+
 	@Autowired
 	private UserService userService;
 
@@ -29,11 +27,9 @@ public class ShiroDbRealm extends AuthorizingRealm {
 	@Override
 	protected AuthenticationInfo doGetAuthenticationInfo(AuthenticationToken authcToken) throws AuthenticationException {
 		UsernamePasswordToken token = (UsernamePasswordToken) authcToken;
-		User user = new User();
-		user.setUsername(token.getUsername());
-		user = userService.findTByTOne(user);
+		User user = userService.findTByT(new User(null,token.getUsername(),null));
 		// 认证缓存信息
-		return new SimpleAuthenticationInfo(user, user.getPassword().toCharArray(), getName());
+		return new SimpleAuthenticationInfo(user.getId(), user.getPassword().toCharArray(), getName());
 	}
 
 	/**
@@ -43,11 +39,8 @@ public class ShiroDbRealm extends AuthorizingRealm {
 	 */
 	@Override
 	protected AuthorizationInfo doGetAuthorizationInfo(PrincipalCollection principals) {
-		User shiroUser = (User) principals.getPrimaryPrincipal();
-		Resources resources = new Resources();
-		resources.setId(shiroUser.getId());
-		resources.setType("2");
-		List<Resources> roleList = resourcesService.findTByT(resources);
+		String shiroUser =(String) principals.getPrimaryPrincipal();
+		List<Resources> roleList = resourcesService.findTByT(new Resources(shiroUser,null,null,null,"2",null));
 		Set<String> urlSet = new HashSet<String>();
 		for (Resources roleId : roleList) {
 			urlSet.add(roleId.getUrl());

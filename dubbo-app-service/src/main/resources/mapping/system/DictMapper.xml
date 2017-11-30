@@ -8,21 +8,19 @@
     <result column="name" jdbcType="VARCHAR" property="name" />
     <result column="type" jdbcType="VARCHAR" property="type" />
   </resultMap>
-  <delete id="deleteByPrimaryKey" >
-    delete from sys_dict
-    where id in
-    <foreach item="id" collection="array" open="(" separator="," close=")">  
-			#{id}  
-		</foreach>  
+   <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from system_dict
+    where id = #{id,jdbcType=VARCHAR}
   </delete>
+ 
   <insert id="insert" parameterType="com.wangsong.system.model.Dict">
-    insert into sys_dict (id, code, name, 
+    insert into system_dict (id, code, name, 
       type)
     values (#{id,jdbcType=VARCHAR}, #{code,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, 
       #{type,jdbcType=VARCHAR})
   </insert>
   <update id="updateByPrimaryKey" parameterType="com.wangsong.system.model.Dict">
-    update sys_dict
+    update system_dict
     set code = #{code,jdbcType=VARCHAR},
       name = #{name,jdbcType=VARCHAR},
       type = #{type,jdbcType=VARCHAR}
@@ -30,17 +28,17 @@
   </update>
   <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
     select id, code, name, type
-    from sys_dict
+    from system_dict
     where id = #{id,jdbcType=VARCHAR}
   </select>
   <select id="selectAll" resultMap="BaseResultMap">
     select id, code, name, type
-    from sys_dict
+    from system_dict
   </select>
   
-   <select id="findTCountByT" resultType="java.lang.Integer"  parameterType="com.wangsong.system.model.Dict" >
+   <select id="findTCountByT" resultType="java.lang.Integer"  parameterType="com.wangsong.system.model.DictPage" >
     select count(*)
-    from sys_dict 
+    from system_dict 
     where 1=1
      <if test="name!= null and name != ''">
 		and	 name like CONCAT('%', #{name,jdbcType=VARCHAR}, '%')
@@ -48,10 +46,15 @@
 	<if test="type != null and type != ''">
 		and type = #{type,jdbcType=VARCHAR}
 	</if>
+	<if test="code!= null and code != ''">
+		and	 code = #{code,jdbcType=VARCHAR}
+	</if>
   </select>
-  <select id="findTByT" parameterType="com.wangsong.system.model.Dict" resultMap="BaseResultMap">
+ 
+  
+   <select id="findTByPage" parameterType="com.wangsong.system.model.DictPage" resultMap="BaseResultMap">
     select id, code, name, type
-    from sys_dict
+    from system_dict
     where 1=1
     <if test="name!= null and name != ''">
 		and	 name like CONCAT('%', #{name,jdbcType=VARCHAR}, '%')
@@ -59,19 +62,22 @@
 	<if test="type != null and type != ''">
 		and type = #{type,jdbcType=VARCHAR}
 	</if>
+	<if test="code!= null and code != ''">
+		and	 code = #{code,jdbcType=VARCHAR}
+	</if>
+	ORDER BY type
+	limit  #{first}, #{rows}
   </select>
-  
-   <select id="findTByPage" parameterType="com.wangsong.common.model.Page" resultMap="BaseResultMap">
+   <delete id="deleteBy" >
+    delete from system_dict
+    where id in
+    <foreach item="id" collection="array" open="(" separator="," close=")">  
+		#{id}  
+	</foreach>  
+  </delete>
+   <select id="findTByT" parameterType="com.wangsong.system.model.Dict" resultMap="BaseResultMap">
     select id, code, name, type
-    from sys_dict
-    where 1=1
-    <if test="t.name!= null and t.name != ''">
-		and	 name like CONCAT('%', #{t.name,jdbcType=VARCHAR}, '%')
-	</if>
-	<if test="t.type != null and t.type != ''">
-		and type = #{t.type,jdbcType=VARCHAR}
-	</if>
-	limit  #{first}, #{pageSize}
+    from system_dict
+   	where type = #{type,jdbcType=VARCHAR}
   </select>
-  
 </mapper>

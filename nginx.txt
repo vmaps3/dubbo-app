@@ -1,0 +1,7 @@
+		location /dubbo-app-web-html {
+			root   D:/app/workspace/dubbo-app;
+			index login.html;
+		}
+		location /dubbo-app-web/ {
+			proxy_pass http://127.0.0.1:8080;
+		}

@@ -3,17 +3,23 @@ package com.wangsong.system.service;
 import java.util.List;
 
 import com.wangsong.common.model.JsonTreeData;
-import com.wangsong.common.service.BaseService;
+import com.wangsong.common.model.Result;
 import com.wangsong.system.model.Resources;
-import com.wangsong.system.model.User;
 
-public interface ResourcesService extends BaseService<Resources>{
+public interface ResourcesService {
 
-	int delete(String[] id);
+	Result deleteResources(String[] id);
+	
+	Result insertResources(Resources resources);
 	
 	List<JsonTreeData> findResources();
 
-	List<JsonTreeData> findResourcesEMUByResources(User user);
+	Result updateResources(Resources resources);
 
+	List<Resources> findTByT(Resources resources);
+
+	Resources selectByPrimaryKey(String id);
+
+	List<JsonTreeData> findResourcesEMUByResources(String id);
 	
 }

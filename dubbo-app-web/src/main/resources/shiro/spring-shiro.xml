@@ -21,13 +21,10 @@
         <!-- 安全管理器 -->
         <property name="securityManager" ref="securityManager"/>
         <!-- 默认的登陆访问url -->
-        <property name="loginUrl" value="/login.do"/>
+        <property name="loginUrl" value="/index.do"/>
         <property name="filterChainDefinitions">
             <value>
-                /common/** = anon <!-- 不需要认证 -->
-                /static/** = anon
                 /login.do = anon
-                /haha/**= anon
                 /** = authc <!-- 需要认证 -->
             </value>
         </property>

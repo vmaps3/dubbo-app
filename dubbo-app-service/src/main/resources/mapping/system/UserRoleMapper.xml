@@ -8,37 +8,37 @@
     <result column="role_id" jdbcType="VARCHAR" property="roleId" />
   </resultMap>
   <insert id="insert" parameterType="com.wangsong.system.model.UserRole">
-    insert into sys_user_role (id, user_id, role_id
+    insert into system_user_role (id, user_id, role_id
       )
     values (#{id,jdbcType=VARCHAR}, #{userId,jdbcType=VARCHAR}, #{roleId,jdbcType=VARCHAR}
       )
   </insert>
    <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
-    delete from sys_user_role
+    delete from system_user_role
     where id = #{id,jdbcType=VARCHAR}
   </delete>
   <update id="updateByPrimaryKey" parameterType="com.wangsong.system.model.UserRole">
-    update sys_user_role
+    update system_user_role
     set user_id = #{userId,jdbcType=VARCHAR},
       role_id = #{roleId,jdbcType=VARCHAR}
     where id = #{id,jdbcType=VARCHAR}
   </update>
   <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
     select id, user_id, role_id
-    from sys_user_role
+    from system_user_role
     where id = #{id,jdbcType=VARCHAR}
   </select>
   <select id="selectAll" resultMap="BaseResultMap">
     select id, user_id, role_id
-    from sys_user_role
+    from system_user_role
   </select>
   
   <select id="findTByT" resultMap="BaseResultMap" parameterType="com.wangsong.system.model.UserRole">
     select id, user_id, role_id
-    from sys_user_role  where user_id = #{userId,jdbcType=VARCHAR}
+    from system_user_role  where user_id = #{userId,jdbcType=VARCHAR}
   </select>
    <delete id="deleteByT" >
-    delete from sys_user_role
+    delete from system_user_role
     where user_id in 
     	<foreach item="userRole" collection="array" open="(" separator="," close=")">  
 			#{userRole.userId}  

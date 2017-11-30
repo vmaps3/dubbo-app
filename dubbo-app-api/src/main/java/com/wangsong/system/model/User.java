@@ -2,6 +2,8 @@ package com.wangsong.system.model;
 
 import java.io.Serializable;
 
+
+
 public class User implements Serializable{
 
 
@@ -9,14 +11,20 @@ public class User implements Serializable{
 	 * 
 	 */
 	private static final long serialVersionUID = -7484136779753770396L;
-
 	private String id;
-
     private String username;
-
     private String password;
 
-    public String getId() {
+	public User(String id, String username, String password) {
+		super();
+		this.id = id;
+		this.username = username;
+		this.password = password;
+	}
+	public User(){
+		
+	}
+	public String getId() {
         return id;
     }
 
