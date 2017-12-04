@@ -8,13 +8,9 @@
 			http://www.springframework.org/schema/context
 			http://www.springframework.org/schema/context/spring-context-3.0.xsd">
 
-	<context:property-placeholder location="classpath:config.properties" />
-	<context:component-scan base-package="com.wangsong.*.service" />
 
+	<bean class="org.springframework.session.data.redis.config.annotation.web.http.RedisHttpSessionConfiguration">
+        <property name="maxInactiveIntervalInSeconds" value="600000"></property>
+	</bean>
 
-
-	<import resource="classpath:spring-dubbo.xml" />
-	<import resource="classpath:spring-redis.xml" />
-	<import resource="classpath:shiro/spring-shiro.xml" />
-	<import resource="classpath:spring-session.xml" />
 </beans>
