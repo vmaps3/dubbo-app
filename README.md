@@ -2,7 +2,7 @@
 
 ## 系统介绍
 
-- dubbo-app 是J2EE集群分布式平台，架构设计包括（分布式，分布式事务，高可用集群，缓存集群，会话集群，动静分离），技术栈包括（dubbo、zookeeper、Spring、SpringMVC、MyBatis、Shiro、redis、easyui），业务模块包括：用户管理，角色管理、权限管理，字典管理。
+- dubbo-app 是J2EE集群分布式基础开发平台，架构设计包括（分布式，分布式事务，高可用集群，缓存集群，会话集群，动静分离），技术栈包括（dubbo、zookeeper、Spring、SpringMVC、MyBatis、Shiro、redis、easyui），业务模块包括：用户管理，角色管理、权限管理，字典管理。
 
 ## 业务功能
 
