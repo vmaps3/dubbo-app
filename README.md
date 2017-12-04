@@ -2,7 +2,7 @@
 
 ## 系统介绍
 
-- dubbo-app 是J2EE集群分布式平台，架构设计包括（分布式，分布式事务，高可用集群，缓存集群，会话集群），技术栈包括（dubbo、zookeeper、Spring、SpringMVC、MyBatis、Shiro、redis、easyui），业务模块包括：用户管理，角色管理、权限管理，字典管理。
+- dubbo-app 是J2EE集群分布式平台，架构设计包括（分布式，分布式事务，高可用集群，缓存集群，会话集群，动静分离），技术栈包括（dubbo、zookeeper、Spring、SpringMVC、MyBatis、Shiro、redis、easyui），业务模块包括：用户管理，角色管理、权限管理，字典管理。
 
 ## 业务功能
 
@@ -41,8 +41,6 @@
 ![](http://git.oschina.net/uploads/images/2016/1116/164543_5571d631_420150.png "登录")
 ![](http://git.oschina.net/uploads/images/2016/1116/164618_99cd6105_420150.png "角色权限树")
 ![](http://git.oschina.net/uploads/images/2016/1116/164633_6dd5c2e9_420150.png "权限右键操作树")
-![](http://git.oschina.net/uploads/images/2016/1116/164643_80af2995_420150.png "定时器")
-![](http://git.oschina.net/uploads/images/2016/1116/164653_4314a4a8_420150.png "工作流")
 
 ## qq交流群
 
