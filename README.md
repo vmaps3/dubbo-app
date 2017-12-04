@@ -18,10 +18,11 @@
 - 核心 spring 
 - MVC springmvc 
 - ORM mybatis 
-- 权限 shiro 
+- 会话 shiro 
 - 缓存 redis 
-- mybatis二级缓存 mybatis-redis （缓存集群）
-- shiro集群 shiro-redis （会话集群）
+- 系统会话集群 spring-session
+- mybatis二级缓存集群 mybatis-redis
+- shiro会话集群，缓存集群 shiro-redis
 - 连接池 druid
 - 页面UI easyui
 - 构建 maven
