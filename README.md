@@ -20,7 +20,6 @@
 - ORM mybatis 
 - 会话 shiro 
 - 缓存 redis 
-- 系统会话集群 spring-session
 - mybatis二级缓存集群 mybatis-redis
 - shiro会话集群，缓存集群 shiro-redis
 - 连接池 druid
