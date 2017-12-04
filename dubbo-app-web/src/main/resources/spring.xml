@@ -16,5 +16,5 @@
 	<import resource="classpath:spring-dubbo.xml" />
 	<import resource="classpath:spring-redis.xml" />
 	<import resource="classpath:shiro/spring-shiro.xml" />
-	<import resource="classpath:spring-session.xml" />
+	
 </beans>

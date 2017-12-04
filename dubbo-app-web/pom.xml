@@ -34,12 +34,7 @@
 			<artifactId>dubbo-app-api</artifactId>
 			<version>0.0.1-SNAPSHOT</version>
 		</dependency>
-		<!-- Spring Session -->
-		<dependency>
-			<groupId>org.springframework.session</groupId>
-			<artifactId>spring-session</artifactId>
-			<version>1.0.2.RELEASE</version>
-		</dependency>
+		
 	</dependencies>
 	<build>
 		<plugins>
