@@ -2,7 +2,6 @@
 var url = "/dubbo-app-web";
 var htmlURL = "/dubbo-app-web-html";
 
-
 document.write("<script type='text/javascript' src='"+htmlURL+"/js/jquery-easyui-1.5/jquery.min.js'></script>");
 document.write("<script type='text/javascript' src='"+htmlURL+"/js/jquery-easyui-1.5/jquery.easyui.min.js'></script>");
 document.write("<script type='text/javascript' src='"+htmlURL+"/js/jquery-easyui-1.5/locale/easyui-lang-zh_CN.js'></script>");
