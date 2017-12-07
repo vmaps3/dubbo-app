@@ -13,6 +13,7 @@ import com.wangsong.common.model.Result;
 import com.wangsong.system.dao.UserMapper;
 import com.wangsong.system.dao.UserRoleMapper;
 import com.wangsong.system.model.User;
+import com.wangsong.system.model.UserAddModel;
 import com.wangsong.system.model.UserPage;
 import com.wangsong.system.model.UserRole;
 import com.wangsong.system.service.UserService;
@@ -28,10 +29,11 @@ public class UserServiceImpl  implements UserService{
 	private UserRoleMapper userRoleMapper;
 
 	@Override
-	public Result insertUser(User user, String[] roleId) {
+	public Result insertUser(UserAddModel user) {
+		String [] roleId=user.getRoleId();
 		user.setPassword(DigestUtils.md5Hex(user.getPassword()));
 		user.setId(UUID.randomUUID().toString());
-		userMapper.insert(user);
+		userMapper.insertUserAddModel(user);
 		if(roleId==null){
 			return new Result("success",null);
 		}
@@ -43,10 +45,11 @@ public class UserServiceImpl  implements UserService{
 	}
 
 	@Override
-	public Result updateUser(User user, String[] roleId) {
+	public Result updateUser(UserAddModel user) {
+		String [] roleId=user.getRoleId();
 		if(!"".equals(user.getPassword())){
 			user.setPassword(DigestUtils.md5Hex(user.getPassword()));
-			userMapper.updateByPrimaryKey(user);
+			userMapper.updateByPrimaryKeyUserAddModel(user);
 		}
 		userMapper.updateNoPasswordByPrimaryKey(user);
 		
@@ -83,15 +86,15 @@ public class UserServiceImpl  implements UserService{
 	}
 
 	@Override
-	public Result updatePassword(User user) {
+	public Result updatePassword(UserAddModel user) {
 		if(!"".equals(user.getPassword())){
 			user.setPassword(DigestUtils.md5Hex(user.getPassword()));
-			userMapper.updateByPrimaryKey(user);
+			userMapper.updateByPrimaryKeyUserAddModel(user);
 		}
 		userMapper.updateNoPasswordByPrimaryKey(user);
 		return new Result("success",null);
 	}
-
+	
 	@Override
 	public Object findTByPage(UserPage user) {
 		user.setFirst((user.getPage() - 1) * user.getRows());

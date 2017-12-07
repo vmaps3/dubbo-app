@@ -15,15 +15,14 @@ import com.wangsong.system.service.UserService;
 @Controller
 public class LoginController  extends BaseController {
 	
-	@Autowired
-	private UserService userService;
+	
 	@Autowired
 	private LoginService loginService;
 	
     @RequestMapping(value = "/index")
     @ResponseBody
     public Object index() {
-    	return userService.index();
+    	return loginService.index();
     }
 
   
@@ -46,7 +45,7 @@ public class LoginController  extends BaseController {
     @RequestMapping(value = "/unauth")
     @ResponseBody
     public Object unauth() {
-        return userService.unauth();
+        return loginService.unauth();
     }
     
 }

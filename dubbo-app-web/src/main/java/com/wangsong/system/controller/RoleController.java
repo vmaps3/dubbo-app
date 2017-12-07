@@ -6,11 +6,15 @@ import javax.servlet.http.HttpServletRequest;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.wangsong.common.controller.BaseController;
-import com.wangsong.system.model.Role;
+import com.wangsong.system.groups.RoleAdd;
+import com.wangsong.system.groups.RoleUpdate;
+import com.wangsong.system.model.RoleAddModel;
 import com.wangsong.system.model.RolePage;
 import com.wangsong.system.service.RoleService;
 
@@ -35,8 +39,8 @@ public class RoleController  extends BaseController{
 	@RequiresPermissions("/system/role/add")
 	@RequestMapping(value="/add")
 	@ResponseBody
-	public Object add( Role role,String[] resourcesId) {
-		return roleService.insertRole(role,resourcesId);
+	public Object add(@Validated({RoleAdd.class})  RoleAddModel role,BindingResult bindingResult) {
+		return roleService.insertRole(role);
 	}
 	
 	@RequiresPermissions("/system/role/delete")
@@ -50,8 +54,8 @@ public class RoleController  extends BaseController{
 	@RequiresPermissions("/system/role/update")
 	@RequestMapping(value="/update")
 	@ResponseBody
-	public Object update( Role mrole,String[] resourcesId) {
-		return 	roleService.updateRole(mrole,resourcesId);
+	public Object update(@Validated({RoleUpdate.class})  RoleAddModel mrole,BindingResult bindingResult) {
+		return 	roleService.updateRole(mrole);
 	}
 	
 	@RequestMapping(value="/listAll")

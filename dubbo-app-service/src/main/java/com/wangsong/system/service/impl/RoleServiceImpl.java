@@ -13,6 +13,7 @@ import com.wangsong.system.dao.RoleMapper;
 import com.wangsong.system.dao.RoleResourcesMapper;
 import com.wangsong.system.dao.UserRoleMapper;
 import com.wangsong.system.model.Role;
+import com.wangsong.system.model.RoleAddModel;
 import com.wangsong.system.model.RolePage;
 import com.wangsong.system.model.RoleResources;
 import com.wangsong.system.model.UserRole;
@@ -31,11 +32,11 @@ public class RoleServiceImpl  implements RoleService {
 	private RoleResourcesMapper roleResourcesMapper;
 	
 	
-
 	@Override
-	public Result insertRole(Role role, String[] resourcesId) {
+	public Result insertRole(RoleAddModel role) {
+		String[] resourcesId =role.getResourcesId();
 		role.setId(UUID.randomUUID().toString());
-		roleMapper.insert(role);
+		roleMapper.insertRoleAddModel(role);
 		if(resourcesId==null){
 			return  new Result("success",null);
 		}
@@ -47,9 +48,10 @@ public class RoleServiceImpl  implements RoleService {
 	}
 
 	@Override
-	public Result updateRole(Role role,String[] resourcesId) {
+	public Result updateRole(RoleAddModel role) {
+		String[] resourcesId =role.getResourcesId();
 		roleResourcesMapper.deleteByT(new RoleResources[]{new RoleResources(null,null,role.getId())});
-		roleMapper.updateByPrimaryKey(role);
+		roleMapper.updateByPrimaryKeyRoleAddModel(role);
 		if(resourcesId==null){
 			return  new Result("success",null);
 		}

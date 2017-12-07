@@ -45,6 +45,18 @@ public class LoginServiceImpl  implements LoginService{
         subject.logout();
         return new Result("success",null);
 	}
+	
+	@Override
+	public Result index() {
+		return new Result("index",null);
+	}
+
+
+	@Override
+	public Result unauth() {
+		 return new Result("unauth",null);
+	}
+
 }
 
 

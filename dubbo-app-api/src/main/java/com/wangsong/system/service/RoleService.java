@@ -4,15 +4,15 @@ import java.util.List;
 
 import com.wangsong.common.model.Result;
 import com.wangsong.system.model.Role;
+import com.wangsong.system.model.RoleAddModel;
 import com.wangsong.system.model.RolePage;
-import com.wangsong.system.model.RoleResources;
 import com.wangsong.system.vo.RoleVO;
 
 public interface RoleService {
 
-	Result insertRole(Role role, String[] resourcesId);
+	Result insertRole(RoleAddModel role);
     
-    Result updateRole(Role role, String[] resourcesId);
+    Result updateRole(RoleAddModel role);
     
     Result deleteRole(String[] id);
 

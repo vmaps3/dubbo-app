@@ -14,13 +14,16 @@ function getQueryString(name) {
 } 
 $.ajaxSetup({ 
 	complete: function (xhr, status) {
-		if(xhr.responseJSON.result=="index"){
-			if(window.parent!=window){
-				parent.location.href=htmlURL+"/login.html";
-			}else{
-				location.href=htmlURL+"/login.html";
+		try{
+			if(xhr.responseJSON.result=="index"){
+				if(window.parent!=window){
+					parent.location.href=htmlURL+"/login.html";
+				}else{
+					location.href=htmlURL+"/login.html";
+				}
 			}
-			
+		}catch (e) {
+			// TODO: handle exception
 		}
 	}
 });

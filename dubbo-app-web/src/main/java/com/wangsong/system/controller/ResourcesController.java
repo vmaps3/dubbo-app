@@ -6,10 +6,14 @@ import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.wangsong.common.controller.BaseController;
+import com.wangsong.system.groups.ResourcesAdd;
+import com.wangsong.system.groups.ResourcesUpdate;
 import com.wangsong.system.model.Resources;
 import com.wangsong.system.service.ResourcesService;
 
@@ -21,10 +25,11 @@ public class ResourcesController extends BaseController {
 	@Autowired
 	private ResourcesService resourcesService;
 	
+
 	@RequiresPermissions("/system/resources/add")
 	@RequestMapping(value="/add")
 	@ResponseBody
-	public Object add( Resources resources) {
+	public Object add(@Validated({ResourcesAdd.class}) Resources resources,BindingResult bindingResult) {
 		return resourcesService.insertResources(resources);
 	}
 	
@@ -35,12 +40,10 @@ public class ResourcesController extends BaseController {
 		return resourcesService.deleteResources(id);
 	}
 	
-	
-	
 	@RequiresPermissions("/system/resources/update")
 	@RequestMapping(value="/update")
 	@ResponseBody
-	public Object update( Resources resources) {
+	public Object update(@Validated({ResourcesUpdate.class}) Resources resources,BindingResult bindingResult) {
 		return resourcesService.updateResources(resources);
 	}
 	

@@ -3,10 +3,14 @@ package com.wangsong.system.controller;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.wangsong.common.controller.BaseController;
+import com.wangsong.system.groups.DictAdd;
+import com.wangsong.system.groups.DictUpdate;
 import com.wangsong.system.model.Dict;
 import com.wangsong.system.model.DictPage;
 import com.wangsong.system.service.DictService;
@@ -23,18 +27,17 @@ public class DictController extends BaseController{
 	public Object list(DictPage dict) {
 		return dictService.findTByPage(dict);
 	}
-
 	@RequiresPermissions("/system/dict/add")
 	@RequestMapping(value="/add")
 	@ResponseBody
-	public Object add(Dict dict) {
+	public Object add(@Validated({DictAdd.class}) Dict dict,BindingResult bindingResult) {
 		return dictService.insertDict(dict);
 	}
 	
 	@RequiresPermissions("/system/dict/update")
 	@RequestMapping(value="/update")
 	@ResponseBody
-	public Object update(Dict dict) {
+	public Object update(@Validated({DictUpdate.class}) Dict dict,BindingResult bindingResult) {
 		return dictService.updateByPrimaryKeyDict(dict);
 	}
 	
