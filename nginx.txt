@@ -1,4 +1,4 @@
-		location /dubbo-app-web-html {
+		location /dubbo-app-html {
 			root   D:/app/workspace/dubbo-app;
 			index login.html;
 		}
