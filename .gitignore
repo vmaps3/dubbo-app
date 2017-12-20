@@ -99,3 +99,5 @@ target/
 /dubbo-app-transaction2-service/.settings/org.eclipse.wst.jsdt.ui.superType.container
 /dubbo-app-transaction2-service/.settings/org.eclipse.wst.jsdt.ui.superType.name
 /dubbo-app-transaction2-service/.settings/org.eclipse.wst.validation.prefs
+/dubbo-app-service/logs/dubbo-app-service.log
+/dubbo-app-web/logs/dubbo-app-web.log
