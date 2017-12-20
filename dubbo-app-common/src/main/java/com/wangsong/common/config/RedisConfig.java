@@ -1,4 +1,4 @@
-package com.wangsong.system;
+package com.wangsong.common.config;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
