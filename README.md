@@ -15,7 +15,7 @@
 
 - 分布式中间件 dubbo
 - 注册中心 zookeeper
-- 核心 spring 
+- 核心 springBoot 
 - MVC springmvc 
 - ORM mybatis 
 - 会话 shiro 
@@ -27,14 +27,6 @@
 - 构建 maven
 - 容器 tomcat
 - 数据库 mysql
-
-## 部署方法
-
-- 1.使用maven导入工程项目
-- 2.导入数据库文件dubbo-app.sql
-- 3.更改配置文件相关参数config.properties
-- 4.启动redis，zookeeper服务端
-- 5.tomcat加载web，service启动
 
 ## 预览
 

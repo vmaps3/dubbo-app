@@ -1,4 +1,4 @@
-package com.wangsong.system.service.impl;
+package com.wangsong.common.config;
 
 import java.util.ArrayList;
 import java.util.List;

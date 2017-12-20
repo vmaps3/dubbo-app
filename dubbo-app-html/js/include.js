@@ -1,6 +1,6 @@
 
 var url = "/dubbo-app-web";
-var htmlURL = "/dubbo-app-web-html";
+var htmlURL = "/dubbo-app-html";
 
 document.write("<script type='text/javascript' src='"+htmlURL+"/js/jquery-easyui-1.5/jquery.min.js'></script>");
 document.write("<script type='text/javascript' src='"+htmlURL+"/js/jquery-easyui-1.5/jquery.easyui.min.js'></script>");
