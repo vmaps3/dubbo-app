@@ -28,7 +28,7 @@
 - 容器 tomcat
 - 数据库 mysql
 
-##部署
+## 部署
 
 - 1.导入数据库脚本dubbo-app.sql
 - 2.安装nginx配置参考nginx.txt
