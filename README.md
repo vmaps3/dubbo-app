@@ -28,6 +28,16 @@
 - 容器 tomcat
 - 数据库 mysql
 
+##部署
+
+- 1.导入数据库脚本dubbo-app.sql
+- 2.安装nginx配置参考nginx.txt
+- 3.启动zookeeper
+- 4.启动redis
+- 5.启动dubbo-app-service位置com.wangsong.Application
+- 6.启动dubbo-app-web位置com.wangsong.Application
+- 7.访问nginx端口/dubbo-app-html
+
 ## 预览
 
 ![](http://git.oschina.net/uploads/images/2016/1116/164543_5571d631_420150.png "登录")
