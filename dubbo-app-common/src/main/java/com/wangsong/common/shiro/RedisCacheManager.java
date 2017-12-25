@@ -19,9 +19,7 @@ public class RedisCacheManager implements CacheManager {
 
 	// fast lookup by name map
 	private final ConcurrentMap<String, Cache> caches = new ConcurrentHashMap<String, Cache>();
-	@Autowired
 	private RedisTemplate<String, Object> redisTemplate;
-	@Value(value = "${shiro_redis_cache}")
 	private int expire;
 	/**
 	 * The Redis key prefix for caches 

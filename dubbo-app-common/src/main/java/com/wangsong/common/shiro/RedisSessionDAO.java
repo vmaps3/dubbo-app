@@ -23,9 +23,7 @@ public class RedisSessionDAO extends AbstractSessionDAO {
 	 * shiro-redis的session对象前缀
 	 */
 	//private RedisManager redisManager;
-	@Autowired
 	private RedisTemplate<String, Object> redisTemplate;
-	@Value(value = "${shiro_redis_session}")
 	private int expire;
 	
 	

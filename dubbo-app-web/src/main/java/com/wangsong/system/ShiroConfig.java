@@ -27,7 +27,12 @@ import com.wangsong.common.shiro.RedisSessionDAO;
 
 @Configuration
 public class ShiroConfig {
-	
+	@Autowired
+	private RedisTemplate<String, Object> redisTemplate;
+	@Value(value = "${shiro_redis_session}")
+	private int shiro_redis_session;
+	@Value(value = "${shiro_redis_cache}")
+	private int shiro_redis_cache;
     @Bean
     public ShiroFilterFactoryBean shirFilter(SecurityManager securityManager) {
         ShiroFilterFactoryBean shiroFilterFactoryBean = new ShiroFilterFactoryBean();
@@ -64,14 +69,16 @@ public class ShiroConfig {
     @Bean
     public RedisCacheManager redisCacheManager() {
     	RedisCacheManager cacheManager = new RedisCacheManager();
-    	
+    	cacheManager.setRedisTemplate(redisTemplate);
+    	cacheManager.setExpire(shiro_redis_cache);
         return cacheManager;
     }
     
     @Bean
     public RedisSessionDAO redisSessionDAO() {
     	RedisSessionDAO sessionDAO = new RedisSessionDAO();
-    	
+    	sessionDAO.setRedisTemplate(redisTemplate);
+    	sessionDAO.setExpire(shiro_redis_session);
         return sessionDAO;
     }
   
