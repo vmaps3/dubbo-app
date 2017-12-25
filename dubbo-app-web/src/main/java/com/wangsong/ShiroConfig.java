@@ -1,4 +1,4 @@
-package com.wangsong.system;
+package com.wangsong;
 
 import java.util.LinkedHashMap;
 import java.util.Map;

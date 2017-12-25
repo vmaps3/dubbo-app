@@ -1,4 +1,4 @@
-package com.wangsong.system;
+package com.wangsong;
 
 import org.apache.shiro.authc.*;
 import org.apache.shiro.authz.AuthorizationInfo;
