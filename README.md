@@ -35,9 +35,8 @@
 - 2.安装nginx配置参考nginx.txt
 - 3.启动zookeeper
 - 4.启动redis
-- 5.启动dubbo-app-service位置com.wangsong.Application
-- 6.启动dubbo-app-web位置com.wangsong.Application
-- 7.访问nginx端口/dubbo-app-html
+- 5.启动dubbo-app-web位置com.wangsong.Application
+- 6.访问nginx端口/dubbo-app-html
 
 ## 预览
 
