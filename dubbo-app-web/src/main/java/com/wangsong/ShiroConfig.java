@@ -84,6 +84,7 @@ public class ShiroConfig {
     	DefaultWebSessionManager defaultWebSessionManager = new DefaultWebSessionManager();
     	defaultWebSessionManager.setSessionDAO(redisSessionDAO() );
     	defaultWebSessionManager.setSessionIdCookie(sessionIdCookie());
+    	defaultWebSessionManager.setGlobalSessionTimeout(shiro_redis_session);
         return defaultWebSessionManager;
     }
     
