@@ -101,3 +101,9 @@ target/
 /dubbo-app-transaction2-service/.settings/org.eclipse.wst.validation.prefs
 /dubbo-app-service/logs/dubbo-app-service.log
 /dubbo-app-web/logs/dubbo-app-web.log
+/dubbo-app-test/.classpath
+/dubbo-app-test/.project
+/dubbo-app-test/.settings/org.eclipse.core.resources.prefs
+/dubbo-app-test/.settings/org.eclipse.jdt.core.prefs
+/dubbo-app-test/.settings/org.eclipse.m2e.core.prefs
+/dubbo-app-test/logs/dubbo-app-web.log
