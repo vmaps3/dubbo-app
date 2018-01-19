@@ -49,14 +49,5 @@
 			#{roleResources.resourcesId}  
 		</foreach>  
   </delete>
-   <select id="findResourcesByT" parameterType="com.wangsong.system.model.Resources" resultType="com.wangsong.system.model.Resources">
-      select distinct system_resources.id, system_resources.pid, system_resources.name, system_resources.url,system_resources.type,system_resources.sort
-    from system_role_resources
-	 LEFT  JOIN system_resources on system_resources.id=system_role_resources.resources_id
-	 LEFT  JOIN system_user_role on system_user_role.role_id=system_role_resources.role_id
-	where 
-    system_resources.type = #{type,jdbcType=VARCHAR}
-    and system_user_role.user_id = #{id,jdbcType=VARCHAR}
-    ORDER BY system_resources.sort
-    </select>
+  
 </mapper>

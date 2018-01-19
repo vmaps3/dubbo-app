@@ -51,5 +51,15 @@
 			#{id}  
 		</foreach>  
   </delete>
-  
+  <select id="findResourcesByT" parameterType="com.wangsong.system.model.Resources" resultType="com.wangsong.system.model.Resources">
+          select id, pid, name, url,type,sort  from system_resources 
+	  where  type= #{type,jdbcType=VARCHAR}
+	  and id in ( select resources_id  
+	  					from system_role_resources 
+						where role_id in (
+								select role_id 
+								from system_user_role 
+								where user_id = #{id,jdbcType=VARCHAR}))
+		ORDER BY sort
+    </select>
 </mapper>

@@ -16,4 +16,7 @@ public interface ResourcesMapper{
     int updateByPrimaryKey(Resources record);
 
 	void deleteBy(String[] id);
+	
+	List<Resources> findResourcesByT(Resources resources);
+
 }

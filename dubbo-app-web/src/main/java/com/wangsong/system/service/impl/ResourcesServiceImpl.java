@@ -85,7 +85,7 @@ public class ResourcesServiceImpl  implements ResourcesService {
 	}
 	@Override
 	public List<Resources> findTByT(Resources resources){
-		List<Resources> resourcesList =roleResourcesMapper.findResourcesByT(resources);
+		List<Resources> resourcesList =resourcesMapper.findResourcesByT(resources);
 		return resourcesList;
 	}
 	
