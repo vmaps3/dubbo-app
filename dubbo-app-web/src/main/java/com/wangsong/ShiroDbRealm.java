@@ -1,6 +1,14 @@
 package com.wangsong;
 
-import org.apache.shiro.authc.*;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
+
+import org.apache.shiro.authc.AuthenticationException;
+import org.apache.shiro.authc.AuthenticationInfo;
+import org.apache.shiro.authc.AuthenticationToken;
+import org.apache.shiro.authc.SimpleAuthenticationInfo;
+import org.apache.shiro.authc.UsernamePasswordToken;
 import org.apache.shiro.authz.AuthorizationInfo;
 import org.apache.shiro.authz.SimpleAuthorizationInfo;
 import org.apache.shiro.realm.AuthorizingRealm;
@@ -10,12 +18,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import com.wangsong.system.model.Resources;
 import com.wangsong.system.model.User;
 import com.wangsong.system.service.APIService;
-import com.wangsong.system.service.ResourcesService;
-import com.wangsong.system.service.UserService;
-
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
 
 public class ShiroDbRealm extends AuthorizingRealm {
 

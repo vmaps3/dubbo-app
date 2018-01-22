@@ -2,7 +2,6 @@ package com.wangsong.system.dao;
 
 import java.util.List;
 
-import com.wangsong.system.model.Resources;
 import com.wangsong.system.model.RoleResources;
 
 public interface RoleResourcesMapper {

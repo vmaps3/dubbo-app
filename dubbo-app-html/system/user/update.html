@@ -8,7 +8,7 @@
 			function submitForm(){
 				if($("#ff").form('validate')==true){
 					$.ajax({   
-					     url:url+"/system/user/update.do",
+					     url:url+"/system/user/update",
 					     type:$("#ff").attr("method"),   
 					     data:$("#ff").serializeArray(),
 					     success:function(data){   
@@ -27,7 +27,7 @@
 			$(function(){
 				
 				$.ajax({
-				     url:url+'/system/user/selectByPrimaryKey.do',
+				     url:url+'/system/user/selectByPrimaryKey',
 				     type:'post',   
 				     data:'id='+getQueryString("id"),
 				     success:function(data){   
@@ -69,7 +69,7 @@
 					
 						<input id="cc" class="easyui-combobox" name="roleId"  multiple="multiple" required="true"
 							data-options="
-								url:url+'/system/role/listAll.do',
+								url:url+'/system/role/listAll',
 								method:'get',
 								valueField:'id',
 								textField:'name',

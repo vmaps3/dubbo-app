@@ -9,7 +9,7 @@
 			function submitForm(){
 				if($("#ff").form('validate')==true){
 					$.ajax({   
-					     url:url+"/system/role/add.do",   
+					     url:url+"/system/role/add",   
 					     type:$("#ff").attr("method"),   
 					     data:$("#ff").serializeArray(),
 					     success:function(data){   
@@ -26,7 +26,7 @@
 				window.location=htmlURL+"/system/role/list.html";
 			}
 			$(function(){ 
-				$('#resourcesId').combotree({url: url+"/system/resources/list.do"});  
+				$('#resourcesId').combotree({url: url+"/system/resources/list"});  
 			}); 
 		</script>
 	</head>

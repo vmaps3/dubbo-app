@@ -3,6 +3,10 @@ package com.wangsong.common.model;
 import java.io.Serializable;
 
 public class Result implements Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private String result ;
 	private Object data ;
 	

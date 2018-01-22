@@ -8,7 +8,7 @@
         function submitForm(){
             if($("#ff").form('validate')==true){
                 $.ajax({
-                    url:url+"/system/dict/add.do",
+                    url:url+"/system/dict/add",
                     type:$("#ff").attr("method"),
                     data:$("#ff").serializeArray(),
                     success:function(data){

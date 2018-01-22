@@ -9,7 +9,7 @@
 				if($("#ff").form('validate')==true){
 					$("#pid").val(getQueryString("pid"));
 					$.ajax({   
-					     url:url+"/system/resources/add.do",   
+					     url:url+"/system/resources/add",   
 					     type:$("#ff").attr("method"),   
 					     data:$("#ff").serializeArray(),
 					     success:function(data){   
@@ -49,7 +49,7 @@
 					<td>
 						<input class="easyui-combobox" name="type" required="true"
 							data-options="
-								url:url+'/system/dict/findDictByDict.do?type=1',
+								url:url+'/system/dict/findDictByDict?type=1',
 								method:'get',
 								valueField:'code',
 								textField:'name',

@@ -1,6 +1,8 @@
 package com.wangsong.system.service.impl;
 
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.apache.commons.codec.digest.DigestUtils;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.DisabledAccountException;
@@ -55,6 +57,12 @@ public class LoginServiceImpl  implements LoginService{
 	@Override
 	public Result unauth() {
 		 return new Result("unauth",null);
+	}
+
+
+	@Override
+	public Result getStatus(HttpServletRequest request) {
+		return new Result(request.getAttribute("javax.servlet.error.status_code").toString(),null);
 	}
 
 }

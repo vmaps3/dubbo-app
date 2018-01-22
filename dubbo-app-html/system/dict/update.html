@@ -7,7 +7,7 @@
 			function submitForm(){
 				if($("#ff").form('validate')==true){
 					$.ajax({   
-					     url:url+'/system/dict/update.do',
+					     url:url+'/system/dict/update',
 					     type:$("#ff").attr("method"),   
 					     data:$("#ff").serializeArray(),
 					     success:function(data){   
@@ -26,7 +26,7 @@
 			}
 			$(function(){ 
 				$.ajax({   
-				     url:url+'/system/dict/selectByPrimaryKey.do',   
+				     url:url+'/system/dict/selectByPrimaryKey',   
 				     type:'post',   
 				     data:'id='+getQueryString("id"),
 				     success:function(data){   

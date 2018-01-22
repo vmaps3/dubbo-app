@@ -9,7 +9,7 @@
 			function submitForm(){
 				if($("#ff").form('validate')==true){
 					$.ajax({   
-					     url:url+"/system/role/update.do",   
+					     url:url+"/system/role/update",   
 					     type:$("#ff").attr("method"),   
 					     data:$("#ff").serializeArray(),
 					     success:function(data){   
@@ -26,9 +26,9 @@
 				window.location=htmlURL+"/system/role/list.html";
 			}
 			$(function(){ 
-				$('#cc').combotree({url: url+"/system/resources/list.do"});  
+				$('#cc').combotree({url: url+"/system/resources/list"});  
 				$.ajax({   
-				     url:url+'/system/role/selectByPrimaryKey.do',   
+				     url:url+'/system/role/selectByPrimaryKey',   
 				     type:'post',   
 				     data:'id='+getQueryString("id"),
 				     success:function(data){   

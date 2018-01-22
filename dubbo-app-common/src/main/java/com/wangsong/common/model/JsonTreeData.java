@@ -5,7 +5,11 @@ import java.util.List;
 
 public class JsonTreeData implements Serializable{
  
-    public String id;       //json id
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	public String id;       //json id
     public String pid;      //
     public String text;     //json 显示文本
     public String state;    //json 'open','closed'

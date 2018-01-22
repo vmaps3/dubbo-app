@@ -4,7 +4,6 @@ import java.io.Serializable;
 
 import javax.validation.constraints.NotNull;
 
-import com.wangsong.system.groups.RoleAdd;
 import com.wangsong.system.groups.RoleUpdate;
 
 

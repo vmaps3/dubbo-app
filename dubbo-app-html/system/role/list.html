@@ -18,7 +18,7 @@ function del(){
 		        		myArray.push(row[i].id);
 		        	}
 		        	$.ajax({   
-					     url:url+'/system/role/delete.do',   
+					     url:url+'/system/role/delete',   
 					     type:'post',   
 					     data:"id="+myArray,
 					     success:function(data){   
@@ -51,7 +51,7 @@ function cx(){
 }
 
 $(function(){ 
-		$('#dg').datagrid({url:url+"/system/role/list.do"});
+		$('#dg').datagrid({url:url+"/system/role/list"});
 }); 
 function add(){
 	window.location=htmlURL+"/system/role/add.html";

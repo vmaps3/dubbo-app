@@ -7,7 +7,7 @@
 			function submitForm(){
 				if($("#ff").form('validate')&&findUserByUser()){
 					$.ajax({   
-					     url:url+"/system/user/add.do",
+					     url:url+"/system/user/add",
 					     type:$("#ff").attr("method"),   
 					     data:$("#ff").serializeArray(),
 					     success:function(data){   
@@ -23,7 +23,7 @@
 			function findUserByUser(){
 				var a=false;
 				$.ajax({   
-					     url:url+'/system/user/findUserByUser.do',   
+					     url:url+'/system/user/findUserByUser',   
 					     type:'post',   
 					     async : false,
 					     data:'username='+$("#username").val(), 
@@ -62,7 +62,7 @@
 						
 						<input class="easyui-combobox" name="roleId"  multiple="multiple" required="true"
 							data-options="
-								url:url+'/system/role/listAll.do',
+								url:url+'/system/role/listAll',
 								method:'get',
 								valueField:'id',
 								textField:'name',

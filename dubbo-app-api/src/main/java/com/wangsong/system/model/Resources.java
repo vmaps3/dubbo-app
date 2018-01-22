@@ -2,8 +2,6 @@ package com.wangsong.system.model;
 
 import java.io.Serializable;
 
-import javax.validation.constraints.NotNull;
-
 
 
 

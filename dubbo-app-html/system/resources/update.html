@@ -8,7 +8,7 @@
 			function submitForm(){
 				if($("#ff").form('validate')==true){
 					$.ajax({   
-					     url:url+"/system/resources/update.do",   
+					     url:url+"/system/resources/update",   
 					     type:$("#ff").attr("method"),   
 					     data:$("#ff").serializeArray(),
 					     success:function(data){   
@@ -27,7 +27,7 @@
 			
 			$(function(){ 
 				$.ajax({   
-				     url:url+'/system/resources/selectByPrimaryKey.do',   
+				     url:url+'/system/resources/selectByPrimaryKey',   
 				     type:'post',   
 				     data:'id='+getQueryString("id"),
 				     success:function(data){   
@@ -69,7 +69,7 @@
 					<td>
 						<input id="cc" class="easyui-combobox" name="type" required="true"
 							data-options="
-								url:url+'/system/dict/findDictByDict.do?type=1',
+								url:url+'/system/dict/findDictByDict?type=1',
 								method:'get',
 								valueField:'code',
 								textField:'name',

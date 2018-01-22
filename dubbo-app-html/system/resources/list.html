@@ -17,7 +17,7 @@ function removeit(){
 	        if (r) {
 	        	$('#tt').tree('remove', node.target);
 	        	$.ajax({   
-				     url:url+'/system/resources/delete.do',
+				     url:url+'/system/resources/delete',
 				     type:'post',   
 				     data:"id="+node.id,
 				     success:function(data){   
@@ -44,7 +44,7 @@ function up(){
   	
    
 	<ul id="tt" class="easyui-tree" data-options="
-			url: url+'/system/resources/list.do',
+			url: url+'/system/resources/list',
 			method: 'get',
 			animate: true,
 			onContextMenu: function(e,node){

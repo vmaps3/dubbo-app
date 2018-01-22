@@ -1,5 +1,7 @@
 package com.wangsong.system.service;
 
+import javax.servlet.http.HttpServletRequest;
+
 import com.wangsong.common.model.Result;
 
 public interface LoginService {
@@ -10,4 +12,6 @@ public interface LoginService {
 	Result index();
 
 	Result unauth();
+
+	Result getStatus(HttpServletRequest request);
 }

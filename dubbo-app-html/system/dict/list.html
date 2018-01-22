@@ -15,7 +15,7 @@ function del(){
 		        		myArray.push(row[i].id);
 		        	}
 		        	$.ajax({   
-					     url:url+'/system/dict/delete.do',   
+					     url:url+'/system/dict/delete',   
 					     type:'post',   
 					     data:"id="+myArray,
 					     success:function(data){   
@@ -51,7 +51,7 @@ function add(){
 }
 
 $(function(){ 
-	$('#dg').datagrid({url:url+"/system/dict/list.do"});
+	$('#dg').datagrid({url:url+"/system/dict/list"});
 }); 
 </script>
 </head>
