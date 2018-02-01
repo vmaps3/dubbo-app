@@ -1,4 +1,4 @@
-package com.wangsong;
+package com.wangsong.common.config;
 
 import java.util.HashSet;
 import java.util.List;

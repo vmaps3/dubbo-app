@@ -1,4 +1,4 @@
-package com.wangsong;
+package com.wangsong.common.config;
 
 import java.util.LinkedHashMap;
 import java.util.Map;
@@ -44,7 +44,6 @@ public class ShiroConfig {
         filterChainDefinitionMap.put("/**", "authc");
         // 如果不设置默认会自动寻找Web工程根目录下的"/login.jsp"页面
         shiroFilterFactoryBean.setLoginUrl("/index");
-       
         shiroFilterFactoryBean.setFilterChainDefinitionMap(filterChainDefinitionMap);
         return shiroFilterFactoryBean;
     }
