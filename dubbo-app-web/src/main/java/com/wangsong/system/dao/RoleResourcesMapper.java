@@ -2,6 +2,7 @@ package com.wangsong.system.dao;
 
 import java.util.List;
 
+import com.wangsong.system.model.Resources;
 import com.wangsong.system.model.RoleResources;
 
 public interface RoleResourcesMapper {
@@ -18,5 +19,6 @@ public interface RoleResourcesMapper {
 	void deleteByT(RoleResources[] roleResources);
 
 	List<RoleResources> findTByT(RoleResources roleResources);
-		
+
+	List<Resources> findResourcesByT(Resources resources);
 }
