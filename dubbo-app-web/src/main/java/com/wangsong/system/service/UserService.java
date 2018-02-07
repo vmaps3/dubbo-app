@@ -4,6 +4,7 @@ import com.wangsong.common.model.Result;
 import com.wangsong.system.model.User;
 import com.wangsong.system.model.UserAddModel;
 import com.wangsong.system.model.UserPage;
+import com.wangsong.system.model.UserRole;
 import com.wangsong.system.vo.UserVO;
 
 public interface UserService {
@@ -27,4 +28,6 @@ public interface UserService {
 	UserVO selectByPrimaryKey(String id);
 
 	User findTByT(User user);
+
+	void deleteByT(UserRole[] u);
 }

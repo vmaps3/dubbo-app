@@ -49,7 +49,7 @@
 			#{roleResources.resourcesId}  
 		</foreach>  
   </delete>
-  <select id="findResourcesByT" parameterType="com.guiyou.system.model.Resources" resultType="com.guiyou.system.model.Resources">
+  <select id="findResourcesByT" parameterType="com.wangsong.system.model.Resources" resultType="com.wangsong.system.model.Resources">
       select distinct system_resources.id, system_resources.pid, system_resources.name, system_resources.url,system_resources.type,system_resources.sort
     from system_role_resources
 	 LEFT  JOIN system_resources on system_resources.id=system_role_resources.resources_id

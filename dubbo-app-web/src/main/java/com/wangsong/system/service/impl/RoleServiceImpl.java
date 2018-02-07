@@ -12,12 +12,14 @@ import com.wangsong.common.model.Result;
 import com.wangsong.system.dao.RoleMapper;
 import com.wangsong.system.dao.RoleResourcesMapper;
 import com.wangsong.system.dao.UserRoleMapper;
+import com.wangsong.system.model.Resources;
 import com.wangsong.system.model.Role;
 import com.wangsong.system.model.RoleAddModel;
 import com.wangsong.system.model.RolePage;
 import com.wangsong.system.model.RoleResources;
 import com.wangsong.system.model.UserRole;
 import com.wangsong.system.service.RoleService;
+import com.wangsong.system.service.UserService;
 import com.wangsong.system.vo.RoleVO;
 
 
@@ -27,7 +29,7 @@ public class RoleServiceImpl  implements RoleService {
 	@Autowired
 	private RoleMapper roleMapper;
 	@Autowired
-	private UserRoleMapper userRoleMapper;
+	private UserService userService;
 	@Autowired
 	private RoleResourcesMapper roleResourcesMapper;
 	
@@ -70,7 +72,7 @@ public class RoleServiceImpl  implements RoleService {
 			u[i]=new UserRole(null,null,id[i]);
 		}
 
-		userRoleMapper.deleteByT(u);
+		userService.deleteByT(u);
 		roleResourcesMapper.deleteByT(r);
 		roleMapper.deleteBy(id);
 		return  new Result("success",null);
@@ -93,5 +95,15 @@ public class RoleServiceImpl  implements RoleService {
 	@Override
 	public List<Role> selectAll() {
 		return roleMapper.selectAll();
+	}
+
+	@Override
+	public List<Resources> findResourcesByT(Resources resources) {
+		return roleResourcesMapper.findResourcesByT(resources);
+	}
+
+	@Override
+	public void deleteByT(RoleResources[] r) {
+		roleResourcesMapper.deleteByT(r);
 	}
 }

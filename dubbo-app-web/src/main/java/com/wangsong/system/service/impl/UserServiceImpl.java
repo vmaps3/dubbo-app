@@ -129,6 +129,12 @@ public class UserServiceImpl  implements UserService{
 		return user2;
 	}
 
+	@Override
+	public void deleteByT(UserRole[] u) {
+		userRoleMapper.deleteByT(u);
+		
+	}
+
 
 	
 }

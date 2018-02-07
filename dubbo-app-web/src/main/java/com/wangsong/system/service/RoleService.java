@@ -3,9 +3,11 @@ package com.wangsong.system.service;
 import java.util.List;
 
 import com.wangsong.common.model.Result;
+import com.wangsong.system.model.Resources;
 import com.wangsong.system.model.Role;
 import com.wangsong.system.model.RoleAddModel;
 import com.wangsong.system.model.RolePage;
+import com.wangsong.system.model.RoleResources;
 import com.wangsong.system.vo.RoleVO;
 
 public interface RoleService {
@@ -21,5 +23,9 @@ public interface RoleService {
 	RoleVO selectByPrimaryKey(String id);
 
 	List<Role> selectAll();
+
+	List<Resources> findResourcesByT(Resources resources);
+
+	void deleteByT(RoleResources[] r);
 
 }
