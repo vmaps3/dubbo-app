@@ -21,5 +21,7 @@ public interface ResourcesService {
 	Resources selectByPrimaryKey(String id);
 
 	List<JsonTreeData> findResourcesEMUByResources(String id);
+
+	List<Resources> selectByResources(Resources resources);
 	
 }

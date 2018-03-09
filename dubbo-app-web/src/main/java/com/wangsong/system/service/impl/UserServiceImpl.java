@@ -1,5 +1,6 @@
 package com.wangsong.system.service.impl;
 
+import java.util.List;
 import java.util.UUID;
 
 import org.apache.commons.codec.digest.DigestUtils;
@@ -102,26 +103,12 @@ public class UserServiceImpl  implements UserService{
 	}
 
 	@Override
-	public Result index() {
-		return new Result("index",null);
-	}
-
-
-	@Override
-	public Result unauth() {
-		 return new Result("unauth",null);
-	}
-
-
-	@Override
 	public UserVO selectByPrimaryKey(String id) {
 		UserVO u=userMapper.selectVOByPrimaryKey(id);
 		u.setPassword("");
 		u.setUserRoleList(userRoleMapper.findTByT(new UserRole(null,id,null)));
 		return u;
 	}
-
-	
 
 	@Override
 	public User findTByT(User user) {
@@ -133,6 +120,11 @@ public class UserServiceImpl  implements UserService{
 	public void deleteByT(UserRole[] u) {
 		userRoleMapper.deleteByT(u);
 		
+	}
+
+	@Override
+	public List<UserRole> findByUserRole(UserRole userRole) {
+		return userRoleMapper.findTByT(userRole);
 	}
 
 

@@ -34,6 +34,14 @@
     from system_resources
     where id = #{id,jdbcType=VARCHAR}
   </select>
+  
+  <select id="selectByResources" parameterType="com.wangsong.system.model.Resources" resultMap="BaseResultMap">
+    select id, pid, name, url,type,sort
+    from system_resources
+    where id = #{id,jdbcType=VARCHAR}
+    and type= #{type,jdbcType=VARCHAR}
+  </select>
+  
   <select id="selectAll" resultMap="BaseResultMap">
     select id, pid, name, url,type,sort
     from system_resources

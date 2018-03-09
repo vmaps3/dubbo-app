@@ -1,6 +1,11 @@
 package com.wangsong.system.service.impl;
 
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.HashSet;
+import java.util.Iterator;
 import java.util.List;
+import java.util.Set;
 import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,6 +23,7 @@ import com.wangsong.system.model.RoleAddModel;
 import com.wangsong.system.model.RolePage;
 import com.wangsong.system.model.RoleResources;
 import com.wangsong.system.model.UserRole;
+import com.wangsong.system.service.ResourcesService;
 import com.wangsong.system.service.RoleService;
 import com.wangsong.system.service.UserService;
 import com.wangsong.system.vo.RoleVO;
@@ -32,7 +38,8 @@ public class RoleServiceImpl  implements RoleService {
 	private UserService userService;
 	@Autowired
 	private RoleResourcesMapper roleResourcesMapper;
-	
+	@Autowired
+	private ResourcesService resourcesService;
 	
 	@Override
 	public Result insertRole(RoleAddModel role) {
@@ -99,7 +106,31 @@ public class RoleServiceImpl  implements RoleService {
 
 	@Override
 	public List<Resources> findResourcesByT(Resources resources) {
-		return roleResourcesMapper.findResourcesByT(resources);
+		List<Resources> resourcesList =new ArrayList<Resources>();
+		List<UserRole>  userRoleList=userService.findByUserRole(new UserRole(null,resources.getId(),null));
+		for(UserRole userRole: userRoleList){
+			List<RoleResources> roleResourcesList=roleResourcesMapper.findTByT(new RoleResources(null,null, userRole.getRoleId()));
+			for(RoleResources roleResources:roleResourcesList){
+				resources.setId(roleResources.getResourcesId());
+				resourcesList.addAll(resourcesService.selectByResources(resources));
+			}
+		}
+		
+		
+		
+		return distinct(resourcesList);
+	}
+	
+	private List distinct(List arrayList){
+		 Set set = new  HashSet(); 
+		 List newList = new  ArrayList(); 
+         for (Object cd:arrayList) {
+            if(set.add(cd)){
+            	newList.add(cd);
+            }
+        }
+        Collections.sort(newList);
+		return newList;
 	}
 
 	@Override

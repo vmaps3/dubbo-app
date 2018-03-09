@@ -19,4 +19,5 @@ public interface UserRoleMapper {
 	void deleteByT(UserRole[] u);
 
 	List<UserRole> findTByT(UserRole userRole);
+
 }

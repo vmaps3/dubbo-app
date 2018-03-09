@@ -9,7 +9,7 @@ import com.wangsong.system.groups.ResourcesUpdate;
 
 
 
-public class Resources  implements Serializable{
+public class Resources  implements Serializable,Comparable<Resources>{
     /**
 	 * 
 	 */
@@ -86,4 +86,66 @@ public class Resources  implements Serializable{
 	public void setSort(String sort) {
 		 this.sort = sort == null ? null : sort.trim();	
 	}
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((id == null) ? 0 : id.hashCode());
+		result = prime * result + ((name == null) ? 0 : name.hashCode());
+		result = prime * result + ((pid == null) ? 0 : pid.hashCode());
+		result = prime * result + ((sort == null) ? 0 : sort.hashCode());
+		result = prime * result + ((type == null) ? 0 : type.hashCode());
+		result = prime * result + ((url == null) ? 0 : url.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Resources other = (Resources) obj;
+		if (id == null) {
+			if (other.id != null)
+				return false;
+		} else if (!id.equals(other.id))
+			return false;
+		if (name == null) {
+			if (other.name != null)
+				return false;
+		} else if (!name.equals(other.name))
+			return false;
+		if (pid == null) {
+			if (other.pid != null)
+				return false;
+		} else if (!pid.equals(other.pid))
+			return false;
+		if (sort == null) {
+			if (other.sort != null)
+				return false;
+		} else if (!sort.equals(other.sort))
+			return false;
+		if (type == null) {
+			if (other.type != null)
+				return false;
+		} else if (!type.equals(other.type))
+			return false;
+		if (url == null) {
+			if (other.url != null)
+				return false;
+		} else if (!url.equals(other.url))
+			return false;
+		return true;
+	}
+	
+	
+
+	@Override
+	public int compareTo(Resources o) {
+        return Integer.parseInt(this.sort==null?"0":this.sort) - Integer.parseInt(o.getSort()==null?"0":o.getSort());//如果年龄相等了再用分数进行排序   
+	}  
 }
