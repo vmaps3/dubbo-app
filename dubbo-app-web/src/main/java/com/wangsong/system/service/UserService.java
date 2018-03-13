@@ -1,7 +1,5 @@
 package com.wangsong.system.service;
 
-import java.util.List;
-
 import com.wangsong.common.model.Result;
 import com.wangsong.system.model.User;
 import com.wangsong.system.model.UserAddModel;
@@ -23,11 +21,13 @@ public interface UserService {
 
 	Object findTByPage(UserPage user);
 
+	Result index();
+
+	Result unauth();
+
 	UserVO selectByPrimaryKey(String id);
 
 	User findTByT(User user);
 
 	void deleteByT(UserRole[] u);
-
-	List<UserRole> findByUserRole(UserRole userRole);
 }

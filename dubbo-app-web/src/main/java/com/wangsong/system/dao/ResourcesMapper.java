@@ -12,8 +12,6 @@ public interface ResourcesMapper{
     Resources selectByPrimaryKey(String id);
 
     List<Resources> selectAll();
-    
-    List<Resources> selectByResources(Resources record);
 
     int updateByPrimaryKey(Resources record);
 
