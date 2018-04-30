@@ -2,7 +2,7 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>com.wangsong</groupId>
-	<artifactId>dubbo-app-test</artifactId>
+	<artifactId>dubbo-app-schedule</artifactId>
 	<packaging>jar</packaging>
 	<version>0.0.1-SNAPSHOT</version>
 	<name></name>
@@ -34,6 +34,11 @@
 			<groupId>com.wangsong</groupId>
 			<artifactId>dubbo-app-api</artifactId>
 			<version>0.0.1-SNAPSHOT</version>
+		</dependency>
+		<dependency>
+		    <groupId>org.quartz-scheduler</groupId>
+		    <artifactId>quartz</artifactId>
+		    <version>2.2.3</version>
 		</dependency>
 		
 	</dependencies>
