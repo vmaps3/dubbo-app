@@ -67,3 +67,9 @@ target/
 /dubbo-app-test/.settings/org.eclipse.jdt.core.prefs
 /dubbo-app-test/.settings/org.eclipse.m2e.core.prefs
 /dubbo-app-test/logs/dubbo-app-web.log
+/dubbo-app-schedule/.classpath
+/dubbo-app-schedule/.project
+/dubbo-app-schedule/.settings/org.eclipse.core.resources.prefs
+/dubbo-app-schedule/.settings/org.eclipse.jdt.core.prefs
+/dubbo-app-schedule/.settings/org.eclipse.m2e.core.prefs
+/dubbo-app-schedule/logs/dubbo-app-web.log
