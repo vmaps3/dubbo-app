@@ -1,6 +1,6 @@
 /.project
 /.idea/
-/dubbo-app-api/dubbo-app-api.iml
+/dubbo-app-system-api/dubbo-app-api.iml
 /dubbo-app-common/dubbo-app-common.iml
 /dubbo-app-schedule/dubbo-app-schedule.iml
-/dubbo-app-web/dubbo-app-web.iml
+/dubbo-app-system/dubbo-app-web.iml

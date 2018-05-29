@@ -1,16 +1,14 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
+
 	<groupId>com.wangsong</groupId>
-	<artifactId>dubbo-app-web</artifactId>
-	<packaging>jar</packaging>
+	<artifactId>dubbo-app-system-api</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
+	<packaging>jar</packaging>
+
 	<name></name>
 	<url>http://maven.apache.org</url>
-	<properties>
-		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-		<java.version>1.8</java.version>
-	</properties>
 	<!-- 设定主仓库，按设定顺序进行查找。 -->
 	<repositories>
 		<repository>
@@ -27,29 +25,21 @@
 			<url>http://maven.aliyun.com/nexus/content/groups/public</url>
 		</pluginRepository>
 	</pluginRepositories> 
-	
-
+	<!-- 设定主仓库，按设定顺序进行查找。 -->
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<java.version>1.8</java.version>
+	</properties>
 	<dependencies>
 		<dependency>
 			<groupId>com.wangsong</groupId>
-			<artifactId>dubbo-app-api</artifactId>
+			<artifactId>dubbo-app-common</artifactId>
 			<version>0.0.1-SNAPSHOT</version>
 		</dependency>
-		
 	</dependencies>
 	<build>
 		<plugins>
-			<plugin>
-				<groupId>org.springframework.boot</groupId>
-				<artifactId>spring-boot-maven-plugin</artifactId>
-				<executions>
-				    <execution>
-				        <goals>
-				            <goal>repackage</goal>
-				        </goals>
-				    </execution>
-				</executions>
-			</plugin>
+			
 			<plugin>
 				<artifactId>maven-compiler-plugin</artifactId>
 				<version>2.3.2</version>

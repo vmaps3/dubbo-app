@@ -32,7 +32,7 @@
 	<dependencies>
 		<dependency>
 			<groupId>com.wangsong</groupId>
-			<artifactId>dubbo-app-api</artifactId>
+			<artifactId>dubbo-app-system-api</artifactId>
 			<version>0.0.1-SNAPSHOT</version>
 		</dependency>
 		<dependency>
