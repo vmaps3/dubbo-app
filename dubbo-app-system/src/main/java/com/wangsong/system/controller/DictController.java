@@ -2,6 +2,7 @@ package com.wangsong.system.controller;
 
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
@@ -20,6 +21,9 @@ import com.wangsong.system.service.DictService;
 public class DictController extends BaseController{
 	@Autowired
 	private DictService dictService;
+
+	@Value(value = "${shiro_redis_session}")
+	private int shiro_redis_session;
 	
 	@RequiresPermissions("/system/dict/list")
 	@RequestMapping(value="/list")
