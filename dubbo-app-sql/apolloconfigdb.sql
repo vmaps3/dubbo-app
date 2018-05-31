@@ -36,7 +36,7 @@ CREATE TABLE IF NOT EXISTS `app` (
   KEY `IX_Name` (`Name`(191))
 ) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COMMENT='应用表';
 
--- 正在导出表  apolloconfigdb.app 的数据：~1 rows (大约)
+-- 正在导出表  apolloconfigdb.app 的数据：~3 rows (大约)
 /*!40000 ALTER TABLE `app` DISABLE KEYS */;
 INSERT INTO `app` (`Id`, `AppId`, `Name`, `OrgId`, `OrgName`, `OwnerName`, `OwnerEmail`, `IsDeleted`, `DataChange_CreatedBy`, `DataChange_CreatedTime`, `DataChange_LastModifiedBy`, `DataChange_LastTime`) VALUES
 	(1, 'SampleApp', 'Sample App', 'TEST1', '样例部门1', 'apollo', 'apollo@acme.com', b'0', 'default', '2018-05-29 18:04:24', '', '2018-05-29 18:04:24'),
@@ -63,7 +63,7 @@ CREATE TABLE IF NOT EXISTS `appnamespace` (
   KEY `DataChange_LastTime` (`DataChange_LastTime`)
 ) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COMMENT='应用namespace定义';
 
--- 正在导出表  apolloconfigdb.appnamespace 的数据：~1 rows (大约)
+-- 正在导出表  apolloconfigdb.appnamespace 的数据：~3 rows (大约)
 /*!40000 ALTER TABLE `appnamespace` DISABLE KEYS */;
 INSERT INTO `appnamespace` (`Id`, `Name`, `AppId`, `Format`, `IsPublic`, `Comment`, `IsDeleted`, `DataChange_CreatedBy`, `DataChange_CreatedTime`, `DataChange_LastModifiedBy`, `DataChange_LastTime`) VALUES
 	(1, 'application', 'SampleApp', 'properties', b'0', 'default app namespace', b'0', '', '2018-05-29 18:04:24', '', '2018-05-29 18:04:24'),
@@ -85,9 +85,9 @@ CREATE TABLE IF NOT EXISTS `audit` (
   `DataChange_LastTime` timestamp NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '最后修改时间',
   PRIMARY KEY (`Id`),
   KEY `DataChange_LastTime` (`DataChange_LastTime`)
-) ENGINE=InnoDB AUTO_INCREMENT=102 DEFAULT CHARSET=utf8mb4 COMMENT='日志审计表';
+) ENGINE=InnoDB AUTO_INCREMENT=145 DEFAULT CHARSET=utf8mb4 COMMENT='日志审计表';
 
--- 正在导出表  apolloconfigdb.audit 的数据：~0 rows (大约)
+-- 正在导出表  apolloconfigdb.audit 的数据：~144 rows (大约)
 /*!40000 ALTER TABLE `audit` DISABLE KEYS */;
 INSERT INTO `audit` (`Id`, `EntityName`, `EntityId`, `OpName`, `Comment`, `IsDeleted`, `DataChange_CreatedBy`, `DataChange_CreatedTime`, `DataChange_LastModifiedBy`, `DataChange_LastTime`) VALUES
 	(1, 'App', 2, 'INSERT', NULL, b'0', 'apollo', '2018-05-30 10:15:43', NULL, '2018-05-30 10:15:43'),
@@ -190,7 +190,50 @@ INSERT INTO `audit` (`Id`, `EntityName`, `EntityId`, `OpName`, `Comment`, `IsDel
 	(98, 'ReleaseHistory', 7, 'INSERT', NULL, b'0', 'apollo', '2018-05-30 14:15:07', NULL, '2018-05-30 14:15:07'),
 	(99, 'Item', 32, 'UPDATE', NULL, b'0', 'apollo', '2018-05-30 14:20:37', NULL, '2018-05-30 14:20:37'),
 	(100, 'Release', 8, 'INSERT', NULL, b'0', 'apollo', '2018-05-30 14:26:33', NULL, '2018-05-30 14:26:33'),
-	(101, 'ReleaseHistory', 8, 'INSERT', NULL, b'0', 'apollo', '2018-05-30 14:26:33', NULL, '2018-05-30 14:26:33');
+	(101, 'ReleaseHistory', 8, 'INSERT', NULL, b'0', 'apollo', '2018-05-30 14:26:33', NULL, '2018-05-30 14:26:33'),
+	(102, 'Item', 74, 'INSERT', NULL, b'0', 'apollo', '2018-05-31 10:58:27', NULL, '2018-05-31 10:58:27'),
+	(103, 'Item', 75, 'INSERT', NULL, b'0', 'apollo', '2018-05-31 10:58:27', NULL, '2018-05-31 10:58:27'),
+	(104, 'Item', 76, 'INSERT', NULL, b'0', 'apollo', '2018-05-31 10:58:27', NULL, '2018-05-31 10:58:27'),
+	(105, 'Item', 77, 'INSERT', NULL, b'0', 'apollo', '2018-05-31 10:58:27', NULL, '2018-05-31 10:58:27'),
+	(106, 'Item', 78, 'INSERT', NULL, b'0', 'apollo', '2018-05-31 10:58:27', NULL, '2018-05-31 10:58:27'),
+	(107, 'Item', 79, 'INSERT', NULL, b'0', 'apollo', '2018-05-31 10:58:27', NULL, '2018-05-31 10:58:27'),
+	(108, 'Item', 80, 'INSERT', NULL, b'0', 'apollo', '2018-05-31 10:58:27', NULL, '2018-05-31 10:58:27'),
+	(109, 'Item', 81, 'INSERT', NULL, b'0', 'apollo', '2018-05-31 10:58:27', NULL, '2018-05-31 10:58:27'),
+	(110, 'Item', 82, 'INSERT', NULL, b'0', 'apollo', '2018-05-31 10:58:27', NULL, '2018-05-31 10:58:27'),
+	(111, 'Item', 83, 'INSERT', NULL, b'0', 'apollo', '2018-05-31 10:58:27', NULL, '2018-05-31 10:58:27'),
+	(112, 'Item', 84, 'INSERT', NULL, b'0', 'apollo', '2018-05-31 10:58:27', NULL, '2018-05-31 10:58:27'),
+	(113, 'Item', 85, 'INSERT', NULL, b'0', 'apollo', '2018-05-31 10:58:27', NULL, '2018-05-31 10:58:27'),
+	(114, 'Item', 86, 'INSERT', NULL, b'0', 'apollo', '2018-05-31 10:58:27', NULL, '2018-05-31 10:58:27'),
+	(115, 'Item', 87, 'INSERT', NULL, b'0', 'apollo', '2018-05-31 10:58:27', NULL, '2018-05-31 10:58:27'),
+	(116, 'Item', 88, 'INSERT', NULL, b'0', 'apollo', '2018-05-31 10:58:27', NULL, '2018-05-31 10:58:27'),
+	(117, 'Item', 89, 'INSERT', NULL, b'0', 'apollo', '2018-05-31 10:58:27', NULL, '2018-05-31 10:58:27'),
+	(118, 'ItemSet', NULL, 'INSERT', NULL, b'0', 'apollo', '2018-05-31 10:58:27', NULL, '2018-05-31 10:58:27'),
+	(119, 'Release', 9, 'INSERT', NULL, b'0', 'apollo', '2018-05-31 10:58:29', NULL, '2018-05-31 10:58:29'),
+	(120, 'ReleaseHistory', 9, 'INSERT', NULL, b'0', 'apollo', '2018-05-31 10:58:29', NULL, '2018-05-31 10:58:29'),
+	(121, 'Item', 76, 'UPDATE', NULL, b'0', 'apollo', '2018-05-31 11:13:07', NULL, '2018-05-31 11:13:07'),
+	(122, 'Release', 10, 'INSERT', NULL, b'0', 'apollo', '2018-05-31 11:13:18', NULL, '2018-05-31 11:13:18'),
+	(123, 'ReleaseHistory', 10, 'INSERT', NULL, b'0', 'apollo', '2018-05-31 11:13:18', NULL, '2018-05-31 11:13:18'),
+	(124, 'Item', 90, 'INSERT', NULL, b'0', 'apollo', '2018-05-31 11:19:12', NULL, '2018-05-31 11:19:12'),
+	(125, 'Item', 91, 'INSERT', NULL, b'0', 'apollo', '2018-05-31 11:19:12', NULL, '2018-05-31 11:19:12'),
+	(126, 'ItemSet', NULL, 'INSERT', NULL, b'0', 'apollo', '2018-05-31 11:19:12', NULL, '2018-05-31 11:19:12'),
+	(127, 'Item', 76, 'UPDATE', NULL, b'0', 'apollo', '2018-05-31 11:19:12', NULL, '2018-05-31 11:19:12'),
+	(128, 'Item', 79, 'UPDATE', NULL, b'0', 'apollo', '2018-05-31 11:19:12', NULL, '2018-05-31 11:19:12'),
+	(129, 'Item', 80, 'UPDATE', NULL, b'0', 'apollo', '2018-05-31 11:19:12', NULL, '2018-05-31 11:19:12'),
+	(130, 'Item', 81, 'UPDATE', NULL, b'0', 'apollo', '2018-05-31 11:19:12', NULL, '2018-05-31 11:19:12'),
+	(131, 'Item', 84, 'UPDATE', NULL, b'0', 'apollo', '2018-05-31 11:19:12', NULL, '2018-05-31 11:19:12'),
+	(132, 'Item', 87, 'UPDATE', NULL, b'0', 'apollo', '2018-05-31 11:19:12', NULL, '2018-05-31 11:19:12'),
+	(133, 'Item', 89, 'UPDATE', NULL, b'0', 'apollo', '2018-05-31 11:19:12', NULL, '2018-05-31 11:19:12'),
+	(134, 'ItemSet', NULL, 'UPDATE', NULL, b'0', 'apollo', '2018-05-31 11:19:12', NULL, '2018-05-31 11:19:12'),
+	(135, 'Item', 75, 'DELETE', NULL, b'0', 'apollo', '2018-05-31 11:19:12', NULL, '2018-05-31 11:19:12'),
+	(136, 'Item', 77, 'DELETE', NULL, b'0', 'apollo', '2018-05-31 11:19:12', NULL, '2018-05-31 11:19:12'),
+	(137, 'Item', 78, 'DELETE', NULL, b'0', 'apollo', '2018-05-31 11:19:12', NULL, '2018-05-31 11:19:12'),
+	(138, 'Item', 83, 'DELETE', NULL, b'0', 'apollo', '2018-05-31 11:19:12', NULL, '2018-05-31 11:19:12'),
+	(139, 'Item', 85, 'DELETE', NULL, b'0', 'apollo', '2018-05-31 11:19:12', NULL, '2018-05-31 11:19:12'),
+	(140, 'Item', 86, 'DELETE', NULL, b'0', 'apollo', '2018-05-31 11:19:12', NULL, '2018-05-31 11:19:12'),
+	(141, 'Item', 88, 'DELETE', NULL, b'0', 'apollo', '2018-05-31 11:19:12', NULL, '2018-05-31 11:19:12'),
+	(142, 'ItemSet', NULL, 'DELETE', NULL, b'0', 'apollo', '2018-05-31 11:19:12', NULL, '2018-05-31 11:19:12'),
+	(143, 'Release', 11, 'INSERT', NULL, b'0', 'apollo', '2018-05-31 11:19:15', NULL, '2018-05-31 11:19:15'),
+	(144, 'ReleaseHistory', 11, 'INSERT', NULL, b'0', 'apollo', '2018-05-31 11:19:15', NULL, '2018-05-31 11:19:15');
 /*!40000 ALTER TABLE `audit` ENABLE KEYS */;
 
 -- 导出  表 apolloconfigdb.cluster 结构
@@ -210,7 +253,7 @@ CREATE TABLE IF NOT EXISTS `cluster` (
   KEY `DataChange_LastTime` (`DataChange_LastTime`)
 ) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COMMENT='集群';
 
--- 正在导出表  apolloconfigdb.cluster 的数据：~1 rows (大约)
+-- 正在导出表  apolloconfigdb.cluster 的数据：~3 rows (大约)
 /*!40000 ALTER TABLE `cluster` DISABLE KEYS */;
 INSERT INTO `cluster` (`Id`, `Name`, `AppId`, `ParentClusterId`, `IsDeleted`, `DataChange_CreatedBy`, `DataChange_CreatedTime`, `DataChange_LastModifiedBy`, `DataChange_LastTime`) VALUES
 	(1, 'default', 'SampleApp', 0, b'0', '', '2018-05-29 18:04:24', '', '2018-05-29 18:04:24'),
@@ -236,9 +279,9 @@ CREATE TABLE IF NOT EXISTS `commit` (
   KEY `AppId` (`AppId`(191)),
   KEY `ClusterName` (`ClusterName`(191)),
   KEY `NamespaceName` (`NamespaceName`(191))
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4 COMMENT='commit 历史表';
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8mb4 COMMENT='commit 历史表';
 
--- 正在导出表  apolloconfigdb.commit 的数据：~0 rows (大约)
+-- 正在导出表  apolloconfigdb.commit 的数据：~9 rows (大约)
 /*!40000 ALTER TABLE `commit` DISABLE KEYS */;
 INSERT INTO `commit` (`Id`, `ChangeSets`, `AppId`, `ClusterName`, `NamespaceName`, `Comment`, `IsDeleted`, `DataChange_CreatedBy`, `DataChange_CreatedTime`, `DataChange_LastModifiedBy`, `DataChange_LastTime`) VALUES
 	(1, '{"createItems":[{"namespaceId":2,"key":"server.context-path","value":"/dubbo-app-system","comment":"","lineNum":1,"id":2,"isDeleted":false,"dataChangeCreatedBy":"apollo","dataChangeCreatedTime":"2018-05-30 10:17:07","dataChangeLastModifiedBy":"apollo","dataChangeLastModifiedTime":"2018-05-30 10:17:08"},{"namespaceId":2,"key":"server.port","value":"8087","comment":"","lineNum":2,"id":3,"isDeleted":false,"dataChangeCreatedBy":"apollo","dataChangeCreatedTime":"2018-05-30 10:17:07","dataChangeLastModifiedBy":"apollo","dataChangeLastModifiedTime":"2018-05-30 10:17:08"},{"namespaceId":2,"key":"spring.datasource.url","value":"jdbc:mysql://localhost:3306/dubbo-app?useUnicode\\u003dtrue\\u0026characterEncoding\\u003dutf-8","comment":"","lineNum":4,"id":5,"isDeleted":false,"dataChangeCreatedBy":"apollo","dataChangeCreatedTime":"2018-05-30 10:17:07","dataChangeLastModifiedBy":"apollo","dataChangeLastModifiedTime":"2018-05-30 10:17:08"},{"namespaceId":2,"key":"spring.datasource.username","value":"root","comment":"","lineNum":5,"id":6,"isDeleted":false,"dataChangeCreatedBy":"apollo","dataChangeCreatedTime":"2018-05-30 10:17:07","dataChangeLastModifiedBy":"apollo","dataChangeLastModifiedTime":"2018-05-30 10:17:08"},{"namespaceId":2,"key":"spring.datasource.password","value":"root","comment":"","lineNum":6,"id":7,"isDeleted":false,"dataChangeCreatedBy":"apollo","dataChangeCreatedTime":"2018-05-30 10:17:07","dataChangeLastModifiedBy":"apollo","dataChangeLastModifiedTime":"2018-05-30 10:17:08"},{"namespaceId":2,"key":"spring.datasource.driver-class-name","value":"com.mysql.jdbc.Driver","comment":"","lineNum":7,"id":8,"isDeleted":false,"dataChangeCreatedBy":"apollo","dataChangeCreatedTime":"2018-05-30 10:17:07","dataChangeLastModifiedBy":"apollo","dataChangeLastModifiedTime":"2018-05-30 10:17:08"},{"namespaceId":2,"key":"spring.datasource.type","value":"com.alibaba.druid.pool.DruidDataSource","comment":"","lineNum":8,"id":9,"isDeleted":false,"dataChangeCreatedBy":"apollo","dataChangeCreatedTime":"2018-05-30 10:17:07","dataChangeLastModifiedBy":"apollo","dataChangeLastModifiedTime":"2018-05-30 10:17:08"},{"namespaceId":2,"key":"spring.datasource.initialSize","value":"5","comment":"","lineNum":10,"id":11,"isDeleted":false,"dataChangeCreatedBy":"apollo","dataChangeCreatedTime":"2018-05-30 10:17:07","dataChangeLastModifiedBy":"apollo","dataChangeLastModifiedTime":"2018-05-30 10:17:08"},{"namespaceId":2,"key":"spring.datasource.minIdle","value":"5","comment":"","lineNum":11,"id":12,"isDeleted":false,"dataChangeCreatedBy":"apollo","dataChangeCreatedTime":"2018-05-30 10:17:07","dataChangeLastModifiedBy":"apollo","dataChangeLastModifiedTime":"2018-05-30 10:17:08"},{"namespaceId":2,"key":"spring.datasource.maxActive","value":"20","comment":"","lineNum":12,"id":13,"isDeleted":false,"dataChangeCreatedBy":"apollo","dataChangeCreatedTime":"2018-05-30 10:17:07","dataChangeLastModifiedBy":"apollo","dataChangeLastModifiedTime":"2018-05-30 10:17:08"},{"namespaceId":2,"key":"spring.datasource.maxWait","value":"60000","comment":"","lineNum":13,"id":14,"isDeleted":false,"dataChangeCreatedBy":"apollo","dataChangeCreatedTime":"2018-05-30 10:17:07","dataChangeLastModifiedBy":"apollo","dataChangeLastModifiedTime":"2018-05-30 10:17:08"},{"namespaceId":2,"key":"spring.datasource.timeBetweenEvictionRunsMillis","value":"60000","comment":"","lineNum":14,"id":15,"isDeleted":false,"dataChangeCreatedBy":"apollo","dataChangeCreatedTime":"2018-05-30 10:17:07","dataChangeLastModifiedBy":"apollo","dataChangeLastModifiedTime":"2018-05-30 10:17:08"},{"namespaceId":2,"key":"spring.datasource.minEvictableIdleTimeMillis","value":"300000","comment":"","lineNum":15,"id":16,"isDeleted":false,"dataChangeCreatedBy":"apollo","dataChangeCreatedTime":"2018-05-30 10:17:07","dataChangeLastModifiedBy":"apollo","dataChangeLastModifiedTime":"2018-05-30 10:17:08"},{"namespaceId":2,"key":"spring.datasource.validationQuery","value":"SELECT 1 FROM DUAL","comment":"","lineNum":16,"id":17,"isDeleted":false,"dataChangeCreatedBy":"apollo","dataChangeCreatedTime":"2018-05-30 10:17:07","dataChangeLastModifiedBy":"apollo","dataChangeLastModifiedTime":"2018-05-30 10:17:08"},{"namespaceId":2,"key":"spring.datasource.testWhileIdle","value":"true","comment":"","lineNum":17,"id":18,"isDeleted":false,"dataChangeCreatedBy":"apollo","dataChangeCreatedTime":"2018-05-30 10:17:07","dataChangeLastModifiedBy":"apollo","dataChangeLastModifiedTime":"2018-05-30 10:17:08"},{"namespaceId":2,"key":"spring.datasource.testOnBorrow","value":"false","comment":"","lineNum":18,"id":19,"isDeleted":false,"dataChangeCreatedBy":"apollo","dataChangeCreatedTime":"2018-05-30 10:17:08","dataChangeLastModifiedBy":"apollo","dataChangeLastModifiedTime":"2018-05-30 10:17:08"},{"namespaceId":2,"key":"spring.datasource.testOnReturn","value":"false","comment":"","lineNum":19,"id":20,"isDeleted":false,"dataChangeCreatedBy":"apollo","dataChangeCreatedTime":"2018-05-30 10:17:08","dataChangeLastModifiedBy":"apollo","dataChangeLastModifiedTime":"2018-05-30 10:17:08"},{"namespaceId":2,"key":"spring.datasource.filters","value":"stat,wall,log4j","comment":"","lineNum":20,"id":21,"isDeleted":false,"dataChangeCreatedBy":"apollo","dataChangeCreatedTime":"2018-05-30 10:17:08","dataChangeLastModifiedBy":"apollo","dataChangeLastModifiedTime":"2018-05-30 10:17:08"},{"namespaceId":2,"key":"spring.datasource.logSlowSql","value":"true","comment":"","lineNum":21,"id":22,"isDeleted":false,"dataChangeCreatedBy":"apollo","dataChangeCreatedTime":"2018-05-30 10:17:08","dataChangeLastModifiedBy":"apollo","dataChangeLastModifiedTime":"2018-05-30 10:17:08"},{"namespaceId":2,"key":"mybatis.mapper-locations","value":"classpath:mapping/*/*.xml","comment":"","lineNum":23,"id":24,"isDeleted":false,"dataChangeCreatedBy":"apollo","dataChangeCreatedTime":"2018-05-30 10:17:08","dataChangeLastModifiedBy":"apollo","dataChangeLastModifiedTime":"2018-05-30 10:17:08"},{"namespaceId":2,"key":"configLocation","value":"classpath:mybatis-config.xml","comment":"","lineNum":24,"id":25,"isDeleted":false,"dataChangeCreatedBy":"apollo","dataChangeCreatedTime":"2018-05-30 10:17:08","dataChangeLastModifiedBy":"apollo","dataChangeLastModifiedTime":"2018-05-30 10:17:08"},{"namespaceId":2,"key":"spring.redis.host","value":"127.0.0.1","comment":"","lineNum":26,"id":27,"isDeleted":false,"dataChangeCreatedBy":"apollo","dataChangeCreatedTime":"2018-05-30 10:17:08","dataChangeLastModifiedBy":"apollo","dataChangeLastModifiedTime":"2018-05-30 10:17:08"},{"namespaceId":2,"key":"spring.redis.port","value":"6379","comment":"","lineNum":27,"id":28,"isDeleted":false,"dataChangeCreatedBy":"apollo","dataChangeCreatedTime":"2018-05-30 10:17:08","dataChangeLastModifiedBy":"apollo","dataChangeLastModifiedTime":"2018-05-30 10:17:08"},{"namespaceId":2,"key":"spring.redis.password","value":"","comment":"","lineNum":28,"id":29,"isDeleted":false,"dataChangeCreatedBy":"apollo","dataChangeCreatedTime":"2018-05-30 10:17:08","dataChangeLastModifiedBy":"apollo","dataChangeLastModifiedTime":"2018-05-30 10:17:08"},{"namespaceId":2,"key":"shiro_redis_cache","value":"600000","comment":"","lineNum":30,"id":31,"isDeleted":false,"dataChangeCreatedBy":"apollo","dataChangeCreatedTime":"2018-05-30 10:17:08","dataChangeLastModifiedBy":"apollo","dataChangeLastModifiedTime":"2018-05-30 10:17:08"},{"namespaceId":2,"key":"shiro_redis_session","value":"600000","comment":"","lineNum":31,"id":32,"isDeleted":false,"dataChangeCreatedBy":"apollo","dataChangeCreatedTime":"2018-05-30 10:17:08","dataChangeLastModifiedBy":"apollo","dataChangeLastModifiedTime":"2018-05-30 10:17:08"},{"namespaceId":2,"key":"mybatis_redis_cache","value":"600000","comment":"","lineNum":32,"id":33,"isDeleted":false,"dataChangeCreatedBy":"apollo","dataChangeCreatedTime":"2018-05-30 10:17:08","dataChangeLastModifiedBy":"apollo","dataChangeLastModifiedTime":"2018-05-30 10:17:08"},{"namespaceId":2,"key":"dubbo.application","value":"dubbo-app-system","comment":"","lineNum":34,"id":35,"isDeleted":false,"dataChangeCreatedBy":"apollo","dataChangeCreatedTime":"2018-05-30 10:17:08","dataChangeLastModifiedBy":"apollo","dataChangeLastModifiedTime":"2018-05-30 10:17:08"},{"namespaceId":2,"key":"dubbo.registry","value":"zookeeper://127.0.0.1:2181","comment":"","lineNum":35,"id":36,"isDeleted":false,"dataChangeCreatedBy":"apollo","dataChangeCreatedTime":"2018-05-30 10:17:08","dataChangeLastModifiedBy":"apollo","dataChangeLastModifiedTime":"2018-05-30 10:17:08"},{"namespaceId":2,"key":"dubbo.protocol","value":"20881","comment":"","lineNum":36,"id":37,"isDeleted":false,"dataChangeCreatedBy":"apollo","dataChangeCreatedTime":"2018-05-30 10:17:08","dataChangeLastModifiedBy":"apollo","dataChangeLastModifiedTime":"2018-05-30 10:17:08"}],"updateItems":[],"deleteItems":[]}', 'dubbo-app-system', 'default', 'application', NULL, b'0', 'apollo', '2018-05-30 10:17:08', 'apollo', '2018-05-30 10:17:08'),
@@ -247,7 +290,9 @@ INSERT INTO `commit` (`Id`, `ChangeSets`, `AppId`, `ClusterName`, `NamespaceName
 	(4, '{"createItems":[],"updateItems":[{"oldItem":{"namespaceId":2,"key":"server.port","value":"8083","comment":"","lineNum":2,"id":3,"isDeleted":false,"dataChangeCreatedBy":"apollo","dataChangeCreatedTime":"2018-05-30 10:17:08","dataChangeLastModifiedBy":"apollo","dataChangeLastModifiedTime":"2018-05-30 13:53:16"},"newItem":{"namespaceId":2,"key":"server.port","value":"8087","comment":"","lineNum":2,"id":3,"isDeleted":false,"dataChangeCreatedBy":"apollo","dataChangeCreatedTime":"2018-05-30 10:17:08","dataChangeLastModifiedBy":"apollo","dataChangeLastModifiedTime":"2018-05-30 13:56:19"}}],"deleteItems":[]}', 'dubbo-app-system', 'default', 'application', NULL, b'0', 'apollo', '2018-05-30 13:56:19', 'apollo', '2018-05-30 13:56:19'),
 	(5, '{"createItems":[],"updateItems":[{"oldItem":{"namespaceId":2,"key":"shiro_redis_session","value":"600000","comment":"","lineNum":31,"id":32,"isDeleted":false,"dataChangeCreatedBy":"apollo","dataChangeCreatedTime":"2018-05-30 10:17:08","dataChangeLastModifiedBy":"apollo","dataChangeLastModifiedTime":"2018-05-30 10:17:08"},"newItem":{"namespaceId":2,"key":"shiro_redis_session","value":"600000123","comment":"","lineNum":31,"id":32,"isDeleted":false,"dataChangeCreatedBy":"apollo","dataChangeCreatedTime":"2018-05-30 10:17:08","dataChangeLastModifiedBy":"apollo","dataChangeLastModifiedTime":"2018-05-30 14:01:47"}}],"deleteItems":[]}', 'dubbo-app-system', 'default', 'application', NULL, b'0', 'apollo', '2018-05-30 14:01:47', 'apollo', '2018-05-30 14:01:47'),
 	(6, '{"createItems":[],"updateItems":[{"oldItem":{"namespaceId":2,"key":"shiro_redis_session","value":"600000123","comment":"","lineNum":31,"id":32,"isDeleted":false,"dataChangeCreatedBy":"apollo","dataChangeCreatedTime":"2018-05-30 10:17:08","dataChangeLastModifiedBy":"apollo","dataChangeLastModifiedTime":"2018-05-30 14:01:47"},"newItem":{"namespaceId":2,"key":"shiro_redis_session","value":"6000009","comment":"","lineNum":31,"id":32,"isDeleted":false,"dataChangeCreatedBy":"apollo","dataChangeCreatedTime":"2018-05-30 10:17:08","dataChangeLastModifiedBy":"apollo","dataChangeLastModifiedTime":"2018-05-30 14:15:00"}}],"deleteItems":[]}', 'dubbo-app-system', 'default', 'application', NULL, b'0', 'apollo', '2018-05-30 14:15:01', 'apollo', '2018-05-30 14:15:01'),
-	(7, '{"createItems":[],"updateItems":[{"oldItem":{"namespaceId":2,"key":"shiro_redis_session","value":"6000009","comment":"","lineNum":31,"id":32,"isDeleted":false,"dataChangeCreatedBy":"apollo","dataChangeCreatedTime":"2018-05-30 10:17:08","dataChangeLastModifiedBy":"apollo","dataChangeLastModifiedTime":"2018-05-30 14:15:01"},"newItem":{"namespaceId":2,"key":"shiro_redis_session","value":"60000066","comment":"","lineNum":31,"id":32,"isDeleted":false,"dataChangeCreatedBy":"apollo","dataChangeCreatedTime":"2018-05-30 10:17:08","dataChangeLastModifiedBy":"apollo","dataChangeLastModifiedTime":"2018-05-30 14:20:36"}}],"deleteItems":[]}', 'dubbo-app-system', 'default', 'application', NULL, b'0', 'apollo', '2018-05-30 14:20:37', 'apollo', '2018-05-30 14:20:37');
+	(7, '{"createItems":[],"updateItems":[{"oldItem":{"namespaceId":2,"key":"shiro_redis_session","value":"6000009","comment":"","lineNum":31,"id":32,"isDeleted":false,"dataChangeCreatedBy":"apollo","dataChangeCreatedTime":"2018-05-30 10:17:08","dataChangeLastModifiedBy":"apollo","dataChangeLastModifiedTime":"2018-05-30 14:15:01"},"newItem":{"namespaceId":2,"key":"shiro_redis_session","value":"60000066","comment":"","lineNum":31,"id":32,"isDeleted":false,"dataChangeCreatedBy":"apollo","dataChangeCreatedTime":"2018-05-30 10:17:08","dataChangeLastModifiedBy":"apollo","dataChangeLastModifiedTime":"2018-05-30 14:20:36"}}],"deleteItems":[]}', 'dubbo-app-system', 'default', 'application', NULL, b'0', 'apollo', '2018-05-30 14:20:37', 'apollo', '2018-05-30 14:20:37'),
+	(8, '{"createItems":[{"namespaceId":3,"key":"xxl.job.admin.addresses","value":"http://127.0.0.1:9034/xxl-job-admin-1.9.2-SNAPSHOT/","comment":"","lineNum":39,"id":76,"isDeleted":false,"dataChangeCreatedBy":"apollo","dataChangeCreatedTime":"2018-05-31 10:58:26","dataChangeLastModifiedBy":"apollo","dataChangeLastModifiedTime":"2018-05-31 10:58:26"},{"namespaceId":3,"key":"xxl.job.executor.appname","value":"xxl-job-executor-sample","comment":"","lineNum":42,"id":79,"isDeleted":false,"dataChangeCreatedBy":"apollo","dataChangeCreatedTime":"2018-05-31 10:58:26","dataChangeLastModifiedBy":"apollo","dataChangeLastModifiedTime":"2018-05-31 10:58:26"},{"namespaceId":3,"key":"xxl.job.executor.ip","value":"","comment":"","lineNum":43,"id":80,"isDeleted":false,"dataChangeCreatedBy":"apollo","dataChangeCreatedTime":"2018-05-31 10:58:26","dataChangeLastModifiedBy":"apollo","dataChangeLastModifiedTime":"2018-05-31 10:58:26"},{"namespaceId":3,"key":"xxl.job.executor.port","value":"9999","comment":"","lineNum":44,"id":81,"isDeleted":false,"dataChangeCreatedBy":"apollo","dataChangeCreatedTime":"2018-05-31 10:58:26","dataChangeLastModifiedBy":"apollo","dataChangeLastModifiedTime":"2018-05-31 10:58:26"},{"namespaceId":3,"key":"xxl.job.accessToken","value":"","comment":"","lineNum":47,"id":84,"isDeleted":false,"dataChangeCreatedBy":"apollo","dataChangeCreatedTime":"2018-05-31 10:58:26","dataChangeLastModifiedBy":"apollo","dataChangeLastModifiedTime":"2018-05-31 10:58:26"},{"namespaceId":3,"key":"xxl.job.executor.logpath","value":"/data/applogs/xxl-job/jobhandler","comment":"","lineNum":50,"id":87,"isDeleted":false,"dataChangeCreatedBy":"apollo","dataChangeCreatedTime":"2018-05-31 10:58:26","dataChangeLastModifiedBy":"apollo","dataChangeLastModifiedTime":"2018-05-31 10:58:26"},{"namespaceId":3,"key":"xxl.job.executor.logretentiondays","value":"-1","comment":"","lineNum":52,"id":89,"isDeleted":false,"dataChangeCreatedBy":"apollo","dataChangeCreatedTime":"2018-05-31 10:58:26","dataChangeLastModifiedBy":"apollo","dataChangeLastModifiedTime":"2018-05-31 10:58:26"}],"updateItems":[],"deleteItems":[]}', 'dubbo-app-schedule', 'default', 'application', NULL, b'0', 'apollo', '2018-05-31 10:58:27', 'apollo', '2018-05-31 10:58:27'),
+	(9, '{"createItems":[],"updateItems":[{"oldItem":{"namespaceId":3,"key":"xxl.job.admin.addresses","value":"http://127.0.0.1:9034/xxl-job-admin-1.9.2-SNAPSHOT/","comment":"","lineNum":39,"id":76,"isDeleted":false,"dataChangeCreatedBy":"apollo","dataChangeCreatedTime":"2018-05-31 10:58:27","dataChangeLastModifiedBy":"apollo","dataChangeLastModifiedTime":"2018-05-31 10:58:27"},"newItem":{"namespaceId":3,"key":"xxl.job.admin.addresses","value":"http://127.0.0.1:9034/xxl-job-admin-1.9.2-SNAPSHOT","comment":"","lineNum":39,"id":76,"isDeleted":false,"dataChangeCreatedBy":"apollo","dataChangeCreatedTime":"2018-05-31 10:58:27","dataChangeLastModifiedBy":"apollo","dataChangeLastModifiedTime":"2018-05-31 11:13:07"}}],"deleteItems":[]}', 'dubbo-app-schedule', 'default', 'application', NULL, b'0', 'apollo', '2018-05-31 11:13:07', 'apollo', '2018-05-31 11:13:07');
 /*!40000 ALTER TABLE `commit` ENABLE KEYS */;
 
 -- 导出  表 apolloconfigdb.grayreleaserule 结构
@@ -289,7 +334,7 @@ CREATE TABLE IF NOT EXISTS `instance` (
   KEY `IX_DataChange_LastTime` (`DataChange_LastTime`)
 ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COMMENT='使用配置的应用实例';
 
--- 正在导出表  apolloconfigdb.instance 的数据：~0 rows (大约)
+-- 正在导出表  apolloconfigdb.instance 的数据：~2 rows (大约)
 /*!40000 ALTER TABLE `instance` DISABLE KEYS */;
 INSERT INTO `instance` (`Id`, `AppId`, `ClusterName`, `DataCenter`, `Ip`, `DataChange_CreatedTime`, `DataChange_LastTime`) VALUES
 	(1, 'dubbo-app-system', 'default', '', '192.168.11.187', '2018-05-30 10:46:35', '2018-05-30 10:46:35'),
@@ -314,11 +359,11 @@ CREATE TABLE IF NOT EXISTS `instanceconfig` (
   KEY `IX_Valid_Namespace` (`ConfigAppId`,`ConfigClusterName`,`ConfigNamespaceName`,`DataChange_LastTime`)
 ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COMMENT='应用实例的配置信息';
 
--- 正在导出表  apolloconfigdb.instanceconfig 的数据：~0 rows (大约)
+-- 正在导出表  apolloconfigdb.instanceconfig 的数据：~2 rows (大约)
 /*!40000 ALTER TABLE `instanceconfig` DISABLE KEYS */;
 INSERT INTO `instanceconfig` (`Id`, `InstanceId`, `ConfigAppId`, `ConfigClusterName`, `ConfigNamespaceName`, `ReleaseKey`, `ReleaseDeliveryTime`, `DataChange_CreatedTime`, `DataChange_LastTime`) VALUES
-	(1, 1, 'dubbo-app-system', 'default', 'application', '20180530101758-e3984527ca28c0cc', '2018-05-30 10:46:34', '2018-05-30 10:46:34', '2018-05-30 10:46:34'),
-	(2, 2, 'dubbo-app-schedule', 'default', 'application', '20180530112031-8f404527ca28c0cd', '2018-05-30 11:20:44', '2018-05-30 11:20:44', '2018-05-30 11:20:44');
+	(1, 1, 'dubbo-app-system', 'default', 'application', '20180530142633-e3984527ca28c0d2', '2018-05-31 11:28:16', '2018-05-30 10:46:34', '2018-05-31 11:28:16'),
+	(2, 2, 'dubbo-app-schedule', 'default', 'application', '20180531111914-8f404527ca28c0d5', '2018-05-31 11:28:37', '2018-05-30 11:20:44', '2018-05-31 11:28:38');
 /*!40000 ALTER TABLE `instanceconfig` ENABLE KEYS */;
 
 -- 导出  表 apolloconfigdb.item 结构
@@ -337,9 +382,9 @@ CREATE TABLE IF NOT EXISTS `item` (
   PRIMARY KEY (`Id`),
   KEY `IX_GroupId` (`NamespaceId`),
   KEY `DataChange_LastTime` (`DataChange_LastTime`)
-) ENGINE=InnoDB AUTO_INCREMENT=74 DEFAULT CHARSET=utf8mb4 COMMENT='配置项目';
+) ENGINE=InnoDB AUTO_INCREMENT=92 DEFAULT CHARSET=utf8mb4 COMMENT='配置项目';
 
--- 正在导出表  apolloconfigdb.item 的数据：~1 rows (大约)
+-- 正在导出表  apolloconfigdb.item 的数据：~91 rows (大约)
 /*!40000 ALTER TABLE `item` DISABLE KEYS */;
 INSERT INTO `item` (`Id`, `NamespaceId`, `Key`, `Value`, `Comment`, `LineNum`, `IsDeleted`, `DataChange_CreatedBy`, `DataChange_CreatedTime`, `DataChange_LastModifiedBy`, `DataChange_LastTime`) VALUES
 	(1, 1, 'timeout', '100', 'sample timeout配置', 1, b'0', 'default', '2018-05-29 18:04:24', '', '2018-05-29 18:04:24'),
@@ -414,7 +459,25 @@ INSERT INTO `item` (`Id`, `NamespaceId`, `Key`, `Value`, `Comment`, `LineNum`, `
 	(70, 3, '', '', '', 33, b'0', 'apollo', '2018-05-30 11:09:40', 'apollo', '2018-05-30 11:09:40'),
 	(71, 3, 'dubbo.application', 'dubbo-app-schedule', '', 34, b'0', 'apollo', '2018-05-30 11:09:40', 'apollo', '2018-05-30 11:09:40'),
 	(72, 3, 'dubbo.registry', 'zookeeper://127.0.0.1:2181', '', 35, b'0', 'apollo', '2018-05-30 11:09:40', 'apollo', '2018-05-30 11:09:40'),
-	(73, 3, 'dubbo.protocol', '20882', '', 36, b'0', 'apollo', '2018-05-30 11:09:40', 'apollo', '2018-05-30 11:09:40');
+	(73, 3, 'dubbo.protocol', '20882', '', 36, b'0', 'apollo', '2018-05-30 11:09:40', 'apollo', '2018-05-30 11:09:40'),
+	(74, 3, '', '', '', 37, b'0', 'apollo', '2018-05-31 10:58:27', 'apollo', '2018-05-31 10:58:27'),
+	(75, 3, '', '', '### xxl-job admin address list, such as "http://address" or "http://address01,http://address02"', 38, b'1', 'apollo', '2018-05-31 10:58:27', 'apollo', '2018-05-31 11:19:12'),
+	(76, 3, 'xxl.job.admin.addresses', 'http://127.0.0.1:9034/xxl-job-admin-1.9.2-SNAPSHOT', '', 38, b'0', 'apollo', '2018-05-31 10:58:27', 'apollo', '2018-05-31 11:19:12'),
+	(77, 3, '', '', '', 40, b'1', 'apollo', '2018-05-31 10:58:27', 'apollo', '2018-05-31 11:19:12'),
+	(78, 3, '', '', '### xxl-job executor address', 41, b'1', 'apollo', '2018-05-31 10:58:27', 'apollo', '2018-05-31 11:19:12'),
+	(79, 3, 'xxl.job.executor.appname', 'xxl-job-executor-sample', '', 40, b'0', 'apollo', '2018-05-31 10:58:27', 'apollo', '2018-05-31 11:19:12'),
+	(80, 3, 'xxl.job.executor.ip', '', '', 41, b'0', 'apollo', '2018-05-31 10:58:27', 'apollo', '2018-05-31 11:19:12'),
+	(81, 3, 'xxl.job.executor.port', '9999', '', 42, b'0', 'apollo', '2018-05-31 10:58:27', 'apollo', '2018-05-31 11:19:12'),
+	(82, 3, '', '', '', 45, b'0', 'apollo', '2018-05-31 10:58:27', 'apollo', '2018-05-31 10:58:27'),
+	(83, 3, '', '', '### xxl-job, access token', 46, b'1', 'apollo', '2018-05-31 10:58:27', 'apollo', '2018-05-31 11:19:12'),
+	(84, 3, 'xxl.job.accessToken', '', '', 44, b'0', 'apollo', '2018-05-31 10:58:27', 'apollo', '2018-05-31 11:19:12'),
+	(85, 3, '', '', '', 48, b'1', 'apollo', '2018-05-31 10:58:27', 'apollo', '2018-05-31 11:19:12'),
+	(86, 3, '', '', '### xxl-job log path', 49, b'1', 'apollo', '2018-05-31 10:58:27', 'apollo', '2018-05-31 11:19:12'),
+	(87, 3, 'xxl.job.executor.logpath', '/data/applogs/xxl-job/jobhandler', '', 46, b'0', 'apollo', '2018-05-31 10:58:27', 'apollo', '2018-05-31 11:19:12'),
+	(88, 3, '', '', '### xxl-job log retention days', 51, b'1', 'apollo', '2018-05-31 10:58:27', 'apollo', '2018-05-31 11:19:12'),
+	(89, 3, 'xxl.job.executor.logretentiondays', '-1', '', 47, b'0', 'apollo', '2018-05-31 10:58:27', 'apollo', '2018-05-31 11:19:12'),
+	(90, 3, '', '', '', 39, b'0', 'apollo', '2018-05-31 11:19:12', 'apollo', '2018-05-31 11:19:12'),
+	(91, 3, '', '', '', 43, b'0', 'apollo', '2018-05-31 11:19:12', 'apollo', '2018-05-31 11:19:12');
 /*!40000 ALTER TABLE `item` ENABLE KEYS */;
 
 -- 导出  表 apolloconfigdb.namespace 结构
@@ -434,7 +497,7 @@ CREATE TABLE IF NOT EXISTS `namespace` (
   KEY `IX_NamespaceName` (`NamespaceName`(191))
 ) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COMMENT='命名空间';
 
--- 正在导出表  apolloconfigdb.namespace 的数据：~1 rows (大约)
+-- 正在导出表  apolloconfigdb.namespace 的数据：~3 rows (大约)
 /*!40000 ALTER TABLE `namespace` DISABLE KEYS */;
 INSERT INTO `namespace` (`Id`, `AppId`, `ClusterName`, `NamespaceName`, `IsDeleted`, `DataChange_CreatedBy`, `DataChange_CreatedTime`, `DataChange_LastModifiedBy`, `DataChange_LastTime`) VALUES
 	(1, 'SampleApp', 'default', 'application', b'0', 'default', '2018-05-29 18:04:24', '', '2018-05-29 18:04:24'),
@@ -480,9 +543,9 @@ CREATE TABLE IF NOT EXISTS `release` (
   KEY `AppId_ClusterName_GroupName` (`AppId`(191),`ClusterName`(191),`NamespaceName`(191)),
   KEY `DataChange_LastTime` (`DataChange_LastTime`),
   KEY `IX_ReleaseKey` (`ReleaseKey`)
-) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4 COMMENT='发布';
+) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8mb4 COMMENT='发布';
 
--- 正在导出表  apolloconfigdb.release 的数据：~1 rows (大约)
+-- 正在导出表  apolloconfigdb.release 的数据：~11 rows (大约)
 /*!40000 ALTER TABLE `release` DISABLE KEYS */;
 INSERT INTO `release` (`Id`, `ReleaseKey`, `Name`, `Comment`, `AppId`, `ClusterName`, `NamespaceName`, `Configurations`, `IsAbandoned`, `IsDeleted`, `DataChange_CreatedBy`, `DataChange_CreatedTime`, `DataChange_LastModifiedBy`, `DataChange_LastTime`) VALUES
 	(1, '20161009155425-d3a0749c6e20bc15', '20161009155424-release', 'Sample发布', 'SampleApp', 'default', 'application', '{"timeout":"100"}', b'0', b'0', 'default', '2018-05-29 18:04:24', '', '2018-05-29 18:04:24'),
@@ -492,7 +555,10 @@ INSERT INTO `release` (`Id`, `ReleaseKey`, `Name`, `Comment`, `AppId`, `ClusterN
 	(5, '20180530135622-e3984527ca28c0cf', '20180530135621-release', '', 'dubbo-app-system', 'default', 'application', '{"spring.redis.host":"127.0.0.1","dubbo.protocol":"20881","spring.datasource.timeBetweenEvictionRunsMillis":"60000","spring.datasource.minIdle":"5","configLocation":"classpath:mybatis-config.xml","spring.datasource.driver-class-name":"com.mysql.jdbc.Driver","spring.datasource.maxActive":"20","spring.datasource.maxWait":"60000","mybatis.mapper-locations":"classpath:mapping/*/*.xml","shiro_redis_cache":"600000","spring.datasource.filters":"stat,wall,log4j","spring.datasource.initialSize":"5","server.port":"8087","mybatis_redis_cache":"600000","spring.redis.password":"","shiro_redis_session":"600000","spring.datasource.testWhileIdle":"true","server.context-path":"/dubbo-app-system","spring.redis.port":"6379","dubbo.application":"dubbo-app-system","spring.datasource.minEvictableIdleTimeMillis":"300000","spring.datasource.password":"root","spring.datasource.logSlowSql":"true","spring.datasource.username":"root","spring.datasource.testOnBorrow":"false","spring.datasource.url":"jdbc:mysql://localhost:3306/dubbo-app?useUnicode\\u003dtrue\\u0026characterEncoding\\u003dutf-8","spring.datasource.testOnReturn":"false","spring.datasource.validationQuery":"SELECT 1 FROM DUAL","spring.datasource.type":"com.alibaba.druid.pool.DruidDataSource","dubbo.registry":"zookeeper://127.0.0.1:2181"}', b'0', b'0', 'apollo', '2018-05-30 13:56:23', 'apollo', '2018-05-30 13:56:23'),
 	(6, '20180530140150-e3984527ca28c0d0', '20180530140149-release', '', 'dubbo-app-system', 'default', 'application', '{"spring.redis.host":"127.0.0.1","dubbo.protocol":"20881","spring.datasource.timeBetweenEvictionRunsMillis":"60000","spring.datasource.minIdle":"5","configLocation":"classpath:mybatis-config.xml","spring.datasource.driver-class-name":"com.mysql.jdbc.Driver","spring.datasource.maxActive":"20","spring.datasource.maxWait":"60000","mybatis.mapper-locations":"classpath:mapping/*/*.xml","shiro_redis_cache":"600000","spring.datasource.filters":"stat,wall,log4j","spring.datasource.initialSize":"5","server.port":"8087","mybatis_redis_cache":"600000","spring.redis.password":"","shiro_redis_session":"600000123","spring.datasource.testWhileIdle":"true","server.context-path":"/dubbo-app-system","spring.redis.port":"6379","dubbo.application":"dubbo-app-system","spring.datasource.minEvictableIdleTimeMillis":"300000","spring.datasource.password":"root","spring.datasource.logSlowSql":"true","spring.datasource.username":"root","spring.datasource.testOnBorrow":"false","spring.datasource.url":"jdbc:mysql://localhost:3306/dubbo-app?useUnicode\\u003dtrue\\u0026characterEncoding\\u003dutf-8","spring.datasource.testOnReturn":"false","spring.datasource.validationQuery":"SELECT 1 FROM DUAL","spring.datasource.type":"com.alibaba.druid.pool.DruidDataSource","dubbo.registry":"zookeeper://127.0.0.1:2181"}', b'0', b'0', 'apollo', '2018-05-30 14:01:51', 'apollo', '2018-05-30 14:01:51'),
 	(7, '20180530141507-e3984527ca28c0d1', '20180530141504-release', '', 'dubbo-app-system', 'default', 'application', '{"spring.redis.host":"127.0.0.1","dubbo.protocol":"20881","spring.datasource.timeBetweenEvictionRunsMillis":"60000","spring.datasource.minIdle":"5","configLocation":"classpath:mybatis-config.xml","spring.datasource.driver-class-name":"com.mysql.jdbc.Driver","spring.datasource.maxActive":"20","spring.datasource.maxWait":"60000","mybatis.mapper-locations":"classpath:mapping/*/*.xml","shiro_redis_cache":"600000","spring.datasource.filters":"stat,wall,log4j","spring.datasource.initialSize":"5","server.port":"8087","mybatis_redis_cache":"600000","spring.redis.password":"","shiro_redis_session":"6000009","spring.datasource.testWhileIdle":"true","server.context-path":"/dubbo-app-system","spring.redis.port":"6379","dubbo.application":"dubbo-app-system","spring.datasource.minEvictableIdleTimeMillis":"300000","spring.datasource.password":"root","spring.datasource.logSlowSql":"true","spring.datasource.username":"root","spring.datasource.testOnBorrow":"false","spring.datasource.url":"jdbc:mysql://localhost:3306/dubbo-app?useUnicode\\u003dtrue\\u0026characterEncoding\\u003dutf-8","spring.datasource.testOnReturn":"false","spring.datasource.validationQuery":"SELECT 1 FROM DUAL","spring.datasource.type":"com.alibaba.druid.pool.DruidDataSource","dubbo.registry":"zookeeper://127.0.0.1:2181"}', b'0', b'0', 'apollo', '2018-05-30 14:15:07', 'apollo', '2018-05-30 14:15:07'),
-	(8, '20180530142633-e3984527ca28c0d2', '20180530142613-release', '', 'dubbo-app-system', 'default', 'application', '{"spring.redis.host":"127.0.0.1","dubbo.protocol":"20881","spring.datasource.timeBetweenEvictionRunsMillis":"60000","spring.datasource.minIdle":"5","configLocation":"classpath:mybatis-config.xml","spring.datasource.driver-class-name":"com.mysql.jdbc.Driver","spring.datasource.maxActive":"20","spring.datasource.maxWait":"60000","mybatis.mapper-locations":"classpath:mapping/*/*.xml","shiro_redis_cache":"600000","spring.datasource.filters":"stat,wall,log4j","spring.datasource.initialSize":"5","server.port":"8087","mybatis_redis_cache":"600000","spring.redis.password":"","shiro_redis_session":"60000066","spring.datasource.testWhileIdle":"true","server.context-path":"/dubbo-app-system","spring.redis.port":"6379","dubbo.application":"dubbo-app-system","spring.datasource.minEvictableIdleTimeMillis":"300000","spring.datasource.password":"root","spring.datasource.logSlowSql":"true","spring.datasource.username":"root","spring.datasource.testOnBorrow":"false","spring.datasource.url":"jdbc:mysql://localhost:3306/dubbo-app?useUnicode\\u003dtrue\\u0026characterEncoding\\u003dutf-8","spring.datasource.testOnReturn":"false","spring.datasource.validationQuery":"SELECT 1 FROM DUAL","spring.datasource.type":"com.alibaba.druid.pool.DruidDataSource","dubbo.registry":"zookeeper://127.0.0.1:2181"}', b'0', b'0', 'apollo', '2018-05-30 14:26:33', 'apollo', '2018-05-30 14:26:33');
+	(8, '20180530142633-e3984527ca28c0d2', '20180530142613-release', '', 'dubbo-app-system', 'default', 'application', '{"spring.redis.host":"127.0.0.1","dubbo.protocol":"20881","spring.datasource.timeBetweenEvictionRunsMillis":"60000","spring.datasource.minIdle":"5","configLocation":"classpath:mybatis-config.xml","spring.datasource.driver-class-name":"com.mysql.jdbc.Driver","spring.datasource.maxActive":"20","spring.datasource.maxWait":"60000","mybatis.mapper-locations":"classpath:mapping/*/*.xml","shiro_redis_cache":"600000","spring.datasource.filters":"stat,wall,log4j","spring.datasource.initialSize":"5","server.port":"8087","mybatis_redis_cache":"600000","spring.redis.password":"","shiro_redis_session":"60000066","spring.datasource.testWhileIdle":"true","server.context-path":"/dubbo-app-system","spring.redis.port":"6379","dubbo.application":"dubbo-app-system","spring.datasource.minEvictableIdleTimeMillis":"300000","spring.datasource.password":"root","spring.datasource.logSlowSql":"true","spring.datasource.username":"root","spring.datasource.testOnBorrow":"false","spring.datasource.url":"jdbc:mysql://localhost:3306/dubbo-app?useUnicode\\u003dtrue\\u0026characterEncoding\\u003dutf-8","spring.datasource.testOnReturn":"false","spring.datasource.validationQuery":"SELECT 1 FROM DUAL","spring.datasource.type":"com.alibaba.druid.pool.DruidDataSource","dubbo.registry":"zookeeper://127.0.0.1:2181"}', b'0', b'0', 'apollo', '2018-05-30 14:26:33', 'apollo', '2018-05-30 14:26:33'),
+	(9, '20180531105829-8f404527ca28c0d3', '20180531105827-release', '', 'dubbo-app-schedule', 'default', 'application', '{"xxl.job.executor.ip":"","spring.redis.host":"127.0.0.1","dubbo.protocol":"20882","spring.datasource.timeBetweenEvictionRunsMillis":"60000","xxl.job.admin.addresses":"http://127.0.0.1:9034/xxl-job-admin-1.9.2-SNAPSHOT/","spring.datasource.minIdle":"5","configLocation":"classpath:mybatis-config.xml","spring.datasource.driver-class-name":"com.mysql.jdbc.Driver","spring.datasource.maxActive":"20","spring.datasource.maxWait":"60000","xxl.job.executor.logretentiondays":"-1","mybatis.mapper-locations":"classpath:mapping/*/*.xml","shiro_redis_cache":"600000","spring.datasource.filters":"stat,wall,log4j","xxl.job.accessToken":"","spring.datasource.initialSize":"5","server.port":"8085","xxl.job.executor.logpath":"/data/applogs/xxl-job/jobhandler","mybatis_redis_cache":"600000","xxl.job.executor.port":"9999","spring.redis.password":"","xxl.job.executor.appname":"xxl-job-executor-sample","shiro_redis_session":"600000","spring.datasource.testWhileIdle":"true","server.context-path":"/dubbo-app-schedule","spring.redis.port":"6379","dubbo.application":"dubbo-app-schedule","spring.datasource.minEvictableIdleTimeMillis":"300000","spring.datasource.password":"root","spring.datasource.logSlowSql":"true","spring.datasource.username":"root","spring.datasource.testOnBorrow":"false","spring.datasource.url":"jdbc:mysql://localhost:3306/dubbo-app?useUnicode\\u003dtrue\\u0026characterEncoding\\u003dutf-8","spring.datasource.testOnReturn":"false","spring.datasource.validationQuery":"SELECT 1 FROM DUAL","spring.datasource.type":"com.alibaba.druid.pool.DruidDataSource","dubbo.registry":"zookeeper://127.0.0.1:2181"}', b'0', b'0', 'apollo', '2018-05-31 10:58:29', 'apollo', '2018-05-31 10:58:29'),
+	(10, '20180531111317-8f404527ca28c0d4', '20180531111316-release', '', 'dubbo-app-schedule', 'default', 'application', '{"xxl.job.executor.ip":"","spring.redis.host":"127.0.0.1","dubbo.protocol":"20882","spring.datasource.timeBetweenEvictionRunsMillis":"60000","xxl.job.admin.addresses":"http://127.0.0.1:9034/xxl-job-admin-1.9.2-SNAPSHOT","spring.datasource.minIdle":"5","configLocation":"classpath:mybatis-config.xml","spring.datasource.driver-class-name":"com.mysql.jdbc.Driver","spring.datasource.maxActive":"20","spring.datasource.maxWait":"60000","xxl.job.executor.logretentiondays":"-1","mybatis.mapper-locations":"classpath:mapping/*/*.xml","shiro_redis_cache":"600000","spring.datasource.filters":"stat,wall,log4j","xxl.job.accessToken":"","spring.datasource.initialSize":"5","server.port":"8085","xxl.job.executor.logpath":"/data/applogs/xxl-job/jobhandler","mybatis_redis_cache":"600000","xxl.job.executor.port":"9999","spring.redis.password":"","xxl.job.executor.appname":"xxl-job-executor-sample","shiro_redis_session":"600000","spring.datasource.testWhileIdle":"true","server.context-path":"/dubbo-app-schedule","spring.redis.port":"6379","dubbo.application":"dubbo-app-schedule","spring.datasource.minEvictableIdleTimeMillis":"300000","spring.datasource.password":"root","spring.datasource.logSlowSql":"true","spring.datasource.username":"root","spring.datasource.testOnBorrow":"false","spring.datasource.url":"jdbc:mysql://localhost:3306/dubbo-app?useUnicode\\u003dtrue\\u0026characterEncoding\\u003dutf-8","spring.datasource.testOnReturn":"false","spring.datasource.validationQuery":"SELECT 1 FROM DUAL","spring.datasource.type":"com.alibaba.druid.pool.DruidDataSource","dubbo.registry":"zookeeper://127.0.0.1:2181"}', b'0', b'0', 'apollo', '2018-05-31 11:13:18', 'apollo', '2018-05-31 11:13:18'),
+	(11, '20180531111914-8f404527ca28c0d5', '20180531111913-release', '', 'dubbo-app-schedule', 'default', 'application', '{"xxl.job.executor.ip":"","spring.redis.host":"127.0.0.1","dubbo.protocol":"20882","spring.datasource.timeBetweenEvictionRunsMillis":"60000","xxl.job.admin.addresses":"http://127.0.0.1:9034/xxl-job-admin-1.9.2-SNAPSHOT","spring.datasource.minIdle":"5","configLocation":"classpath:mybatis-config.xml","spring.datasource.driver-class-name":"com.mysql.jdbc.Driver","spring.datasource.maxActive":"20","spring.datasource.maxWait":"60000","xxl.job.executor.logretentiondays":"-1","mybatis.mapper-locations":"classpath:mapping/*/*.xml","shiro_redis_cache":"600000","spring.datasource.filters":"stat,wall,log4j","xxl.job.accessToken":"","spring.datasource.initialSize":"5","server.port":"8085","xxl.job.executor.logpath":"/data/applogs/xxl-job/jobhandler","mybatis_redis_cache":"600000","xxl.job.executor.port":"9999","spring.redis.password":"","xxl.job.executor.appname":"xxl-job-executor-sample","shiro_redis_session":"600000","spring.datasource.testWhileIdle":"true","server.context-path":"/dubbo-app-schedule","spring.redis.port":"6379","dubbo.application":"dubbo-app-schedule","spring.datasource.minEvictableIdleTimeMillis":"300000","spring.datasource.password":"root","spring.datasource.logSlowSql":"true","spring.datasource.username":"root","spring.datasource.testOnBorrow":"false","spring.datasource.url":"jdbc:mysql://localhost:3306/dubbo-app?useUnicode\\u003dtrue\\u0026characterEncoding\\u003dutf-8","spring.datasource.testOnReturn":"false","spring.datasource.validationQuery":"SELECT 1 FROM DUAL","spring.datasource.type":"com.alibaba.druid.pool.DruidDataSource","dubbo.registry":"zookeeper://127.0.0.1:2181"}', b'0', b'0', 'apollo', '2018-05-31 11:19:15', 'apollo', '2018-05-31 11:19:15');
 /*!40000 ALTER TABLE `release` ENABLE KEYS */;
 
 -- 导出  表 apolloconfigdb.releasehistory 结构
@@ -515,9 +581,9 @@ CREATE TABLE IF NOT EXISTS `releasehistory` (
   KEY `IX_Namespace` (`AppId`,`ClusterName`,`NamespaceName`,`BranchName`),
   KEY `IX_ReleaseId` (`ReleaseId`),
   KEY `IX_DataChange_LastTime` (`DataChange_LastTime`)
-) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4 COMMENT='发布历史';
+) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8mb4 COMMENT='发布历史';
 
--- 正在导出表  apolloconfigdb.releasehistory 的数据：~1 rows (大约)
+-- 正在导出表  apolloconfigdb.releasehistory 的数据：~11 rows (大约)
 /*!40000 ALTER TABLE `releasehistory` DISABLE KEYS */;
 INSERT INTO `releasehistory` (`Id`, `AppId`, `ClusterName`, `NamespaceName`, `BranchName`, `ReleaseId`, `PreviousReleaseId`, `Operation`, `OperationContext`, `IsDeleted`, `DataChange_CreatedBy`, `DataChange_CreatedTime`, `DataChange_LastModifiedBy`, `DataChange_LastTime`) VALUES
 	(1, 'SampleApp', 'default', 'application', 'default', 1, 0, 0, '{}', b'0', 'apollo', '2018-05-29 18:04:24', 'apollo', '2018-05-29 18:04:24'),
@@ -527,7 +593,10 @@ INSERT INTO `releasehistory` (`Id`, `AppId`, `ClusterName`, `NamespaceName`, `Br
 	(5, 'dubbo-app-system', 'default', 'application', 'default', 5, 4, 0, '{"isEmergencyPublish":false}', b'0', 'apollo', '2018-05-30 13:56:23', 'apollo', '2018-05-30 13:56:23'),
 	(6, 'dubbo-app-system', 'default', 'application', 'default', 6, 5, 0, '{"isEmergencyPublish":false}', b'0', 'apollo', '2018-05-30 14:01:51', 'apollo', '2018-05-30 14:01:51'),
 	(7, 'dubbo-app-system', 'default', 'application', 'default', 7, 6, 0, '{"isEmergencyPublish":false}', b'0', 'apollo', '2018-05-30 14:15:07', 'apollo', '2018-05-30 14:15:07'),
-	(8, 'dubbo-app-system', 'default', 'application', 'default', 8, 7, 0, '{"isEmergencyPublish":false}', b'0', 'apollo', '2018-05-30 14:26:33', 'apollo', '2018-05-30 14:26:33');
+	(8, 'dubbo-app-system', 'default', 'application', 'default', 8, 7, 0, '{"isEmergencyPublish":false}', b'0', 'apollo', '2018-05-30 14:26:33', 'apollo', '2018-05-30 14:26:33'),
+	(9, 'dubbo-app-schedule', 'default', 'application', 'default', 9, 3, 0, '{"isEmergencyPublish":false}', b'0', 'apollo', '2018-05-31 10:58:29', 'apollo', '2018-05-31 10:58:29'),
+	(10, 'dubbo-app-schedule', 'default', 'application', 'default', 10, 9, 0, '{"isEmergencyPublish":false}', b'0', 'apollo', '2018-05-31 11:13:18', 'apollo', '2018-05-31 11:13:18'),
+	(11, 'dubbo-app-schedule', 'default', 'application', 'default', 11, 10, 0, '{"isEmergencyPublish":false}', b'0', 'apollo', '2018-05-31 11:19:15', 'apollo', '2018-05-31 11:19:15');
 /*!40000 ALTER TABLE `releasehistory` ENABLE KEYS */;
 
 -- 导出  表 apolloconfigdb.releasemessage 结构
@@ -538,13 +607,13 @@ CREATE TABLE IF NOT EXISTS `releasemessage` (
   PRIMARY KEY (`Id`),
   KEY `DataChange_LastTime` (`DataChange_LastTime`),
   KEY `IX_Message` (`Message`(191))
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4 COMMENT='发布消息';
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4 COMMENT='发布消息';
 
--- 正在导出表  apolloconfigdb.releasemessage 的数据：~0 rows (大约)
+-- 正在导出表  apolloconfigdb.releasemessage 的数据：~2 rows (大约)
 /*!40000 ALTER TABLE `releasemessage` DISABLE KEYS */;
 INSERT INTO `releasemessage` (`Id`, `Message`, `DataChange_LastTime`) VALUES
-	(2, 'dubbo-app-schedule+default+application', '2018-05-30 11:20:32'),
-	(7, 'dubbo-app-system+default+application', '2018-05-30 14:26:33');
+	(7, 'dubbo-app-system+default+application', '2018-05-30 14:26:33'),
+	(10, 'dubbo-app-schedule+default+application', '2018-05-31 11:19:15');
 /*!40000 ALTER TABLE `releasemessage` ENABLE KEYS */;
 
 -- 导出  表 apolloconfigdb.serverconfig 结构
