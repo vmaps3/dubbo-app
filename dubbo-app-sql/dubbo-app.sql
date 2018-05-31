@@ -1,247 +1,20 @@
 -- --------------------------------------------------------
 -- 主机:                           127.0.0.1
--- 服务器版本:                        5.7.11-log - MySQL Community Server (GPL)
+-- 服务器版本:                        5.7.20-log - MySQL Community Server (GPL)
 -- 服务器操作系统:                      Win64
--- HeidiSQL 版本:                  9.3.0.4984
+-- HeidiSQL 版本:                  9.5.0.5196
 -- --------------------------------------------------------
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
-/*!40101 SET NAMES utf8mb4 */;
+/*!40101 SET NAMES utf8 */;
+/*!50503 SET NAMES utf8mb4 */;
 /*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
 /*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
+
 
 -- 导出 dubbo-app 的数据库结构
 CREATE DATABASE IF NOT EXISTS `dubbo-app` /*!40100 DEFAULT CHARACTER SET utf8 */;
 USE `dubbo-app`;
-
-
--- 导出  表 dubbo-app.qrtz_blob_triggers 结构
-CREATE TABLE IF NOT EXISTS `qrtz_blob_triggers` (
-  `SCHED_NAME` varchar(120) NOT NULL,
-  `TRIGGER_NAME` varchar(200) NOT NULL,
-  `TRIGGER_GROUP` varchar(200) NOT NULL,
-  `BLOB_DATA` blob,
-  PRIMARY KEY (`SCHED_NAME`,`TRIGGER_NAME`,`TRIGGER_GROUP`),
-  KEY `SCHED_NAME` (`SCHED_NAME`,`TRIGGER_NAME`,`TRIGGER_GROUP`),
-  CONSTRAINT `qrtz_blob_triggers_ibfk_1` FOREIGN KEY (`SCHED_NAME`, `TRIGGER_NAME`, `TRIGGER_GROUP`) REFERENCES `qrtz_triggers` (`SCHED_NAME`, `TRIGGER_NAME`, `TRIGGER_GROUP`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
--- 正在导出表  dubbo-app.qrtz_blob_triggers 的数据：~0 rows (大约)
-DELETE FROM `qrtz_blob_triggers`;
-/*!40000 ALTER TABLE `qrtz_blob_triggers` DISABLE KEYS */;
-/*!40000 ALTER TABLE `qrtz_blob_triggers` ENABLE KEYS */;
-
-
--- 导出  表 dubbo-app.qrtz_calendars 结构
-CREATE TABLE IF NOT EXISTS `qrtz_calendars` (
-  `SCHED_NAME` varchar(120) NOT NULL,
-  `CALENDAR_NAME` varchar(200) NOT NULL,
-  `CALENDAR` blob NOT NULL,
-  PRIMARY KEY (`SCHED_NAME`,`CALENDAR_NAME`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
--- 正在导出表  dubbo-app.qrtz_calendars 的数据：~0 rows (大约)
-DELETE FROM `qrtz_calendars`;
-/*!40000 ALTER TABLE `qrtz_calendars` DISABLE KEYS */;
-/*!40000 ALTER TABLE `qrtz_calendars` ENABLE KEYS */;
-
-
--- 导出  表 dubbo-app.qrtz_cron_triggers 结构
-CREATE TABLE IF NOT EXISTS `qrtz_cron_triggers` (
-  `SCHED_NAME` varchar(120) NOT NULL,
-  `TRIGGER_NAME` varchar(200) NOT NULL,
-  `TRIGGER_GROUP` varchar(200) NOT NULL,
-  `CRON_EXPRESSION` varchar(120) NOT NULL,
-  `TIME_ZONE_ID` varchar(80) DEFAULT NULL,
-  PRIMARY KEY (`SCHED_NAME`,`TRIGGER_NAME`,`TRIGGER_GROUP`),
-  CONSTRAINT `qrtz_cron_triggers_ibfk_1` FOREIGN KEY (`SCHED_NAME`, `TRIGGER_NAME`, `TRIGGER_GROUP`) REFERENCES `qrtz_triggers` (`SCHED_NAME`, `TRIGGER_NAME`, `TRIGGER_GROUP`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
--- 正在导出表  dubbo-app.qrtz_cron_triggers 的数据：~0 rows (大约)
-DELETE FROM `qrtz_cron_triggers`;
-/*!40000 ALTER TABLE `qrtz_cron_triggers` DISABLE KEYS */;
-/*!40000 ALTER TABLE `qrtz_cron_triggers` ENABLE KEYS */;
-
-
--- 导出  表 dubbo-app.qrtz_fired_triggers 结构
-CREATE TABLE IF NOT EXISTS `qrtz_fired_triggers` (
-  `SCHED_NAME` varchar(120) NOT NULL,
-  `ENTRY_ID` varchar(95) NOT NULL,
-  `TRIGGER_NAME` varchar(200) NOT NULL,
-  `TRIGGER_GROUP` varchar(200) NOT NULL,
-  `INSTANCE_NAME` varchar(200) NOT NULL,
-  `FIRED_TIME` bigint(13) NOT NULL,
-  `SCHED_TIME` bigint(13) NOT NULL,
-  `PRIORITY` int(11) NOT NULL,
-  `STATE` varchar(16) NOT NULL,
-  `JOB_NAME` varchar(200) DEFAULT NULL,
-  `JOB_GROUP` varchar(200) DEFAULT NULL,
-  `IS_NONCONCURRENT` varchar(1) DEFAULT NULL,
-  `REQUESTS_RECOVERY` varchar(1) DEFAULT NULL,
-  PRIMARY KEY (`SCHED_NAME`,`ENTRY_ID`),
-  KEY `IDX_QRTZ_FT_TRIG_INST_NAME` (`SCHED_NAME`,`INSTANCE_NAME`),
-  KEY `IDX_QRTZ_FT_INST_JOB_REQ_RCVRY` (`SCHED_NAME`,`INSTANCE_NAME`,`REQUESTS_RECOVERY`),
-  KEY `IDX_QRTZ_FT_J_G` (`SCHED_NAME`,`JOB_NAME`,`JOB_GROUP`),
-  KEY `IDX_QRTZ_FT_JG` (`SCHED_NAME`,`JOB_GROUP`),
-  KEY `IDX_QRTZ_FT_T_G` (`SCHED_NAME`,`TRIGGER_NAME`,`TRIGGER_GROUP`),
-  KEY `IDX_QRTZ_FT_TG` (`SCHED_NAME`,`TRIGGER_GROUP`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
--- 正在导出表  dubbo-app.qrtz_fired_triggers 的数据：~0 rows (大约)
-DELETE FROM `qrtz_fired_triggers`;
-/*!40000 ALTER TABLE `qrtz_fired_triggers` DISABLE KEYS */;
-/*!40000 ALTER TABLE `qrtz_fired_triggers` ENABLE KEYS */;
-
-
--- 导出  表 dubbo-app.qrtz_job_details 结构
-CREATE TABLE IF NOT EXISTS `qrtz_job_details` (
-  `SCHED_NAME` varchar(120) NOT NULL,
-  `JOB_NAME` varchar(200) NOT NULL,
-  `JOB_GROUP` varchar(200) NOT NULL,
-  `DESCRIPTION` varchar(250) DEFAULT NULL,
-  `JOB_CLASS_NAME` varchar(250) NOT NULL,
-  `IS_DURABLE` varchar(1) NOT NULL,
-  `IS_NONCONCURRENT` varchar(1) NOT NULL,
-  `IS_UPDATE_DATA` varchar(1) NOT NULL,
-  `REQUESTS_RECOVERY` varchar(1) NOT NULL,
-  `JOB_DATA` blob,
-  PRIMARY KEY (`SCHED_NAME`,`JOB_NAME`,`JOB_GROUP`),
-  KEY `IDX_QRTZ_J_REQ_RECOVERY` (`SCHED_NAME`,`REQUESTS_RECOVERY`),
-  KEY `IDX_QRTZ_J_GRP` (`SCHED_NAME`,`JOB_GROUP`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
--- 正在导出表  dubbo-app.qrtz_job_details 的数据：~0 rows (大约)
-DELETE FROM `qrtz_job_details`;
-/*!40000 ALTER TABLE `qrtz_job_details` DISABLE KEYS */;
-/*!40000 ALTER TABLE `qrtz_job_details` ENABLE KEYS */;
-
-
--- 导出  表 dubbo-app.qrtz_locks 结构
-CREATE TABLE IF NOT EXISTS `qrtz_locks` (
-  `SCHED_NAME` varchar(120) NOT NULL,
-  `LOCK_NAME` varchar(40) NOT NULL,
-  PRIMARY KEY (`SCHED_NAME`,`LOCK_NAME`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
--- 正在导出表  dubbo-app.qrtz_locks 的数据：~1 rows (大约)
-DELETE FROM `qrtz_locks`;
-/*!40000 ALTER TABLE `qrtz_locks` DISABLE KEYS */;
-INSERT INTO `qrtz_locks` (`SCHED_NAME`, `LOCK_NAME`) VALUES
-	('scheduler', 'TRIGGER_ACCESS');
-/*!40000 ALTER TABLE `qrtz_locks` ENABLE KEYS */;
-
-
--- 导出  表 dubbo-app.qrtz_paused_trigger_grps 结构
-CREATE TABLE IF NOT EXISTS `qrtz_paused_trigger_grps` (
-  `SCHED_NAME` varchar(120) NOT NULL,
-  `TRIGGER_GROUP` varchar(200) NOT NULL,
-  PRIMARY KEY (`SCHED_NAME`,`TRIGGER_GROUP`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
--- 正在导出表  dubbo-app.qrtz_paused_trigger_grps 的数据：~0 rows (大约)
-DELETE FROM `qrtz_paused_trigger_grps`;
-/*!40000 ALTER TABLE `qrtz_paused_trigger_grps` DISABLE KEYS */;
-/*!40000 ALTER TABLE `qrtz_paused_trigger_grps` ENABLE KEYS */;
-
-
--- 导出  表 dubbo-app.qrtz_scheduler_state 结构
-CREATE TABLE IF NOT EXISTS `qrtz_scheduler_state` (
-  `SCHED_NAME` varchar(120) NOT NULL,
-  `INSTANCE_NAME` varchar(200) NOT NULL,
-  `LAST_CHECKIN_TIME` bigint(13) NOT NULL,
-  `CHECKIN_INTERVAL` bigint(13) NOT NULL,
-  PRIMARY KEY (`SCHED_NAME`,`INSTANCE_NAME`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
--- 正在导出表  dubbo-app.qrtz_scheduler_state 的数据：~0 rows (大约)
-DELETE FROM `qrtz_scheduler_state`;
-/*!40000 ALTER TABLE `qrtz_scheduler_state` DISABLE KEYS */;
-/*!40000 ALTER TABLE `qrtz_scheduler_state` ENABLE KEYS */;
-
-
--- 导出  表 dubbo-app.qrtz_simple_triggers 结构
-CREATE TABLE IF NOT EXISTS `qrtz_simple_triggers` (
-  `SCHED_NAME` varchar(120) NOT NULL,
-  `TRIGGER_NAME` varchar(200) NOT NULL,
-  `TRIGGER_GROUP` varchar(200) NOT NULL,
-  `REPEAT_COUNT` bigint(7) NOT NULL,
-  `REPEAT_INTERVAL` bigint(12) NOT NULL,
-  `TIMES_TRIGGERED` bigint(10) NOT NULL,
-  PRIMARY KEY (`SCHED_NAME`,`TRIGGER_NAME`,`TRIGGER_GROUP`),
-  CONSTRAINT `qrtz_simple_triggers_ibfk_1` FOREIGN KEY (`SCHED_NAME`, `TRIGGER_NAME`, `TRIGGER_GROUP`) REFERENCES `qrtz_triggers` (`SCHED_NAME`, `TRIGGER_NAME`, `TRIGGER_GROUP`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
--- 正在导出表  dubbo-app.qrtz_simple_triggers 的数据：~0 rows (大约)
-DELETE FROM `qrtz_simple_triggers`;
-/*!40000 ALTER TABLE `qrtz_simple_triggers` DISABLE KEYS */;
-/*!40000 ALTER TABLE `qrtz_simple_triggers` ENABLE KEYS */;
-
-
--- 导出  表 dubbo-app.qrtz_simprop_triggers 结构
-CREATE TABLE IF NOT EXISTS `qrtz_simprop_triggers` (
-  `SCHED_NAME` varchar(120) NOT NULL,
-  `TRIGGER_NAME` varchar(200) NOT NULL,
-  `TRIGGER_GROUP` varchar(200) NOT NULL,
-  `STR_PROP_1` varchar(512) DEFAULT NULL,
-  `STR_PROP_2` varchar(512) DEFAULT NULL,
-  `STR_PROP_3` varchar(512) DEFAULT NULL,
-  `INT_PROP_1` int(11) DEFAULT NULL,
-  `INT_PROP_2` int(11) DEFAULT NULL,
-  `LONG_PROP_1` bigint(20) DEFAULT NULL,
-  `LONG_PROP_2` bigint(20) DEFAULT NULL,
-  `DEC_PROP_1` decimal(13,4) DEFAULT NULL,
-  `DEC_PROP_2` decimal(13,4) DEFAULT NULL,
-  `BOOL_PROP_1` varchar(1) DEFAULT NULL,
-  `BOOL_PROP_2` varchar(1) DEFAULT NULL,
-  PRIMARY KEY (`SCHED_NAME`,`TRIGGER_NAME`,`TRIGGER_GROUP`),
-  CONSTRAINT `qrtz_simprop_triggers_ibfk_1` FOREIGN KEY (`SCHED_NAME`, `TRIGGER_NAME`, `TRIGGER_GROUP`) REFERENCES `qrtz_triggers` (`SCHED_NAME`, `TRIGGER_NAME`, `TRIGGER_GROUP`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
--- 正在导出表  dubbo-app.qrtz_simprop_triggers 的数据：~0 rows (大约)
-DELETE FROM `qrtz_simprop_triggers`;
-/*!40000 ALTER TABLE `qrtz_simprop_triggers` DISABLE KEYS */;
-/*!40000 ALTER TABLE `qrtz_simprop_triggers` ENABLE KEYS */;
-
-
--- 导出  表 dubbo-app.qrtz_triggers 结构
-CREATE TABLE IF NOT EXISTS `qrtz_triggers` (
-  `SCHED_NAME` varchar(120) NOT NULL,
-  `TRIGGER_NAME` varchar(200) NOT NULL,
-  `TRIGGER_GROUP` varchar(200) NOT NULL,
-  `JOB_NAME` varchar(200) NOT NULL,
-  `JOB_GROUP` varchar(200) NOT NULL,
-  `DESCRIPTION` varchar(250) DEFAULT NULL,
-  `NEXT_FIRE_TIME` bigint(13) DEFAULT NULL,
-  `PREV_FIRE_TIME` bigint(13) DEFAULT NULL,
-  `PRIORITY` int(11) DEFAULT NULL,
-  `TRIGGER_STATE` varchar(16) NOT NULL,
-  `TRIGGER_TYPE` varchar(8) NOT NULL,
-  `START_TIME` bigint(13) NOT NULL,
-  `END_TIME` bigint(13) DEFAULT NULL,
-  `CALENDAR_NAME` varchar(200) DEFAULT NULL,
-  `MISFIRE_INSTR` smallint(2) DEFAULT NULL,
-  `JOB_DATA` blob,
-  PRIMARY KEY (`SCHED_NAME`,`TRIGGER_NAME`,`TRIGGER_GROUP`),
-  KEY `IDX_QRTZ_T_J` (`SCHED_NAME`,`JOB_NAME`,`JOB_GROUP`),
-  KEY `IDX_QRTZ_T_JG` (`SCHED_NAME`,`JOB_GROUP`),
-  KEY `IDX_QRTZ_T_C` (`SCHED_NAME`,`CALENDAR_NAME`),
-  KEY `IDX_QRTZ_T_G` (`SCHED_NAME`,`TRIGGER_GROUP`),
-  KEY `IDX_QRTZ_T_STATE` (`SCHED_NAME`,`TRIGGER_STATE`),
-  KEY `IDX_QRTZ_T_N_STATE` (`SCHED_NAME`,`TRIGGER_NAME`,`TRIGGER_GROUP`,`TRIGGER_STATE`),
-  KEY `IDX_QRTZ_T_N_G_STATE` (`SCHED_NAME`,`TRIGGER_GROUP`,`TRIGGER_STATE`),
-  KEY `IDX_QRTZ_T_NEXT_FIRE_TIME` (`SCHED_NAME`,`NEXT_FIRE_TIME`),
-  KEY `IDX_QRTZ_T_NFT_ST` (`SCHED_NAME`,`TRIGGER_STATE`,`NEXT_FIRE_TIME`),
-  KEY `IDX_QRTZ_T_NFT_MISFIRE` (`SCHED_NAME`,`MISFIRE_INSTR`,`NEXT_FIRE_TIME`),
-  KEY `IDX_QRTZ_T_NFT_ST_MISFIRE` (`SCHED_NAME`,`MISFIRE_INSTR`,`NEXT_FIRE_TIME`,`TRIGGER_STATE`),
-  KEY `IDX_QRTZ_T_NFT_ST_MISFIRE_GRP` (`SCHED_NAME`,`MISFIRE_INSTR`,`NEXT_FIRE_TIME`,`TRIGGER_GROUP`,`TRIGGER_STATE`),
-  CONSTRAINT `qrtz_triggers_ibfk_1` FOREIGN KEY (`SCHED_NAME`, `JOB_NAME`, `JOB_GROUP`) REFERENCES `qrtz_job_details` (`SCHED_NAME`, `JOB_NAME`, `JOB_GROUP`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
--- 正在导出表  dubbo-app.qrtz_triggers 的数据：~0 rows (大约)
-DELETE FROM `qrtz_triggers`;
-/*!40000 ALTER TABLE `qrtz_triggers` DISABLE KEYS */;
-/*!40000 ALTER TABLE `qrtz_triggers` ENABLE KEYS */;
-
 
 -- 导出  表 dubbo-app.system_dict 结构
 CREATE TABLE IF NOT EXISTS `system_dict` (
@@ -253,13 +26,11 @@ CREATE TABLE IF NOT EXISTS `system_dict` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- 正在导出表  dubbo-app.system_dict 的数据：~2 rows (大约)
-DELETE FROM `system_dict`;
 /*!40000 ALTER TABLE `system_dict` DISABLE KEYS */;
 INSERT INTO `system_dict` (`id`, `code`, `name`, `type`) VALUES
 	('0e05c0f2-a0bc-4b75-8240-7500c9879a04', '2', '按钮', '1'),
 	('a4c4df86-d72e-4cea-b90e-753440faf6f2', '1', '菜单', '1');
 /*!40000 ALTER TABLE `system_dict` ENABLE KEYS */;
-
 
 -- 导出  表 dubbo-app.system_resources 结构
 CREATE TABLE IF NOT EXISTS `system_resources` (
@@ -273,7 +44,6 @@ CREATE TABLE IF NOT EXISTS `system_resources` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- 正在导出表  dubbo-app.system_resources 的数据：~24 rows (大约)
-DELETE FROM `system_resources`;
 /*!40000 ALTER TABLE `system_resources` DISABLE KEYS */;
 INSERT INTO `system_resources` (`id`, `pid`, `name`, `url`, `type`, `sort`) VALUES
 	('0cf26ffd-88e9-42ca-91fb-374359e12f82', 'a9b97767-54ff-4477-a81a-274d6e2b5ce9', '菜单管理', '/system/resources/list.html', '1', '3'),
@@ -302,7 +72,6 @@ INSERT INTO `system_resources` (`id`, `pid`, `name`, `url`, `type`, `sort`) VALU
 	('f0e5351e-7291-4d41-87c2-3ebfc5388d7c', 'c56d6e95-5515-492b-866a-b8555e7b647c', '列表', '/system/role/list', '2', NULL);
 /*!40000 ALTER TABLE `system_resources` ENABLE KEYS */;
 
-
 -- 导出  表 dubbo-app.system_role 结构
 CREATE TABLE IF NOT EXISTS `system_role` (
   `id` varchar(50) NOT NULL,
@@ -311,12 +80,10 @@ CREATE TABLE IF NOT EXISTS `system_role` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- 正在导出表  dubbo-app.system_role 的数据：~0 rows (大约)
-DELETE FROM `system_role`;
 /*!40000 ALTER TABLE `system_role` DISABLE KEYS */;
 INSERT INTO `system_role` (`id`, `name`) VALUES
 	('f9127759-1116-4159-adcf-98dbe1d77576', 'JAVA');
 /*!40000 ALTER TABLE `system_role` ENABLE KEYS */;
-
 
 -- 导出  表 dubbo-app.system_role_resources 结构
 CREATE TABLE IF NOT EXISTS `system_role_resources` (
@@ -327,7 +94,6 @@ CREATE TABLE IF NOT EXISTS `system_role_resources` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- 正在导出表  dubbo-app.system_role_resources 的数据：~26 rows (大约)
-DELETE FROM `system_role_resources`;
 /*!40000 ALTER TABLE `system_role_resources` DISABLE KEYS */;
 INSERT INTO `system_role_resources` (`id`, `role_id`, `resources_id`) VALUES
 	('03f8a7b6-259b-4a68-88de-863b0cd39aa2', 'f9127759-1116-4159-adcf-98dbe1d77576', 'f0e5351e-7291-4d41-87c2-3ebfc5388d7c'),
@@ -358,7 +124,6 @@ INSERT INTO `system_role_resources` (`id`, `role_id`, `resources_id`) VALUES
 	('fc993c58-b394-46ec-a61f-9545c9a7b286', 'f9127759-1116-4159-adcf-98dbe1d77576', '93400178-2c2f-47de-9b30-5d126b33e197');
 /*!40000 ALTER TABLE `system_role_resources` ENABLE KEYS */;
 
-
 -- 导出  表 dubbo-app.system_user 结构
 CREATE TABLE IF NOT EXISTS `system_user` (
   `id` varchar(50) NOT NULL,
@@ -368,12 +133,10 @@ CREATE TABLE IF NOT EXISTS `system_user` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- 正在导出表  dubbo-app.system_user 的数据：~0 rows (大约)
-DELETE FROM `system_user`;
 /*!40000 ALTER TABLE `system_user` DISABLE KEYS */;
 INSERT INTO `system_user` (`id`, `username`, `password`) VALUES
 	('62619962-c88c-4530-b424-ced43b30e1ea', 'wangsong', '532da1c5da9fb86bf61b2a63487f300c');
 /*!40000 ALTER TABLE `system_user` ENABLE KEYS */;
-
 
 -- 导出  表 dubbo-app.system_user_role 结构
 CREATE TABLE IF NOT EXISTS `system_user_role` (
@@ -384,11 +147,11 @@ CREATE TABLE IF NOT EXISTS `system_user_role` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- 正在导出表  dubbo-app.system_user_role 的数据：~0 rows (大约)
-DELETE FROM `system_user_role`;
 /*!40000 ALTER TABLE `system_user_role` DISABLE KEYS */;
 INSERT INTO `system_user_role` (`id`, `user_id`, `role_id`) VALUES
 	('9996cc28-57c0-4679-92a3-630257d00464', '62619962-c88c-4530-b424-ced43b30e1ea', 'f9127759-1116-4159-adcf-98dbe1d77576');
 /*!40000 ALTER TABLE `system_user_role` ENABLE KEYS */;
+
 /*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;
 /*!40014 SET FOREIGN_KEY_CHECKS=IF(@OLD_FOREIGN_KEY_CHECKS IS NULL, 1, @OLD_FOREIGN_KEY_CHECKS) */;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
