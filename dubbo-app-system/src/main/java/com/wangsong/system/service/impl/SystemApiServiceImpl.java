@@ -1,20 +1,20 @@
 package com.wangsong.system.service.impl;
 
-import java.util.List;
-
+import com.wangsong.system.model.Resources;
+import com.wangsong.system.model.User;
+import com.wangsong.system.service.ResourcesService;
+import com.wangsong.system.service.SystemApiService;
+import com.wangsong.system.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.wangsong.system.model.Resources;
-import com.wangsong.system.model.User;
-import com.wangsong.system.service.APIService;
-import com.wangsong.system.service.ResourcesService;
-import com.wangsong.system.service.UserService;
+import java.util.List;
 
-@Service("apiService")
+@Service("systemApiService")
 @Transactional
-public class APIServiceImpl implements APIService{
+
+public class SystemApiServiceImpl implements SystemApiService {
 	@Autowired
 	private UserService userService;
 

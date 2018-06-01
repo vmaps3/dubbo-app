@@ -17,6 +17,6 @@
 	
 	<dubbo:consumer check="false" />
 	 <!-- 要引用的服务 -->
-	<dubbo:reference interface="com.wangsong.system.service.APIService"		id="api2Service" ></dubbo:reference>
+	<dubbo:reference interface="com.wangsong.system.service.SystemApiService"		id="systemApi2Service" ></dubbo:reference>
 	
 </beans>

@@ -16,11 +16,11 @@
 	<dubbo:protocol name="dubbo" port="${dubbo.protocol}" />
 	<dubbo:provider/>
 	<!-- 要暴露的服务接口 -->
-	<dubbo:service interface="com.wangsong.system.service.APIService"		ref="apiService" />
+	<dubbo:service interface="com.wangsong.system.service.SystemApiService"		ref="systemApiService" />
 	
 	
 	<dubbo:consumer check="false" />
 	 <!-- 要引用的服务 -->
-	<dubbo:reference interface="com.wangsong.system.service.APIService"		id="api2Service" ></dubbo:reference>
+	<dubbo:reference interface="com.wangsong.system.service.SystemApiService"		id="systemApi2Service" ></dubbo:reference>
 	
 </beans>
