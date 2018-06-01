@@ -2,7 +2,7 @@
 
 ## 系统介绍
 
-- dubbo-app 是J2EE集群分布式基础开发平台，架构设计包括（分布式，分布式事务，高可用集群，缓存集群，会话集群，动静分离），技术栈包括（dubbo、zookeeper、SpringBoot、MyBatis、Shiro、redis、quartz、easyui），业务模块包括：用户管理，角色管理、权限管理，字典管理，定时任务。
+- dubbo-app 是J2EE集群分布式基础开发平台，技术栈包括：dubbo、zookeeper，apollo，xxljob、redis、nginx、SpringBoot，MyBatis、Shiro、hibernate-validation，easyui，业务模块包括：用户管理，角色管理、权限管理，字典管理，定时任务。
 
 ## 核心流程概要
 
@@ -12,30 +12,25 @@
 
 ## 业务功能
 
-- 1.用户管理：用户是系统操作者，该功能主要完成系统用户配置。
-- 2.角色管理：角色菜单权限分配。
-- 3.菜单管理：配置系统菜单，操作权限，按钮权限标识等。
-- 4.字典管理：对系统中经常使用的一些较为固定的数据进行维护，如：是否、男女、类别、级别等。
-- 5.定时器：定时跑批程序管理，包括新建，更改，删除，暂停，执行一次，监控
+- 1.用户管理：用户增删改查与角色关系
+- 2.角色管理：角色增删改查与权限关系
+- 3.菜单管理：菜单增删改查（树形结构）
+- 4.字典管理：字典增删改查
+- 5.定时器管理：定时器添加删除暂停，更改表达式
 
 ## 技术栈
 
-- 分布式中间件 dubbo
-- 注册中心 zookeeper
-- 核心 springBoot 
-- MVC springmvc 
-- ORM mybatis 
-- 会话 shiro 
-- 验证 hibernate-validation
-- 缓存 redis
-- mybatis二级缓存集群 mybatis-redis
-- shiro会话集群，缓存集群 shiro-redis
-- 连接池 druid
-- 页面UI easyui
-- 构建 maven
-- 容器 tomcat
-- 数据库 mysql
-- 定时任务 quartz
+- dubbo 服务治理 
+- zookeeper 注册中心 
+- apollo 配置中心
+- xxljob 定时任务
+- redis 集群会话，shiro缓存，mybatis二级缓存 
+- springBoot 依赖注入，切面
+- mybatis ORM  
+- shiro 权限 
+- hibernate-validation 验证 
+- easyui 页面UI 
+
 
 ## 部署
 
@@ -43,8 +38,10 @@
 - 2.安装nginx配置参考nginx.txt
 - 3.启动zookeeper
 - 4.启动redis
-- 5.启动dubbo-app-web位置com.wangsong.Application
-- 6.访问nginx端口/dubbo-app-html
+- 5.启动apollo（详细参考官方）
+- 6.启动xxljob（详细参考官方）
+- 7.启动dubbo-app-web位置com.wangsong.Application
+- 8.访问nginx端口/dubbo-app-html
 
 ## qq交流群
 
