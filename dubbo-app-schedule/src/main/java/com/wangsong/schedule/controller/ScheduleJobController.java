@@ -1,6 +1,7 @@
 package com.wangsong.schedule.controller;
 
 
+import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -22,6 +23,7 @@ public class ScheduleJobController {
     /**
      * 获取定时任务 json
      */
+    @RequiresPermissions("888")
     @RequestMapping("/list")
     @ResponseBody
     public Object getAllJobs() {

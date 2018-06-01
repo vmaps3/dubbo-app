@@ -17,12 +17,12 @@ import java.util.Set;
 public class ShiroDbRealm extends AuthorizingRealm {
 
 	@Autowired
-	private SystemApiService systemApi2Service;
+	private SystemApiService systemApiService;
 
 	@Override
 	protected AuthenticationInfo doGetAuthenticationInfo(AuthenticationToken authcToken) throws AuthenticationException {
 		UsernamePasswordToken token = (UsernamePasswordToken) authcToken;
-		User user = systemApi2Service.findUserByUser(new User(null,token.getUsername(),null));
+		User user = systemApiService.findUserByUser(new User(null,token.getUsername(),null));
 		// 认证缓存信息
 		return new SimpleAuthenticationInfo(user.getId(), user.getPassword().toCharArray(), getName());
 	}
@@ -35,7 +35,7 @@ public class ShiroDbRealm extends AuthorizingRealm {
 	@Override
 	protected AuthorizationInfo doGetAuthorizationInfo(PrincipalCollection principals) {
 		String shiroUser =(String) principals.getPrimaryPrincipal();
-		List<Resources> roleList = systemApi2Service.findResourcesByResources(new Resources(shiroUser,null,null,null,"2",null));
+		List<Resources> roleList = systemApiService.findResourcesByResources(new Resources(shiroUser,null,null,null,"2",null));
 		Set<String> urlSet = new HashSet<String>();
 		for (Resources roleId : roleList) {
 			urlSet.add(roleId.getUrl());
