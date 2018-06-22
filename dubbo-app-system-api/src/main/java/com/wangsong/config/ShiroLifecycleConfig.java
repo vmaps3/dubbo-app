@@ -1,4 +1,4 @@
-package com.wangsong.common.config;
+package com.wangsong.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

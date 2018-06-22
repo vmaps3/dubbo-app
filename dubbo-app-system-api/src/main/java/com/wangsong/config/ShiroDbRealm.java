@@ -1,4 +1,4 @@
-package com.wangsong.common.config;
+package com.wangsong.config;
 
 import com.wangsong.system.model.Resources;
 import com.wangsong.system.model.User;

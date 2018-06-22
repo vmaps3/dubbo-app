@@ -1,8 +1,7 @@
-package com.wangsong.common.config;
+package com.wangsong.config;
 
-import java.util.LinkedHashMap;
-import java.util.Map;
-
+import com.wangsong.common.shiro.RedisCacheManager;
+import com.wangsong.common.shiro.RedisSessionDAO;
 import org.apache.shiro.mgt.SecurityManager;
 import org.apache.shiro.spring.security.interceptor.AuthorizationAttributeSourceAdvisor;
 import org.apache.shiro.spring.web.ShiroFilterFactoryBean;
@@ -17,8 +16,8 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.data.redis.core.RedisTemplate;
 
-import com.wangsong.common.shiro.RedisCacheManager;
-import com.wangsong.common.shiro.RedisSessionDAO;
+import java.util.LinkedHashMap;
+import java.util.Map;
 
 
 @Configuration
@@ -43,7 +42,6 @@ public class ShiroConfig {
         filterChainDefinitionMap.put("/**", "authc");
         // 如果不设置默认会自动寻找Web工程根目录下的"/login.jsp"页面
         shiroFilterFactoryBean.setLoginUrl("/index");
-       
         shiroFilterFactoryBean.setFilterChainDefinitionMap(filterChainDefinitionMap);
         return shiroFilterFactoryBean;
     }
