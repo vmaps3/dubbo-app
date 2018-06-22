@@ -6,6 +6,6 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
 <configuration>
 	<settings>
 		<setting name="logImpl" value="LOG4J" />
-		 <setting name="cacheEnabled" value="true" />
+		<!--<setting name="cacheEnabled" value="true" />-->
 	</settings>
 </configuration> 

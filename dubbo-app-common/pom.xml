@@ -140,6 +140,10 @@
 			<version>0.11.0-SNAPSHOT</version>
 		</dependency>
 		<!-- apollo -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-cache</artifactId>
+		</dependency>
 	</dependencies>
 	<build>
 		<plugins>
