@@ -2,7 +2,7 @@
 
 ## 系统介绍
 
-- dubbo-app 是J2EE集群分布式基础开发平台，技术栈包括：dubbo、zookeeper，apollo，xxljob、redis、nginx、SpringBoot，MyBatis、Shiro、hibernate-validation，easyui，业务模块包括：用户管理，角色管理、权限管理，字典管理，定时任务。
+- dubbo-app 是J2EE集群分布式基础开发平台，技术栈包括：dubbo、zookeeper，ElasticJob、redis、nginx、SpringBoot，MyBatis、Shiro、hibernate-validation，easyui，业务模块包括：用户管理，角色管理、权限管理，字典管理，定时任务。
 
 ## 核心流程概要
 
@@ -22,8 +22,7 @@
 
 - dubbo 服务治理 
 - zookeeper 注册中心 
-- apollo 配置中心
-- xxljob 定时任务
+- ElasticJob 定时任务
 - redis 集群会话，shiro缓存，mybatis二级缓存 
 - springBoot 依赖注入，切面
 - mybatis ORM  
@@ -38,10 +37,8 @@
 - 2.安装nginx配置参考nginx.txt
 - 3.启动zookeeper
 - 4.启动redis
-- 5.启动apollo（详细参考官方）
-- 6.启动xxljob（详细参考官方）
-- 7.启动dubbo-app-web位置com.wangsong.Application
-- 8.访问nginx端口/dubbo-app-html
+- 5.启动dubbo-app-web位置com.wangsong.Application
+- 6.访问nginx端口/dubbo-app-html
 
 ## qq交流群
 
