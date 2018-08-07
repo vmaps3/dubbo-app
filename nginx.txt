@@ -1,11 +1,12 @@
-location /dubbo-app-html {
-			root   D:/app/workspace/dubbo-app;
-			index login.html;
-		}
-		location /dubbo-app-system/ {
-			proxy_pass http://127.0.0.1:8083;
-		}
-		
-		location /dubbo-app-system/schedule/ {
-			proxy_pass http://127.0.0.1:8085/dubbo-app-schedule/schedule/;
-		}
+location /dubbo-app-system/ {
+    proxy_pass http://127.0.0.1:8083;
+}
+
+location /dubbo-app-system/schedule/ {
+    proxy_pass http://127.0.0.1:8085/dubbo-app-schedule/schedule/;
+}
+
+location / {
+    root   D:/app/app-ui;
+    index login.html;
+}
