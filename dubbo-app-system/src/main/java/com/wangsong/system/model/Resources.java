@@ -2,52 +2,42 @@ package com.wangsong.system.model;
 
 import java.io.Serializable;
 
-import javax.validation.constraints.NotNull;
 
-import com.wangsong.system.groups.ResourcesAdd;
-import com.wangsong.system.groups.ResourcesUpdate;
-
-
-
-public class Resources  implements Serializable{
+public class Resources implements Serializable {
     /**
-	 * 
-	 */
-	private static final long serialVersionUID = 4125580367922291000L;
-	@NotNull(groups = { ResourcesUpdate.class }, message = "id不能为空")  
-	private String id;
-	@NotNull(groups = { ResourcesUpdate.class,ResourcesAdd.class }, message = "pid不能为空")  
+     *
+     */
+    private static final long serialVersionUID = 4125580367922291000L;
+    private String id;
     private String pid;
-	@NotNull(groups = { ResourcesUpdate.class,ResourcesAdd.class }, message = "name不能为空")  
     private String name;
-	@NotNull(groups = { ResourcesUpdate.class,ResourcesAdd.class }, message = "url不能为空")  
     private String url;
-	@NotNull(groups = { ResourcesUpdate.class,ResourcesAdd.class }, message = "type不能为空")  
     private String type;
-	@NotNull(groups = { ResourcesUpdate.class,ResourcesAdd.class }, message = "sort不能为空")  
     private String sort;
-    
+
     public Resources(String id, String pid, String name, String url, String type, String sort) {
-		super();
-		this.id = id;
-		this.pid = pid;
-		this.name = name;
-		this.url = url;
-		this.type = type;
-		this.sort = sort;
-	}
+        super();
+        this.id = id;
+        this.pid = pid;
+        this.name = name;
+        this.url = url;
+        this.type = type;
+        this.sort = sort;
+    }
 
-	public String getType() {
-		return type;
-	}
-	public Resources(){
-		
-	}
-	public void setType(String type) {
-		 this.type = type == null ? null : type.trim();
-	}
+    public String getType() {
+        return type;
+    }
 
-	public String getId() {
+    public Resources() {
+
+    }
+
+    public void setType(String type) {
+        this.type = type == null ? null : type.trim();
+    }
+
+    public String getId() {
         return id;
     }
 
@@ -79,11 +69,11 @@ public class Resources  implements Serializable{
         this.url = url == null ? null : url.trim();
     }
 
-	public String getSort() {
-		return sort;
-	}
+    public String getSort() {
+        return sort;
+    }
 
-	public void setSort(String sort) {
-		 this.sort = sort == null ? null : sort.trim();	
-	}
+    public void setSort(String sort) {
+        this.sort = sort == null ? null : sort.trim();
+    }
 }

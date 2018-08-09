@@ -1,15 +1,14 @@
 package com.wangsong.system.dao;
 
-import java.util.List;
-
 import com.wangsong.system.model.Role;
-import com.wangsong.system.model.RoleAddModel;
 import com.wangsong.system.model.RolePage;
 import com.wangsong.system.vo.RoleVO;
 
+import java.util.List;
+
 public interface RoleMapper {
 
-	int deleteByPrimaryKey(String id);
+    int deleteByPrimaryKey(String id);
 
     int insert(Role record);
 
@@ -18,17 +17,13 @@ public interface RoleMapper {
     List<Role> selectAll();
 
     int updateByPrimaryKey(Role record);
-	
-	List<Role> findTByPage(RolePage role);
 
-	int findTCountByT(RolePage role);
+    List<Role> findTByPage(RolePage role);
 
-	void deleteBy(String[] id);
+    int findTCountByT(RolePage role);
 
-	RoleVO selectRoleVOByPrimaryKey(String id);
+    void deleteBy(String[] id);
 
-	int updateByPrimaryKeyRoleAddModel(RoleAddModel role);
-
-	int insertRoleAddModel(RoleAddModel role);
+    RoleVO selectRoleVOByPrimaryKey(String id);
 
 }

@@ -1,6 +1,8 @@
 package com.wangsong.system.service.impl;
 
 
+import com.wangsong.common.model.Result;
+import com.wangsong.system.service.LoginService;
 import org.apache.commons.codec.digest.DigestUtils;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.DisabledAccountException;
@@ -11,12 +13,11 @@ import org.apache.shiro.subject.Subject;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.wangsong.common.model.Result;
-import com.wangsong.system.service.LoginService;
+import javax.servlet.http.HttpServletRequest;
 
 @Service("loginService")
 @Transactional
-public class LoginServiceImpl  implements LoginService{
+public class LoginServiceImpl implements LoginService{
 	
 
 	@Override
@@ -55,6 +56,12 @@ public class LoginServiceImpl  implements LoginService{
 	@Override
 	public Result unauth() {
 		 return new Result("unauth",null);
+	}
+
+
+	@Override
+	public Result getStatus(HttpServletRequest request) {
+		return new Result(request.getAttribute("javax.servlet.error.status_code").toString(),null);
 	}
 
 }

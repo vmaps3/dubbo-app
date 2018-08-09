@@ -1,11 +1,11 @@
 package com.wangsong.system.dao;
 
-import java.util.List;
-
 import com.wangsong.system.model.Resources;
 
-public interface ResourcesMapper{
-	int deleteByPrimaryKey(String id);
+import java.util.List;
+
+public interface ResourcesMapper {
+    int deleteByPrimaryKey(String id);
 
     int insert(Resources record);
 
@@ -15,7 +15,6 @@ public interface ResourcesMapper{
 
     int updateByPrimaryKey(Resources record);
 
-	void deleteBy(String[] id);
-	
+    void deleteBy(String[] id);
 
 }

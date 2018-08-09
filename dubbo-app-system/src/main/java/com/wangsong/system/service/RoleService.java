@@ -1,31 +1,27 @@
 package com.wangsong.system.service;
 
-import java.util.List;
-
-import com.wangsong.common.model.Result;
-import com.wangsong.system.model.Resources;
-import com.wangsong.system.model.Role;
-import com.wangsong.system.model.RoleAddModel;
-import com.wangsong.system.model.RolePage;
-import com.wangsong.system.model.RoleResources;
+import com.wangsong.common.model.GetEasyUIData;
+import com.wangsong.system.model.*;
 import com.wangsong.system.vo.RoleVO;
+
+import java.util.List;
 
 public interface RoleService {
 
-	Result insertRole(RoleAddModel role);
-    
-    Result updateRole(RoleAddModel role);
-    
-    Result deleteRole(String[] id);
+    void insertRole(RoleAddModel role);
 
-	Object findTByPage(RolePage role);
+    void updateRole(RoleAddModel role);
 
-	RoleVO selectByPrimaryKey(String id);
+    void deleteRole(String[] id);
 
-	List<Role> selectAll();
+    GetEasyUIData findTByPage(RolePage role);
 
-	List<Resources> findResourcesByT(Resources resources);
+    RoleVO selectByPrimaryKey(String id);
 
-	void deleteByT(RoleResources[] r);
+    List<Role> selectAll();
+
+    void deleteByT(RoleResources[] r);
+
+    List<Resources> findResourcesByT(Resources resources);
 
 }

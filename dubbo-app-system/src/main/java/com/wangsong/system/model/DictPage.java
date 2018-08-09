@@ -1,49 +1,22 @@
 package com.wangsong.system.model;
 
+import com.wangsong.common.model.Page;
+
 import java.io.Serializable;
 
 
-
-public class DictPage  implements Serializable{
+public class DictPage extends Page implements Serializable {
     /**
-	 * 
-	 */
-	private static final long serialVersionUID = 3138060792826655366L;
-	private String id;
+     *
+     */
+    private static final long serialVersionUID = 3138060792826655366L;
+    private String id;
     private String name;
     private String type;
     private String code;
-    private int page;
-    private int rows;
-    private int first;
-    
-    
-    
-    public int getPage() {
-		return page;
-	}
 
-	public void setPage(int page) {
-		this.page = page;
-	}
 
-	public int getRows() {
-		return rows;
-	}
-
-	public void setRows(int rows) {
-		this.rows = rows;
-	}
-
-	public int getFirst() {
-		return first;
-	}
-
-	public void setFirst(int first) {
-		this.first = first;
-	}
-
-	public String getId() {
+    public String getId() {
         return id;
     }
 
@@ -67,13 +40,13 @@ public class DictPage  implements Serializable{
         this.type = type == null ? null : type.trim();
     }
 
-	public String getCode() {
-		return code;
-	}
+    public String getCode() {
+        return code;
+    }
 
-	public void setCode(String code) {
-		this.code = code == null ? null : code.trim();
-	}
-    
-    
+    public void setCode(String code) {
+        this.code = code == null ? null : code.trim();
+    }
+
+
 }

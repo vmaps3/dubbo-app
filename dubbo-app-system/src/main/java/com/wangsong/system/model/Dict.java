@@ -2,25 +2,15 @@ package com.wangsong.system.model;
 
 import java.io.Serializable;
 
-import javax.validation.constraints.NotNull;
 
-import com.wangsong.system.groups.DictAdd;
-import com.wangsong.system.groups.DictUpdate;
-
-
-
-public class Dict  implements Serializable{
+public class Dict implements Serializable {
     /**
-	 * 
-	 */
-	private static final long serialVersionUID = 3138060792826655366L;
-	@NotNull(groups = { DictUpdate.class }, message = "id不能为空")  
-	private String id;
-	@NotNull(groups = { DictUpdate.class,DictAdd.class }, message = "name不能为空")  
+     *
+     */
+    private static final long serialVersionUID = 3138060792826655366L;
+    private String id;
     private String name;
-	@NotNull(groups = { DictUpdate.class,DictAdd.class }, message = "type不能为空")  
     private String type;
-	@NotNull(groups = { DictUpdate.class,DictAdd.class  }, message = "code不能为空")  
     private String code;
 
     public String getId() {
@@ -47,13 +37,13 @@ public class Dict  implements Serializable{
         this.type = type == null ? null : type.trim();
     }
 
-	public String getCode() {
-		return code;
-	}
+    public String getCode() {
+        return code;
+    }
 
-	public void setCode(String code) {
-		this.code = code == null ? null : code.trim();
-	}
-    
-    
+    public void setCode(String code) {
+        this.code = code == null ? null : code.trim();
+    }
+
+
 }

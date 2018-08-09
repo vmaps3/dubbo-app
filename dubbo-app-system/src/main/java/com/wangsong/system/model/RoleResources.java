@@ -3,28 +3,27 @@ package com.wangsong.system.model;
 import java.io.Serializable;
 
 
-
-public class RoleResources  implements Serializable{
+public class RoleResources implements Serializable {
     /**
-	 * 
-	 */
-	private static final long serialVersionUID = 2814639517974791520L;
-	private String id;
+     *
+     */
+    private static final long serialVersionUID = 2814639517974791520L;
+    private String id;
     private String resourcesId;
     private String roleId;
 
     public RoleResources(String id, String resourcesId, String roleId) {
-		super();
-		this.id = id;
-		this.resourcesId = resourcesId;
-		this.roleId = roleId;
-	}
+        super();
+        this.id = id;
+        this.resourcesId = resourcesId;
+        this.roleId = roleId;
+    }
 
-	public RoleResources() {
-		super();
-	}
+    public RoleResources() {
+        super();
+    }
 
-	public String getId() {
+    public String getId() {
         return id;
     }
 

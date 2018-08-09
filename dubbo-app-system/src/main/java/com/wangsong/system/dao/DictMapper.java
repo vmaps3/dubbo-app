@@ -1,13 +1,13 @@
 package com.wangsong.system.dao;
 
-import java.util.List;
-
 import com.wangsong.system.model.Dict;
 import com.wangsong.system.model.DictPage;
 
-public interface DictMapper{
+import java.util.List;
 
-	int deleteByPrimaryKey(String id);
+public interface DictMapper {
+
+    int deleteByPrimaryKey(String id);
 
     int insert(Dict record);
 
@@ -16,12 +16,12 @@ public interface DictMapper{
     List<Dict> selectAll();
 
     int updateByPrimaryKey(Dict record);
-	
-	List<Dict> findTByPage(DictPage dict);
 
-	int findTCountByT(DictPage dict);
+    List<Dict> findTByPage(DictPage dict);
 
-	void deleteBy(String[] id);
+    int findTCountByT(DictPage dict);
 
-	List<Dict> findTByT(Dict dict);	
+    void deleteBy(String[] id);
+
+    List<Dict> findTByT(Dict dict);
 }

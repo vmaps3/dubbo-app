@@ -1,14 +1,14 @@
 package com.wangsong.system.dao;
 
-import java.util.List;
-
 import com.wangsong.system.model.User;
 import com.wangsong.system.model.UserAddModel;
 import com.wangsong.system.model.UserPage;
 import com.wangsong.system.vo.UserVO;
 
-public interface UserMapper{
-	int deleteByPrimaryKey(String id);
+import java.util.List;
+
+public interface UserMapper {
+    int deleteByPrimaryKey(String id);
 
     int insert(User record);
 
@@ -17,23 +17,20 @@ public interface UserMapper{
     List<User> selectAll();
 
     int updateByPrimaryKey(User record);
-    
-	List<User> findTByPage(UserPage user);
 
-	int findTCountByT(UserPage user);
+    List<User> findTByPage(UserPage user);
 
-	void deleteBy(String[] id);
+    int findTCountByT(UserPage user);
 
-	User findTByT(User user);
+    void deleteBy(String[] id);
 
-	User findTByTOne(User user);
+    User findTByT(User user);
 
-	void updateNoPasswordByPrimaryKey(UserAddModel user);
+    User findTByTOne(User user);
 
-	UserVO selectVOByPrimaryKey(String id);
+    void updateNoPasswordByPrimaryKey(UserAddModel user);
 
-	int insertUserAddModel(UserAddModel user);
+    UserVO selectVOByPrimaryKey(String id);
 
-	int updateByPrimaryKeyUserAddModel(UserAddModel user);
 
 }
