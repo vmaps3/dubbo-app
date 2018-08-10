@@ -15,7 +15,6 @@ import java.util.List;
 import java.util.UUID;
 
 @Service
-@Transactional
 public class DictServiceImpl implements DictService {
     @Autowired
     private DictMapper dictMapper;
@@ -28,6 +27,7 @@ public class DictServiceImpl implements DictService {
     }
 
     @Override
+    @Transactional
     public void insertDict(Dict dict) {
         dict.setId(UUID.randomUUID().toString());
         dictMapper.insert(dict);
@@ -35,11 +35,13 @@ public class DictServiceImpl implements DictService {
     }
 
     @Override
+    @Transactional
     public void updateByPrimaryKeyDict(Dict dict) {
         dictMapper.updateByPrimaryKey(dict);
     }
 
     @Override
+    @Transactional
     public void deleteByPrimaryKeyDict(String[] id) {
         dictMapper.deleteBy(id);
     }

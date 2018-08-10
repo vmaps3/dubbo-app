@@ -13,6 +13,7 @@ import com.wangsong.system.vo.RoleVO;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.util.Assert;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -56,6 +57,7 @@ public class RoleController extends BaseController {
     @RequestMapping(value = "/update")
     @ResponseBody
     public Result update(RoleAddModel mrole) {
+        Assert.notNull(mrole.getId(),CodeEnum.NO_NULL.getCode());
         roleService.updateRole(mrole);
         return new Result(CodeEnum.SUCCESS.getCode(), null);
     }

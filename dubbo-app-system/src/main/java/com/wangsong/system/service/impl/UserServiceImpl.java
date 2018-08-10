@@ -20,7 +20,6 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.UUID;
 
 @Service
-@Transactional
 public class UserServiceImpl implements UserService {
     @Autowired
     private UserMapper userMapper;
@@ -29,6 +28,7 @@ public class UserServiceImpl implements UserService {
     private UserRoleMapper userRoleMapper;
 
     @Override
+    @Transactional
     public void insertUser(UserAddModel user) {
         String[] roleId = user.getRoleId();
         user.setPassword(DigestUtils.md5Hex(user.getPassword()));
@@ -44,6 +44,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    @Transactional
     public void updateUser(UserAddModel user) {
         String[] roleId = user.getRoleId();
         if (!"".equals(user.getPassword())) {
@@ -65,6 +66,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    @Transactional
     public void deleteUser(String[] id) {
         UserRole[] u = new UserRole[id.length];
         for (int i = 0; i < id.length; i++) {

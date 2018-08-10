@@ -12,8 +12,6 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
 
 @Service("systemApiService")
-@Transactional
-
 public class SystemApiServiceImpl implements SystemApiService {
 	@Autowired
 	private UserService userService;

@@ -59,7 +59,13 @@ public class LoginController extends BaseController implements ErrorController {
     @ExceptionHandler(value = UnauthorizedException.class)
     @ResponseBody
     public Result unauth() {
-
         return new Result(CodeEnum.UNAUTH.getCode(), null);
     }
+
+    @ExceptionHandler(value = IllegalArgumentException.class)
+    @ResponseBody
+    public Result illegalArgumentException(IllegalArgumentException e) {
+        return new Result(e.getMessage(), null);
+    }
+
 }

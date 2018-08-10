@@ -19,7 +19,6 @@ import java.util.UUID;
 
 
 @Service
-@Transactional
 public class ResourcesServiceImpl implements ResourcesService {
     @Autowired
     private ResourcesMapper resourcesMapper;
@@ -27,6 +26,7 @@ public class ResourcesServiceImpl implements ResourcesService {
     private RoleService roleService;
 
     @Override
+    @Transactional
     public void deleteResources(String[] id) {
         int j = 0;
         for (int i = 0; i < id.length; i++) {
@@ -50,6 +50,7 @@ public class ResourcesServiceImpl implements ResourcesService {
     }
 
     @Override
+    @Transactional
     public void insertResources(Resources resources) {
         if ("".equals(resources.getUrl())) {
             resources.setUrl("/");
@@ -59,6 +60,7 @@ public class ResourcesServiceImpl implements ResourcesService {
     }
 
     @Override
+    @Transactional
     public void updateResources(Resources resources) {
         if ("".equals(resources.getUrl())) {
             resources.setUrl("/");

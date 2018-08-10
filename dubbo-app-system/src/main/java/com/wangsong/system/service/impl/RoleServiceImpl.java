@@ -18,7 +18,6 @@ import java.util.UUID;
 
 
 @Service
-@Transactional
 public class RoleServiceImpl implements RoleService {
     @Autowired
     private RoleMapper roleMapper;
@@ -29,6 +28,7 @@ public class RoleServiceImpl implements RoleService {
 
 
     @Override
+    @Transactional
     public void insertRole(RoleAddModel role) {
         String[] resourcesId = role.getResourcesId();
         role.setId(UUID.randomUUID().toString());
@@ -43,6 +43,7 @@ public class RoleServiceImpl implements RoleService {
     }
 
     @Override
+    @Transactional
     public void updateRole(RoleAddModel role) {
         String[] resourcesId = role.getResourcesId();
         roleResourcesMapper.deleteByT(new RoleResources[]{new RoleResources(null, null, role.getId())});
@@ -56,6 +57,7 @@ public class RoleServiceImpl implements RoleService {
     }
 
     @Override
+    @Transactional
     public void deleteRole(String[] id) {
         RoleResources[] r = new RoleResources[id.length];
         UserRole[] u = new UserRole[id.length];

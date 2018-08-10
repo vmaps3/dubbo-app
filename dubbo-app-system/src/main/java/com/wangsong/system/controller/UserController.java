@@ -11,6 +11,7 @@ import com.wangsong.system.vo.UserVO;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.util.Assert;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -50,6 +51,7 @@ public class UserController extends BaseController {
     @RequestMapping(value = "/update")
     @ResponseBody
     public Result update(UserAddModel muser) {
+        Assert.notNull(muser.getId(),CodeEnum.NO_NULL.getCode());
         userService.updateUser(muser);
         return new Result(CodeEnum.SUCCESS.getCode(), null);
 
