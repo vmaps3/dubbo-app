@@ -1,5 +1,6 @@
 package com.wangsong.config;
 
+import com.alibaba.dubbo.config.annotation.Reference;
 import com.wangsong.system.model.Resources;
 import com.wangsong.system.model.User;
 import com.wangsong.system.service.SystemApiService;
@@ -16,7 +17,7 @@ import java.util.Set;
 
 public class ShiroDbRealm extends AuthorizingRealm {
 
-	@Autowired
+	@Reference(check = false)
 	private SystemApiService systemApiService;
 
 	@Override
