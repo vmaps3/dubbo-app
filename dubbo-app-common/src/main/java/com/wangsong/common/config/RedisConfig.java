@@ -29,13 +29,4 @@ public class RedisConfig {
         return template;
     }
 
-
-    @Bean
-    public CacheManager cacheManager(RedisTemplate redisTemplate) {
-        RedisCacheManager manager = new RedisCacheManager(redisTemplate);
-        // 整体缓存过期时间
-        manager.setDefaultExpiration(expire);
-        return manager;
-    }
-
 }
