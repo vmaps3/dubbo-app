@@ -1,6 +1,8 @@
 package com.wangsong.common.model;
 
-public class Result<T> {
+import java.io.Serializable;
+
+public class Result<T> implements Serializable {
     private String result;
     private T data;
 

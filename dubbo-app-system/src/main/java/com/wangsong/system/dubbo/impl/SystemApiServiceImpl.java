@@ -1,13 +1,14 @@
-package com.wangsong.system.service.impl;
+package com.wangsong.system.dubbo.impl;
 
 import com.alibaba.dubbo.config.annotation.Service;
+import com.wangsong.common.model.CodeEnum;
+import com.wangsong.common.model.Result;
+import com.wangsong.system.dubbo.SystemApiService;
 import com.wangsong.system.model.Resources;
 import com.wangsong.system.model.User;
 import com.wangsong.system.service.ResourcesService;
-import com.wangsong.system.service.SystemApiService;
 import com.wangsong.system.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
 
 import java.util.List;
 
@@ -19,17 +20,14 @@ public class SystemApiServiceImpl implements SystemApiService {
     @Autowired
     private ResourcesService resourcesService;
 
-    SystemApiServiceImpl(){
-        System.out.println(1111);
-    }
     @Override
-    public User findUserByUser(User user) {
-        return userService.findTByT(user);
+    public Result<User> findUserByUser(User user) {
+        return new Result(CodeEnum.SUCCESS.getCode(), userService.findTByT(user));
     }
 
     @Override
-    public List<Resources> findResourcesByResources(Resources resources) {
-        return resourcesService.findTByT(resources);
+    public Result<List<Resources>> findResourcesByResources(Resources resources) {
+        return new Result(CodeEnum.SUCCESS.getCode(), resourcesService.findTByT(resources));
     }
 
 
