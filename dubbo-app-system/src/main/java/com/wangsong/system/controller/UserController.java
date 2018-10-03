@@ -7,7 +7,6 @@ import com.wangsong.system.model.User;
 import com.wangsong.system.model.UserAddModel;
 import com.wangsong.system.model.UserPage;
 import com.wangsong.system.service.UserService;
-import com.wangsong.system.vo.UserVO;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -27,8 +26,8 @@ public class UserController extends BaseController {
     @RequiresPermissions("/system/user/list")
     @RequestMapping(value = "/list")
     @ResponseBody
-    public Object list(HttpServletRequest request, UserPage user) {
-        return userService.findTByPage(user);
+    public Result list(HttpServletRequest request, UserPage user) {
+        return  new Result(CodeEnum.SUCCESS.getCode(),userService.findTByPage(user));
     }
 
     @RequiresPermissions("/system/user/add")
@@ -43,15 +42,15 @@ public class UserController extends BaseController {
 
     @RequestMapping(value = "/selectByPrimaryKey")
     @ResponseBody
-    public UserVO selectByPrimaryKey(String id) {
-        return userService.selectByPrimaryKey(id);
+    public Result selectByPrimaryKey(String id) {
+        return new Result(CodeEnum.SUCCESS.getCode(),userService.selectByPrimaryKey(id));
     }
 
     @RequiresPermissions("/system/user/update")
     @RequestMapping(value = "/update")
     @ResponseBody
     public Result update(UserAddModel muser) {
-        Assert.notNull(muser.getId(),CodeEnum.NO_NULL.getCode());
+        Assert.notNull(muser.getId(), CodeEnum.NO_NULL.getCode());
         userService.updateUser(muser);
         return new Result(CodeEnum.SUCCESS.getCode(), null);
 
@@ -77,8 +76,8 @@ public class UserController extends BaseController {
 
     @RequestMapping(value = "/toUpdatePassword")
     @ResponseBody
-    public User toUpdatePassword() {
-        return userService.selectByPrimaryKey();
+    public Result toUpdatePassword() {
+        return new Result(CodeEnum.SUCCESS.getCode(),userService.selectByPrimaryKey());
     }
 
     @RequestMapping(value = "/updatePassword")

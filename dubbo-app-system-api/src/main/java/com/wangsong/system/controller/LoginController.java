@@ -33,7 +33,7 @@ public class LoginController extends BaseController implements ErrorController {
 
     @RequestMapping(value = "/login")
     @ResponseBody
-    public Object loginPost(String username, String password) {
+    public Result loginPost(String username, String password) {
         return new Result(loginService.loginPost(username, password), null);
     }
 
@@ -47,7 +47,7 @@ public class LoginController extends BaseController implements ErrorController {
 
     @RequestMapping(value = ERROR_PATH)
     @ResponseBody
-    public Object getStatus(HttpServletRequest request) {
+    public Result getStatus(HttpServletRequest request) {
         return new Result(loginService.getStatus(request), null);
     }
 

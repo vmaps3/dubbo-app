@@ -55,8 +55,10 @@
         from system_role_resources
         LEFT JOIN system_resources on system_resources.id=system_role_resources.resources_id
         LEFT JOIN system_user_role on system_user_role.role_id=system_role_resources.role_id
-        where
-        system_resources.type = #{type,jdbcType=VARCHAR}
+        where 1=1
+        <if test="type != null and type != ''">
+            and system_resources.type = #{type,jdbcType=VARCHAR}
+        </if>
         and system_user_role.user_id = #{id,jdbcType=VARCHAR}
         ORDER BY system_resources.sort
     </select>

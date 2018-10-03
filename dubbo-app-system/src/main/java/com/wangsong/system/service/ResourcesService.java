@@ -13,7 +13,7 @@ public interface ResourcesService {
 
     List<JsonTreeData> findResources();
 
-    List<JsonTreeData> findResourcesEMUByResources();
+    List<Resources> findResourcesEMUByResources();
 
     void updateResources(Resources resources);
 

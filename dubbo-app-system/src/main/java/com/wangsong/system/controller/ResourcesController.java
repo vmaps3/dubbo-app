@@ -48,22 +48,22 @@ public class ResourcesController extends BaseController {
     @RequiresPermissions("/system/resources/list")
     @RequestMapping(value = "/list")
     @ResponseBody
-    public Object list() {
-        return resourcesService.findResources();
+    public Result list() {
+        return new Result(CodeEnum.SUCCESS.getCode(),  resourcesService.findResources());
     }
 
 
     @RequestMapping(value = "/findResourcesEMUByResources")
     @ResponseBody
-    public Object findResourcesEMUByResources() {
-        return resourcesService.findResourcesEMUByResources();
+    public Result findResourcesEMUByResources() {
+        return  new Result(CodeEnum.SUCCESS.getCode(), resourcesService.findResourcesEMUByResources());
     }
 
 
     @RequestMapping(value = "/selectByPrimaryKey")
     @ResponseBody
-    public Object selectByPrimaryKey(String id) {
-        return resourcesService.selectByPrimaryKey(id);
+    public Result selectByPrimaryKey(String id) {
+        return new Result(CodeEnum.SUCCESS.getCode(),resourcesService.selectByPrimaryKey(id));
     }
 
 }

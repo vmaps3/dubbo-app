@@ -2,7 +2,6 @@ package com.wangsong.system.controller;
 
 import com.wangsong.common.controller.BaseController;
 import com.wangsong.common.model.CodeEnum;
-import com.wangsong.common.model.GetEasyUIData;
 import com.wangsong.common.model.Result;
 import com.wangsong.system.model.Dict;
 import com.wangsong.system.model.DictPage;
@@ -14,8 +13,6 @@ import org.springframework.util.Assert;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import java.util.List;
-
 @Controller
 @RequestMapping("/system/dict")
 public class DictController extends BaseController {
@@ -25,8 +22,8 @@ public class DictController extends BaseController {
     @RequiresPermissions("/system/dict/list")
     @RequestMapping(value = "/list")
     @ResponseBody
-    public GetEasyUIData list(DictPage dict) {
-        return dictService.findTByPage(dict);
+    public Result list(DictPage dict) {
+        return new Result(CodeEnum.SUCCESS.getCode(), dictService.findTByPage(dict));
     }
 
     @RequiresPermissions("/system/dict/add")
@@ -41,7 +38,7 @@ public class DictController extends BaseController {
     @RequestMapping(value = "/update")
     @ResponseBody
     public Result update(Dict dict) {
-        Assert.notNull(dict.getId(),CodeEnum.NO_NULL.getCode());
+        Assert.notNull(dict.getId(), CodeEnum.NO_NULL.getCode());
         dictService.updateByPrimaryKeyDict(dict);
         return new Result(CodeEnum.SUCCESS.getCode(), null);
 
@@ -58,14 +55,14 @@ public class DictController extends BaseController {
 
     @RequestMapping(value = "/findDictByDict")
     @ResponseBody
-    public List<Dict> findDictByDict(Dict dict) {
-        return dictService.findTByT(dict);
+    public Result findDictByDict(Dict dict) {
+        return new Result(CodeEnum.SUCCESS.getCode(),dictService.findTByT(dict));
     }
 
     @RequestMapping(value = "/selectByPrimaryKey")
     @ResponseBody
-    public Dict selectByPrimaryKey(String id) {
-        return dictService.selectByPrimaryKey(id);
+    public Result selectByPrimaryKey(String id) {
+        return new Result(CodeEnum.SUCCESS.getCode(), dictService.selectByPrimaryKey(id));
     }
 
 }

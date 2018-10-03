@@ -75,9 +75,8 @@ public class ResourcesServiceImpl implements ResourcesService {
     }
 
     @Override
-    public List<JsonTreeData> findResourcesEMUByResources() {
-        return resourcesToJsonTreeData(this.findTByT
-                (new Resources((String) SecurityUtils.getSubject().getPrincipal(), null, null, null, "1", null)));
+    public List<Resources> findResourcesEMUByResources() {
+        return findTByT(new Resources((String) SecurityUtils.getSubject().getPrincipal(), null, null, null, null, null));
     }
 
     @Override
