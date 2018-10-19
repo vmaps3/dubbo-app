@@ -14,8 +14,6 @@ import org.springframework.data.redis.serializer.StringRedisSerializer;
 
 @Configuration
 public class RedisConfig {
-    @Value(value = "${mybatis_redis_cache}")
-    private int expire;
 
     @Autowired
     private RedisConnectionFactory redisConnectionFactory;

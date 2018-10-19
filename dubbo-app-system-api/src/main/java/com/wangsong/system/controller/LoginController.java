@@ -3,7 +3,9 @@ package com.wangsong.system.controller;
 import com.wangsong.common.controller.BaseController;
 import com.wangsong.common.model.CodeEnum;
 import com.wangsong.common.model.Result;
+import com.wangsong.common.util.JWTUtil;
 import com.wangsong.system.service.LoginService;
+import org.apache.commons.codec.digest.DigestUtils;
 import org.apache.shiro.authz.UnauthorizedException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.web.ErrorController;
@@ -34,7 +36,8 @@ public class LoginController extends BaseController implements ErrorController {
     @RequestMapping(value = "/login")
     @ResponseBody
     public Result loginPost(String username, String password) {
-        return new Result(loginService.loginPost(username, password), null);
+        String str= JWTUtil.sign(username, DigestUtils.md5Hex(password));
+        return new Result(loginService.loginPost(str), str);
     }
 
     @RequestMapping(value = "/logoutJSON")

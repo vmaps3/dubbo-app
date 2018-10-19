@@ -4,7 +4,7 @@ import javax.servlet.http.HttpServletRequest;
 
 public interface LoginService {
 
-    String loginPost(String username, String password);
+    String loginPost(String str);
 
     void logoutJSON();
 
