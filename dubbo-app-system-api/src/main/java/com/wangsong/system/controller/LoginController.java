@@ -8,6 +8,7 @@ import com.wangsong.system.service.LoginService;
 import org.apache.commons.codec.digest.DigestUtils;
 import org.apache.shiro.authz.UnauthorizedException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.autoconfigure.web.ErrorController;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ControllerAdvice;
@@ -16,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
+import java.io.UnsupportedEncodingException;
 
 
 @Controller
@@ -23,6 +25,9 @@ import javax.servlet.http.HttpServletRequest;
 public class LoginController extends BaseController implements ErrorController {
 
     private final static String ERROR_PATH = "/error";
+
+    @Value(value = "${shiro_redis_session}")
+    private String shiro_redis_session;
 
     @Autowired
     private LoginService loginService;
@@ -35,8 +40,8 @@ public class LoginController extends BaseController implements ErrorController {
 
     @RequestMapping(value = "/login")
     @ResponseBody
-    public Result loginPost(String username, String password) {
-        String str= JWTUtil.sign(username, DigestUtils.md5Hex(password));
+    public Result loginPost(String username, String password) throws UnsupportedEncodingException {
+        String str= JWTUtil.sign(username, DigestUtils.md5Hex(password),shiro_redis_session);
         return new Result(loginService.loginPost(str), str);
     }
 

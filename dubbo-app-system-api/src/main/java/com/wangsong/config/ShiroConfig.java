@@ -23,8 +23,7 @@ import java.util.Map;
 public class ShiroConfig {
     @Autowired
     private RedisTemplate<String, Object> redisTemplate;
-    @Value(value = "${shiro_redis_session}")
-    private int shiro_redis_session;
+
     @Value(value = "${shiro_redis_cache}")
     private int shiro_redis_cache;
 
