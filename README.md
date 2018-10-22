@@ -2,7 +2,7 @@
 
 ## 系统介绍
 
-- dubbo-app 是J2EE集群分布式基础开发平台，技术栈包括：dubbo、zookeeper，ElasticJob、redis、nginx、SpringBoot，MyBatis、Shiro、easyui，业务模块包括：用户管理，角色管理、权限管理，字典管理，定时任务。
+- dubbo-app 是J2EE集群分布式基础开发平台，技术栈包括：dubbo、zookeeper，ElasticJob、redis、nginx、SpringBoot，MyBatis、Shiro、JWT，业务模块包括：用户管理，角色管理、权限管理，字典管理，定时任务。
 
 ## 核心流程概要
 
@@ -27,7 +27,7 @@
 - springBoot 依赖注入，切面
 - mybatis ORM  
 - shiro 权限 
-- easyui 页面UI 
+- JWT 会话 
 
 
 ## 部署
