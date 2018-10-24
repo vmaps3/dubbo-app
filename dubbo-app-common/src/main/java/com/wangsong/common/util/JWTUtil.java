@@ -46,13 +46,12 @@ public class JWTUtil {
      */
     public static String sign(String username, String secret, String tokenTimeout) throws UnsupportedEncodingException {
 
-        Date date = new Date(System.currentTimeMillis() + tokenTimeout);
+        Date date = new Date(System.currentTimeMillis() + Long.valueOf(tokenTimeout));
         Algorithm algorithm = Algorithm.HMAC256(secret);
         // 附带username信息
         return JWT.create()
                 .withClaim("username", username)
                 .withExpiresAt(date)
                 .sign(algorithm);
-
     }
 }

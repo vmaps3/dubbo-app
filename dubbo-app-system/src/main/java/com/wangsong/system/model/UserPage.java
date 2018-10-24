@@ -1,49 +1,23 @@
 package com.wangsong.system.model;
 
 import com.wangsong.common.model.Page;
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.io.Serializable;
 
-
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
+@ApiModel(value = "UserPage", description = "用户分页")
 public class UserPage extends Page implements Serializable {
-
-
-    /**
-     *
-     */
-    private static final long serialVersionUID = -7484136779753770396L;
+    @ApiModelProperty(value = "id")
     private String id;
+    @ApiModelProperty(value = "账户名")
     private String username;
+    @ApiModelProperty(value = "密码")
     private String password;
-    
-    public String getId() {
-        return id;
-    }
-
-    public void setId(String id) {
-        this.id = id == null ? null : id.trim();
-    }
-
-    public String getUsername() {
-        return username;
-    }
-
-    public void setUsername(String username) {
-        this.username = username == null ? null : username.trim();
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password == null ? null : password.trim();
-    }
-
-    @Override
-    public String toString() {
-        return "User [id=" + id + ", username=" + username + ", password=" + password + "]";
-    }
-
-
 }

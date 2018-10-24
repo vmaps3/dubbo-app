@@ -1,32 +1,13 @@
 package com.wangsong.common.model;
 
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
 public class GetEasyUIData<T> {
     private T rows;
     private long total;
-
-    public T getRows() {
-        return rows;
-    }
-
-    public void setRows(T rows) {
-        this.rows = rows;
-    }
-
-    public long getTotal() {
-        return total;
-    }
-
-    public void setTotal(long total) {
-        this.total = total;
-    }
-
-    public GetEasyUIData(T rows, long total) {
-        super();
-        this.rows = rows;
-        this.total = total;
-    }
-
-    public GetEasyUIData() {
-
-    }
 }

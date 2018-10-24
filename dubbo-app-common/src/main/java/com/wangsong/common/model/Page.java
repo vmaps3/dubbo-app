@@ -1,10 +1,14 @@
 package com.wangsong.common.model;
 
-public class Page {
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
 
+@ApiModel(value = "Page", description = "分页")
+public class Page {
+    @ApiModelProperty(value = "第几页")
     private int page;
+    @ApiModelProperty(value = "条数")
     private int rows;
-    private int first;
 
     public int getPage() {
         return page;
@@ -22,11 +26,4 @@ public class Page {
         this.rows = rows;
     }
 
-    public int getFirst() {
-        return first;
-    }
-
-    public void setFirst(int first) {
-        this.first = first;
-    }
 }

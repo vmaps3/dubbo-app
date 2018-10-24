@@ -1,49 +1,24 @@
 package com.wangsong.system.model;
 
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
 import java.io.Serializable;
 
-
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
+@ApiModel(value = "Dict", description = "字典")
 public class Dict implements Serializable {
-    /**
-     *
-     */
-    private static final long serialVersionUID = 3138060792826655366L;
+    @ApiModelProperty(value = "id")
     private String id;
+    @ApiModelProperty(value = "名称")
     private String name;
+    @ApiModelProperty(value = "类型")
     private String type;
+    @ApiModelProperty(value = "编码")
     private String code;
-
-    public String getId() {
-        return id;
-    }
-
-    public void setId(String id) {
-        this.id = id == null ? null : id.trim();
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name == null ? null : name.trim();
-    }
-
-    public String getType() {
-        return type;
-    }
-
-    public void setType(String type) {
-        this.type = type == null ? null : type.trim();
-    }
-
-    public String getCode() {
-        return code;
-    }
-
-    public void setCode(String code) {
-        this.code = code == null ? null : code.trim();
-    }
-
-
 }

@@ -1,6 +1,7 @@
 package com.wangsong.system.service;
 
 import com.wangsong.common.model.GetEasyUIData;
+import com.wangsong.common.model.Result;
 import com.wangsong.system.model.User;
 import com.wangsong.system.model.UserAddModel;
 import com.wangsong.system.model.UserPage;
@@ -9,7 +10,7 @@ import com.wangsong.system.vo.UserVO;
 
 public interface UserService {
 
-    User selectByPrimaryKey();
+    User selectByPrimaryKey(String id);
 
     void insertUser(UserAddModel muser);
 
@@ -21,7 +22,7 @@ public interface UserService {
 
     GetEasyUIData findTByPage(UserPage user);
 
-    UserVO selectByPrimaryKey(String id);
+    UserVO selectVOByPrimaryKey(String id);
 
     User findTByT(User user);
 

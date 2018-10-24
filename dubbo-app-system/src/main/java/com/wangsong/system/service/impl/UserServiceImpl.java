@@ -78,8 +78,8 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public User selectByPrimaryKey() {
-        User u = userMapper.selectByPrimaryKey((String) SecurityUtils.getSubject().getPrincipal());
+    public User selectByPrimaryKey(String id) {
+        User u = userMapper.selectByPrimaryKey(id);
         u.setPassword("");
         return u;
     }
@@ -102,7 +102,7 @@ public class UserServiceImpl implements UserService {
 
 
     @Override
-    public UserVO selectByPrimaryKey(String id) {
+    public UserVO selectVOByPrimaryKey(String id) {
         UserVO u = userMapper.selectVOByPrimaryKey(id);
         u.setPassword("");
         u.setUserRoleList(userRoleMapper.findTByT(new UserRole(null, id, null)));

@@ -1,22 +1,13 @@
 package com.wangsong.common.model;
 
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
 public class Attributes {
     private String url;
 
-    public String getUrl() {
-        return url;
-    }
-
-    public void setUrl(String url) {
-        this.url = url;
-    }
-
-    public Attributes(String url) {
-        super();
-        this.url = url;
-    }
-
-    public Attributes() {
-
-    }
 }
