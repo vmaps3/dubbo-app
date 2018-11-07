@@ -5,7 +5,6 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
 <!-- 配置管理器 -->
 <configuration>
 	<settings>
-		<setting name="logImpl" value="LOG4J" />
-		 <setting name="cacheEnabled" value="true" />
+		<setting name="logImpl" value="LOGBACK" />
 	</settings>
 </configuration> 
