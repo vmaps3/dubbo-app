@@ -38,7 +38,7 @@
 - 3.启动zookeeper
 - 4.启动redis
 - 5.下载https://github.com/vmaps3/admin-ui 更改对应include.js
-- 6.启动dubbo-app-web位置com.wangsong.Application
+- 6.启动dubbo-app-system位置com.wangsong.Application
 - 7.访问nginx端口/html
 
 ## qq交流群
