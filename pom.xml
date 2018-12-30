@@ -11,6 +11,8 @@
         <module>dubbo-app-system-api</module>
         <module>dubbo-app-system</module>
         <module>dubbo-app-schedule</module>
+        <module>dubbo-app-zuul</module>
+
     </modules>
     <modelVersion>4.0.0</modelVersion>
     <groupId>com.wangsong</groupId>
@@ -123,6 +125,19 @@
                 <artifactId>lombok</artifactId>
                 <version>1.18.2</version>
             </dependency>
+            <!-- https://mvnrepository.com/artifact/org.springframework.cloud/spring-cloud-starter-zuul -->
+            <dependency>
+                <groupId>org.springframework.cloud</groupId>
+                <artifactId>spring-cloud-starter-zuul</artifactId>
+                <version>1.4.6.RELEASE</version>
+            </dependency>
+            <!-- https://mvnrepository.com/artifact/com.ctrip.framework.apollo/apollo-client -->
+            <dependency>
+                <groupId>com.ctrip.framework.apollo</groupId>
+                <artifactId>apollo-client</artifactId>
+                <version>1.2.0</version>
+            </dependency>
+
 
         </dependencies>
     </dependencyManagement>
