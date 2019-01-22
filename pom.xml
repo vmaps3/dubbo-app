@@ -12,7 +12,6 @@
         <module>dubbo-app-system</module>
         <module>dubbo-app-schedule</module>
         <module>dubbo-app-zuul</module>
-
     </modules>
     <modelVersion>4.0.0</modelVersion>
     <groupId>com.wangsong</groupId>
@@ -62,11 +61,7 @@
                 <artifactId>commons-lang3</artifactId>
                 <version>3.1</version>
             </dependency>
-            <dependency>
-                <groupId>org.apache.shiro</groupId>
-                <artifactId>shiro-spring-boot-web-starter</artifactId>
-                <version>1.4.0</version>
-            </dependency>
+
 
             <dependency>
                 <groupId>mysql</groupId>
@@ -104,11 +99,7 @@
                 <artifactId>pagehelper-spring-boot-starter</artifactId>
                 <version>1.2.2</version>
             </dependency>
-            <dependency>
-                <groupId>com.auth0</groupId>
-                <artifactId>java-jwt</artifactId>
-                <version>3.2.0</version>
-            </dependency>
+
             <dependency>
                 <groupId>io.springfox</groupId>
                 <artifactId>springfox-swagger2</artifactId>
@@ -125,11 +116,12 @@
                 <artifactId>lombok</artifactId>
                 <version>1.18.2</version>
             </dependency>
-            <!-- https://mvnrepository.com/artifact/org.springframework.cloud/spring-cloud-starter-zuul -->
             <dependency>
                 <groupId>org.springframework.cloud</groupId>
-                <artifactId>spring-cloud-starter-zuul</artifactId>
-                <version>1.4.6.RELEASE</version>
+                <artifactId>spring-cloud-dependencies</artifactId>
+                <version>Dalston.SR1</version>
+                <type>pom</type>
+                <scope>import</scope>
             </dependency>
             <!-- https://mvnrepository.com/artifact/com.ctrip.framework.apollo/apollo-client -->
             <dependency>
@@ -138,7 +130,11 @@
                 <version>1.2.0</version>
             </dependency>
 
-
+            <dependency>
+                <groupId>org.apache.commons</groupId>
+                <artifactId>commons-collections4</artifactId>
+                <version>4.1</version>
+            </dependency>
         </dependencies>
     </dependencyManagement>
 </project>

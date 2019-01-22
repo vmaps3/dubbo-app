@@ -7,8 +7,9 @@ import com.wangsong.system.model.UserAddModel;
 import com.wangsong.system.model.UserPage;
 import com.wangsong.system.model.UserRole;
 import com.wangsong.system.vo.UserVO;
+import org.springframework.security.core.userdetails.UserDetailsService;
 
-public interface UserService {
+public interface UserService extends UserDetailsService {
 
     User selectByPrimaryKey(String id);
 

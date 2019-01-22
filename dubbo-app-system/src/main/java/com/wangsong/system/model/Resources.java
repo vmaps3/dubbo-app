@@ -5,6 +5,7 @@ import io.swagger.annotations.ApiModelProperty;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.security.core.GrantedAuthority;
 
 import java.io.Serializable;
 
@@ -12,7 +13,7 @@ import java.io.Serializable;
 @NoArgsConstructor
 @AllArgsConstructor
 @ApiModel(value = "Resources", description = "权限")
-public class Resources implements Serializable {
+public class Resources implements Serializable , GrantedAuthority {
 
     @ApiModelProperty(value = "id")
     private String id;
@@ -26,6 +27,9 @@ public class Resources implements Serializable {
     private String type;
     @ApiModelProperty(value = "排序")
     private String sort;
-
+    @Override
+    public String getAuthority() {
+        return url;
+    }
 
 }
