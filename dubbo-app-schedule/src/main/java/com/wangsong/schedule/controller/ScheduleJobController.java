@@ -30,7 +30,7 @@ public class ScheduleJobController {
     /**
      * 获取定时任务 json
      */
-    @PreAuthorize("hasAuthority('888')")
+    @PreAuthorize("hasAuthority('/system/dict/list')")
     @RequestMapping("/list")
     @ResponseBody
     public Object getAllJobs() {

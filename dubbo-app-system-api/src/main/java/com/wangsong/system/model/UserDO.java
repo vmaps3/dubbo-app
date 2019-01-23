@@ -12,8 +12,9 @@ import java.io.Serializable;
 @NoArgsConstructor
 @AllArgsConstructor
 @ApiModel(value = "User", description = "用户")
-public class User   {
+public class UserDO implements Serializable {
 
+    long serialVersionUID = -1390703452625033155L;
 
     @ApiModelProperty(value = "id")
     private String id;

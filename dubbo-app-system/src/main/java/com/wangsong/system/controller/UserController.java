@@ -5,6 +5,7 @@ import com.wangsong.common.model.CodeEnum;
 import com.wangsong.common.model.Result;
 import com.wangsong.system.model.User;
 import com.wangsong.system.model.UserAddModel;
+import com.wangsong.system.model.UserDO;
 import com.wangsong.system.model.UserPage;
 import com.wangsong.system.service.UserService;
 import io.swagger.annotations.Api;
@@ -97,7 +98,7 @@ public class UserController extends BaseController {
         UserDetails userDetails = (UserDetails) SecurityContextHolder.getContext()
                 .getAuthentication()
                 .getPrincipal();
-        String id= ((User)userDetails).getId();
+        String id= ((UserDO)userDetails).getId();
         return new Result(CodeEnum.SUCCESS.getCode(),userService.selectByPrimaryKey(id));
     }
 

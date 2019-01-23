@@ -18,7 +18,7 @@ import java.util.Set;
  */
 @Getter
 @ToString
-public class CustomUserDetails extends User implements UserDetails , Serializable {
+public class CustomUserDetails extends UserDO implements UserDetails , Serializable {
 
     private static final long serialVersionUID = 1702923242319850756L;
 
@@ -28,7 +28,7 @@ public class CustomUserDetails extends User implements UserDetails , Serializabl
     private final boolean accountNonLocked;
     private final Set<GrantedAuthority> authorities;
 
-    public CustomUserDetails(User user, boolean enabled, boolean accountNonExpired, boolean credentialsNonExpired, boolean accountNonLocked, Collection<? extends GrantedAuthority> authorities) {
+    public CustomUserDetails(UserDO user, boolean enabled, boolean accountNonExpired, boolean credentialsNonExpired, boolean accountNonLocked, Collection<? extends GrantedAuthority> authorities) {
         if (user != null
                 && !StringUtils.isBlank(user.getUsername())
                 && !StringUtils.isBlank(user.getPassword())) {

@@ -6,6 +6,7 @@ import com.wangsong.common.model.CodeEnum;
 import com.wangsong.common.model.Result;
 import com.wangsong.system.model.Resources;
 import com.wangsong.system.model.User;
+import com.wangsong.system.model.UserDO;
 import com.wangsong.system.service.ResourcesService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
@@ -74,7 +75,7 @@ public class ResourcesController extends BaseController {
         UserDetails userDetails = (UserDetails) SecurityContextHolder.getContext()
                 .getAuthentication()
                 .getPrincipal();
-        String id= ((User)userDetails).getId();
+        String id= ((UserDO)userDetails).getId();
         return new Result(CodeEnum.SUCCESS.getCode(), resourcesService.findResourcesEMUByResources(id));
     }
 

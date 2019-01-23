@@ -13,8 +13,9 @@ import java.io.Serializable;
 @NoArgsConstructor
 @AllArgsConstructor
 @ApiModel(value = "Resources", description = "权限")
-public class Resources{
+public class ResourcesDO implements Serializable , GrantedAuthority {
 
+    long serialVersionUID = -1390703452625033155L;
 
 
     @ApiModelProperty(value = "id")
@@ -29,6 +30,9 @@ public class Resources{
     private String type;
     @ApiModelProperty(value = "排序")
     private String sort;
-
+    @Override
+    public String getAuthority() {
+        return url;
+    }
 
 }

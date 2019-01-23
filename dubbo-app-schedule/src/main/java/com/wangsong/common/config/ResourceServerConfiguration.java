@@ -1,37 +1,39 @@
-package com.wangsong.config;
+package com.wangsong.common.config;
 
-import com.alibaba.dubbo.config.annotation.Reference;
-import com.wangsong.system.dubbo.SystemApiService;
-import com.wangsong.system.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Primary;
 import org.springframework.data.redis.connection.RedisConnectionFactory;
-import org.springframework.security.authentication.encoding.Md5PasswordEncoder;
-import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
-import org.springframework.security.config.annotation.authentication.configurers.GlobalAuthenticationConfigurerAdapter;
+import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
+import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.oauth2.config.annotation.web.configuration.EnableResourceServer;
+import org.springframework.security.oauth2.config.annotation.web.configuration.ResourceServerConfigurerAdapter;
 import org.springframework.security.oauth2.provider.token.DefaultTokenServices;
 import org.springframework.security.oauth2.provider.token.TokenStore;
-import org.springframework.security.oauth2.provider.token.store.InMemoryTokenStore;
 import org.springframework.security.oauth2.provider.token.store.redis.RedisTokenStore;
 
+/**
+ * @author Xiaoyue Xiao
+ */
 @Configuration
-public class WebSecurityConfiguration extends GlobalAuthenticationConfigurerAdapter {
+@EnableResourceServer
+@EnableGlobalMethodSecurity(prePostEnabled = true,securedEnabled =true)//激活方法上的PreAuthorize注解
+public class ResourceServerConfiguration extends ResourceServerConfigurerAdapter {
 
     @Autowired
     private RedisConnectionFactory redisConnectionFactory;
 
-    @Autowired
-    private UserService userService;
-
     @Override
-    public void init(AuthenticationManagerBuilder auth) throws Exception {
-        auth.userDetailsService(userService) .passwordEncoder(new Md5PasswordEncoder());
-        ;
+    public void configure(HttpSecurity http) throws Exception {
+        http
+            .authorizeRequests()
+
+                .antMatchers( "/html/**").permitAll()
+                .anyRequest().authenticated()
+                .and()
+                .headers().frameOptions().disable();
     }
-
-
 
     @Bean
     public TokenStore tokenStore() {
