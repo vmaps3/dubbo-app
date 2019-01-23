@@ -2,11 +2,11 @@
 
 ## 系统介绍
 
-- dubbo-app 是J2EE集群分布式基础开发平台，技术栈包括：dubbo、zookeeper，zuul，apollo，ElasticJob、redis、nginx、SpringBoot，MyBatis、Shiro、JWT，swagger，lombok业务模块包括：用户管理，角色管理、权限管理，字典管理，定时任务。
+- dubbo-app 是J2EE集群分布式基础开发平台，技术栈包括：dubbo、zookeeper，zuul，apollo，ElasticJob、redis、nginx、SpringBoot，MyBatis、SpringSecurityOAuth，swagger，lombok业务模块包括：用户管理，角色管理、权限管理，字典管理，定时任务。
 
 ## 核心流程概要
 
-- 用户->nginx->HTML->zuul网关中心-->具体服务（必须引入SHIRO权限）->zookeeper注册中心->核心服务（SHIRO权限认证授权）->REDIS/MYSQL
+- 用户->nginx->HTML->zuul网关中心->认证服务->资源服务->REDIS/MYSQL
 - 外部通信,方式HTTP,协议HTTP,权限SHIRO
 - 内部通信,方式dubbo,协议RPC,权限无
 
@@ -25,11 +25,10 @@
 - ElasticJob 定时任务
 - apollo 配置中心
 - zuul 网关中心
-- redis shiro缓存
+- redis 缓存
 - springBoot 依赖注入，切面
 - mybatis ORM  
-- shiro 权限 
-- JWT 会话 
+- SpringSecurityOAuth 权限
 - swagger api
 - lombok 代码优化
 
