@@ -41,8 +41,9 @@
 - 5.启动redis
 - 6.下载https://gitee.com/vmaps/app-ui 更改对应include.js
 - 7.启动dubbo-app-system位置com.wangsong.Application
-- 8.启动dubbo-app-zuul
-- 9.访问nginx端口/html
+- 8.将https://gitee.com/vmaps/app-ui放入dubbo-app-zuul\src\main\resources\static\html 更改对应include.js
+- 9.启动dubbo-app-zuul
+- 10.访问dubbo-app-zuul端口/html
 
 ## qq交流群
 
