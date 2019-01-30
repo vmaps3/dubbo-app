@@ -1,8 +1,8 @@
 -- --------------------------------------------------------
 -- 主机:                           127.0.0.1
--- 服务器版本:                        5.7.24-log - MySQL Community Server (GPL)
+-- 服务器版本:                        5.7.25-log - MySQL Community Server (GPL)
 -- 服务器操作系统:                      Win64
--- HeidiSQL 版本:                  9.5.0.5196
+-- HeidiSQL 版本:                  9.5.0.5284
 -- --------------------------------------------------------
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
@@ -81,7 +81,7 @@ CREATE TABLE IF NOT EXISTS `authorities` (
   PRIMARY KEY (`Id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4;
 
--- 正在导出表  apolloportaldb.authorities 的数据：~1 rows (大约)
+-- 正在导出表  apolloportaldb.authorities 的数据：~0 rows (大约)
 /*!40000 ALTER TABLE `authorities` DISABLE KEYS */;
 INSERT INTO `authorities` (`Id`, `Username`, `Authority`) VALUES
 	(1, 'apollo', 'ROLE_user');
@@ -182,7 +182,7 @@ CREATE TABLE IF NOT EXISTS `favorite` (
   KEY `AppId` (`AppId`(191)),
   KEY `IX_UserId` (`UserId`),
   KEY `DataChange_LastTime` (`DataChange_LastTime`)
-) ENGINE=InnoDB AUTO_INCREMENT=23 DEFAULT CHARSET=utf8mb4 COMMENT='应用收藏表';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='应用收藏表';
 
 -- 正在导出表  apolloportaldb.favorite 的数据：~0 rows (大约)
 /*!40000 ALTER TABLE `favorite` DISABLE KEYS */;
@@ -389,7 +389,7 @@ CREATE TABLE IF NOT EXISTS `users` (
   PRIMARY KEY (`Id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COMMENT='用户表';
 
--- 正在导出表  apolloportaldb.users 的数据：~1 rows (大约)
+-- 正在导出表  apolloportaldb.users 的数据：~0 rows (大约)
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
 INSERT INTO `users` (`Id`, `Username`, `Password`, `Email`, `Enabled`) VALUES
 	(1, 'apollo', '$2a$10$7r20uS.BQ9uBpf3Baj3uQOZvMVvB1RN3PYoKE94gtz2.WAOuiiwXS', 'apollo@acme.com', 1);
