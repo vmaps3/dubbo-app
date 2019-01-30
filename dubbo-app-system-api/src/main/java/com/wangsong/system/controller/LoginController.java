@@ -23,8 +23,6 @@ import javax.servlet.http.HttpServletRequest;
 public class LoginController extends BaseController implements ErrorController {
 
     private final static String ERROR_PATH = "/error";
-    @Value("${shiro_redis_session}")
-    private String shiro_redis_session;
 
     @Autowired
     private LoginService loginService;

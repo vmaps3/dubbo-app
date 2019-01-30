@@ -87,9 +87,9 @@ CREATE TABLE IF NOT EXISTS `audit` (
   `DataChange_LastTime` timestamp NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '最后修改时间',
   PRIMARY KEY (`Id`),
   KEY `DataChange_LastTime` (`DataChange_LastTime`)
-) ENGINE=InnoDB AUTO_INCREMENT=270 DEFAULT CHARSET=utf8mb4 COMMENT='日志审计表';
+) ENGINE=InnoDB AUTO_INCREMENT=279 DEFAULT CHARSET=utf8mb4 COMMENT='日志审计表';
 
--- 正在导出表  apolloconfigdb.audit 的数据：~269 rows (大约)
+-- 正在导出表  apolloconfigdb.audit 的数据：~278 rows (大约)
 /*!40000 ALTER TABLE `audit` DISABLE KEYS */;
 INSERT INTO `audit` (`Id`, `EntityName`, `EntityId`, `OpName`, `Comment`, `IsDeleted`, `DataChange_CreatedBy`, `DataChange_CreatedTime`, `DataChange_LastModifiedBy`, `DataChange_LastTime`) VALUES
 	(1, 'App', 2, 'INSERT', NULL, b'0', 'apollo', '2018-12-30 14:02:45', NULL, '2018-12-30 14:02:45'),
@@ -360,7 +360,16 @@ INSERT INTO `audit` (`Id`, `EntityName`, `EntityId`, `OpName`, `Comment`, `IsDel
 	(266, 'ReleaseHistory', 28, 'INSERT', NULL, b'0', 'apollo', '2019-01-30 09:39:36', NULL, '2019-01-30 09:39:36'),
 	(267, 'Item', 116, 'UPDATE', NULL, b'0', 'apollo', '2019-01-30 09:41:02', NULL, '2019-01-30 09:41:02'),
 	(268, 'Release', 25, 'INSERT', NULL, b'0', 'apollo', '2019-01-30 09:41:05', NULL, '2019-01-30 09:41:05'),
-	(269, 'ReleaseHistory', 29, 'INSERT', NULL, b'0', 'apollo', '2019-01-30 09:41:05', NULL, '2019-01-30 09:41:05');
+	(269, 'ReleaseHistory', 29, 'INSERT', NULL, b'0', 'apollo', '2019-01-30 09:41:05', NULL, '2019-01-30 09:41:05'),
+	(270, 'Item', 21, 'DELETE', NULL, b'0', 'apollo', '2019-01-30 14:19:18', NULL, '2019-01-30 14:19:18'),
+	(271, 'Item', 22, 'DELETE', NULL, b'0', 'apollo', '2019-01-30 14:19:27', NULL, '2019-01-30 14:19:27'),
+	(272, 'Release', 26, 'INSERT', NULL, b'0', 'apollo', '2019-01-30 14:19:31', NULL, '2019-01-30 14:19:31'),
+	(273, 'ReleaseHistory', 30, 'INSERT', NULL, b'0', 'apollo', '2019-01-30 14:19:31', NULL, '2019-01-30 14:19:31'),
+	(274, 'Item', 68, 'DELETE', NULL, b'0', 'apollo', '2019-01-30 14:19:52', NULL, '2019-01-30 14:19:52'),
+	(275, 'Item', 70, 'DELETE', NULL, b'0', 'apollo', '2019-01-30 14:19:58', NULL, '2019-01-30 14:19:58'),
+	(276, 'Item', 69, 'DELETE', NULL, b'0', 'apollo', '2019-01-30 14:20:03', NULL, '2019-01-30 14:20:03'),
+	(277, 'Release', 27, 'INSERT', NULL, b'0', 'apollo', '2019-01-30 14:20:13', NULL, '2019-01-30 14:20:13'),
+	(278, 'ReleaseHistory', 31, 'INSERT', NULL, b'0', 'apollo', '2019-01-30 14:20:13', NULL, '2019-01-30 14:20:13');
 /*!40000 ALTER TABLE `audit` ENABLE KEYS */;
 
 -- 导出  表 apolloconfigdb.cluster 结构
@@ -407,9 +416,9 @@ CREATE TABLE IF NOT EXISTS `commit` (
   KEY `AppId` (`AppId`(191)),
   KEY `ClusterName` (`ClusterName`(191)),
   KEY `NamespaceName` (`NamespaceName`(191))
-) ENGINE=InnoDB AUTO_INCREMENT=23 DEFAULT CHARSET=utf8mb4 COMMENT='commit 历史表';
+) ENGINE=InnoDB AUTO_INCREMENT=28 DEFAULT CHARSET=utf8mb4 COMMENT='commit 历史表';
 
--- 正在导出表  apolloconfigdb.commit 的数据：~22 rows (大约)
+-- 正在导出表  apolloconfigdb.commit 的数据：~27 rows (大约)
 /*!40000 ALTER TABLE `commit` DISABLE KEYS */;
 INSERT INTO `commit` (`Id`, `ChangeSets`, `AppId`, `ClusterName`, `NamespaceName`, `Comment`, `IsDeleted`, `DataChange_CreatedBy`, `DataChange_CreatedTime`, `DataChange_LastModifiedBy`, `DataChange_LastTime`) VALUES
 	(1, '{"createItems":[{"namespaceId":2,"key":"server.port","value":"1101","comment":"","lineNum":1,"id":2,"isDeleted":false,"dataChangeCreatedBy":"apollo","dataChangeCreatedTime":"2018-12-30 14:04:12","dataChangeLastModifiedBy":"apollo","dataChangeLastModifiedTime":"2018-12-30 14:04:12"},{"namespaceId":2,"key":"zuul.sensitiveHeaders","value":"\\"*\\"","comment":"","lineNum":2,"id":3,"isDeleted":false,"dataChangeCreatedBy":"apollo","dataChangeCreatedTime":"2018-12-30 14:04:12","dataChangeLastModifiedBy":"apollo","dataChangeLastModifiedTime":"2018-12-30 14:04:12"},{"namespaceId":2,"key":"zuul.routes.a.path","value":"/dubbo-app-system/**","comment":"","lineNum":3,"id":4,"isDeleted":false,"dataChangeCreatedBy":"apollo","dataChangeCreatedTime":"2018-12-30 14:04:12","dataChangeLastModifiedBy":"apollo","dataChangeLastModifiedTime":"2018-12-30 14:04:12"},{"namespaceId":2,"key":"zuul.routes.a.url","value":"http://localhost:8083/dubbo-app-system","comment":"","lineNum":4,"id":5,"isDeleted":false,"dataChangeCreatedBy":"apollo","dataChangeCreatedTime":"2018-12-30 14:04:12","dataChangeLastModifiedBy":"apollo","dataChangeLastModifiedTime":"2018-12-30 14:04:12"},{"namespaceId":2,"key":"zuul.routes.b.path","value":"/dubbo-app-schedule/**","comment":"","lineNum":5,"id":6,"isDeleted":false,"dataChangeCreatedBy":"apollo","dataChangeCreatedTime":"2018-12-30 14:04:12","dataChangeLastModifiedBy":"apollo","dataChangeLastModifiedTime":"2018-12-30 14:04:12"},{"namespaceId":2,"key":"zuul.routes.b.url","value":"http://localhost:8085/dubbo-app-schedule","comment":"","lineNum":6,"id":7,"isDeleted":false,"dataChangeCreatedBy":"apollo","dataChangeCreatedTime":"2018-12-30 14:04:12","dataChangeLastModifiedBy":"apollo","dataChangeLastModifiedTime":"2018-12-30 14:04:12"}],"updateItems":[],"deleteItems":[]}', 'dubbo-app-zuul', 'default', 'application', NULL, b'0', 'apollo', '2018-12-30 14:04:12', 'apollo', '2018-12-30 14:04:12'),
@@ -433,7 +442,12 @@ INSERT INTO `commit` (`Id`, `ChangeSets`, `AppId`, `ClusterName`, `NamespaceName
 	(19, '{"createItems":[],"updateItems":[{"oldItem":{"namespaceId":3,"key":"server.port","value":"8083","comment":"","lineNum":16,"id":23,"isDeleted":false,"dataChangeCreatedBy":"apollo","dataChangeCreatedTime":"2018-12-30 14:07:08","dataChangeLastModifiedBy":"apollo","dataChangeLastModifiedTime":"2018-12-30 14:07:08"},"newItem":{"namespaceId":3,"key":"server.port","value":"9083","comment":"","lineNum":16,"id":23,"isDeleted":false,"dataChangeCreatedBy":"apollo","dataChangeCreatedTime":"2018-12-30 14:07:08","dataChangeLastModifiedBy":"apollo","dataChangeLastModifiedTime":"2019-01-30 09:35:58"}}],"deleteItems":[]}', 'dubbo-app-system', 'default', 'application', NULL, b'0', 'apollo', '2019-01-30 09:35:58', 'apollo', '2019-01-30 09:35:58'),
 	(20, '{"createItems":[],"updateItems":[{"oldItem":{"namespaceId":2,"key":"dubbo-app-system.ribbon.listOfServers","value":"http://localhost:8083,http://www.baidu.com","comment":"","lineNum":8,"id":116,"isDeleted":false,"dataChangeCreatedBy":"apollo","dataChangeCreatedTime":"2019-01-30 09:03:18","dataChangeLastModifiedBy":"apollo","dataChangeLastModifiedTime":"2019-01-30 09:33:10"},"newItem":{"namespaceId":2,"key":"dubbo-app-system.ribbon.listOfServers","value":"http://localhost:8083,http://localhost:8089","comment":"","lineNum":8,"id":116,"isDeleted":false,"dataChangeCreatedBy":"apollo","dataChangeCreatedTime":"2019-01-30 09:03:18","dataChangeLastModifiedBy":"apollo","dataChangeLastModifiedTime":"2019-01-30 09:37:02"}}],"deleteItems":[]}', 'dubbo-app-zuul', 'default', 'application', NULL, b'0', 'apollo', '2019-01-30 09:37:02', 'apollo', '2019-01-30 09:37:02'),
 	(21, '{"createItems":[],"updateItems":[{"oldItem":{"namespaceId":2,"key":"dubbo-app-system.ribbon.listOfServers","value":"http://localhost:8083,http://localhost:8089","comment":"","lineNum":8,"id":116,"isDeleted":false,"dataChangeCreatedBy":"apollo","dataChangeCreatedTime":"2019-01-30 09:03:18","dataChangeLastModifiedBy":"apollo","dataChangeLastModifiedTime":"2019-01-30 09:37:02"},"newItem":{"namespaceId":2,"key":"dubbo-app-system.ribbon.listOfServers","value":"http://localhost:8083,http://localhost:9083","comment":"","lineNum":8,"id":116,"isDeleted":false,"dataChangeCreatedBy":"apollo","dataChangeCreatedTime":"2019-01-30 09:03:18","dataChangeLastModifiedBy":"apollo","dataChangeLastModifiedTime":"2019-01-30 09:39:29"}}],"deleteItems":[]}', 'dubbo-app-zuul', 'default', 'application', NULL, b'0', 'apollo', '2019-01-30 09:39:29', 'apollo', '2019-01-30 09:39:29'),
-	(22, '{"createItems":[],"updateItems":[{"oldItem":{"namespaceId":2,"key":"dubbo-app-system.ribbon.listOfServers","value":"http://localhost:8083,http://localhost:9083","comment":"","lineNum":8,"id":116,"isDeleted":false,"dataChangeCreatedBy":"apollo","dataChangeCreatedTime":"2019-01-30 09:03:18","dataChangeLastModifiedBy":"apollo","dataChangeLastModifiedTime":"2019-01-30 09:39:29"},"newItem":{"namespaceId":2,"key":"dubbo-app-system.ribbon.listOfServers","value":"http://localhost:9083,http://localhost:9083","comment":"","lineNum":8,"id":116,"isDeleted":false,"dataChangeCreatedBy":"apollo","dataChangeCreatedTime":"2019-01-30 09:03:18","dataChangeLastModifiedBy":"apollo","dataChangeLastModifiedTime":"2019-01-30 09:41:02"}}],"deleteItems":[]}', 'dubbo-app-zuul', 'default', 'application', NULL, b'0', 'apollo', '2019-01-30 09:41:02', 'apollo', '2019-01-30 09:41:02');
+	(22, '{"createItems":[],"updateItems":[{"oldItem":{"namespaceId":2,"key":"dubbo-app-system.ribbon.listOfServers","value":"http://localhost:8083,http://localhost:9083","comment":"","lineNum":8,"id":116,"isDeleted":false,"dataChangeCreatedBy":"apollo","dataChangeCreatedTime":"2019-01-30 09:03:18","dataChangeLastModifiedBy":"apollo","dataChangeLastModifiedTime":"2019-01-30 09:39:29"},"newItem":{"namespaceId":2,"key":"dubbo-app-system.ribbon.listOfServers","value":"http://localhost:9083,http://localhost:9083","comment":"","lineNum":8,"id":116,"isDeleted":false,"dataChangeCreatedBy":"apollo","dataChangeCreatedTime":"2019-01-30 09:03:18","dataChangeLastModifiedBy":"apollo","dataChangeLastModifiedTime":"2019-01-30 09:41:02"}}],"deleteItems":[]}', 'dubbo-app-zuul', 'default', 'application', NULL, b'0', 'apollo', '2019-01-30 09:41:02', 'apollo', '2019-01-30 09:41:02'),
+	(23, '{"createItems":[],"updateItems":[],"deleteItems":[{"namespaceId":3,"key":"shiro_redis_cache","value":"600000","comment":"","lineNum":14,"id":21,"isDeleted":true,"dataChangeCreatedBy":"apollo","dataChangeCreatedTime":"2018-12-30 14:07:08","dataChangeLastModifiedBy":"apollo","dataChangeLastModifiedTime":"2019-01-30 14:19:17"}]}', 'dubbo-app-system', 'default', 'application', NULL, b'0', 'apollo', '2019-01-30 14:19:18', 'apollo', '2019-01-30 14:19:18'),
+	(24, '{"createItems":[],"updateItems":[],"deleteItems":[{"namespaceId":3,"key":"shiro_redis_session","value":"600000","comment":"","lineNum":15,"id":22,"isDeleted":true,"dataChangeCreatedBy":"apollo","dataChangeCreatedTime":"2018-12-30 14:07:08","dataChangeLastModifiedBy":"apollo","dataChangeLastModifiedTime":"2019-01-30 14:19:26"}]}', 'dubbo-app-system', 'default', 'application', NULL, b'0', 'apollo', '2019-01-30 14:19:27', 'apollo', '2019-01-30 14:19:27'),
+	(25, '{"createItems":[],"updateItems":[],"deleteItems":[{"namespaceId":4,"key":"shiro_redis_session","value":"600000","comment":"","lineNum":23,"id":68,"isDeleted":true,"dataChangeCreatedBy":"apollo","dataChangeCreatedTime":"2018-12-30 14:08:54","dataChangeLastModifiedBy":"apollo","dataChangeLastModifiedTime":"2019-01-30 14:19:51"}]}', 'dubbo-app-schedule', 'default', 'application', NULL, b'0', 'apollo', '2019-01-30 14:19:52', 'apollo', '2019-01-30 14:19:52'),
+	(26, '{"createItems":[],"updateItems":[],"deleteItems":[{"namespaceId":4,"key":"shiro_redis_cache","value":"600000","comment":"","lineNum":25,"id":70,"isDeleted":true,"dataChangeCreatedBy":"apollo","dataChangeCreatedTime":"2018-12-30 14:08:54","dataChangeLastModifiedBy":"apollo","dataChangeLastModifiedTime":"2019-01-30 14:19:58"}]}', 'dubbo-app-schedule', 'default', 'application', NULL, b'0', 'apollo', '2019-01-30 14:19:58', 'apollo', '2019-01-30 14:19:58'),
+	(27, '{"createItems":[],"updateItems":[],"deleteItems":[{"namespaceId":4,"key":"mybatis_redis_cache","value":"600000","comment":"","lineNum":24,"id":69,"isDeleted":true,"dataChangeCreatedBy":"apollo","dataChangeCreatedTime":"2018-12-30 14:08:54","dataChangeLastModifiedBy":"apollo","dataChangeLastModifiedTime":"2019-01-30 14:20:02"}]}', 'dubbo-app-schedule', 'default', 'application', NULL, b'0', 'apollo', '2019-01-30 14:20:03', 'apollo', '2019-01-30 14:20:03');
 /*!40000 ALTER TABLE `commit` ENABLE KEYS */;
 
 -- 导出  表 apolloconfigdb.grayreleaserule 结构
@@ -556,8 +570,8 @@ INSERT INTO `item` (`Id`, `NamespaceId`, `Key`, `Value`, `Comment`, `LineNum`, `
 	(18, 3, '', '', '## RegistryConfig Bean', 11, b'0', 'apollo', '2018-12-30 14:07:08', 'apollo', '2018-12-30 14:07:08'),
 	(19, 3, 'dubbo.registry.id', 'my-registry', '', 12, b'0', 'apollo', '2018-12-30 14:07:08', 'apollo', '2018-12-30 14:07:08'),
 	(20, 3, 'dubbo.registry.address', 'zookeeper://127.0.0.1:2181', '', 13, b'0', 'apollo', '2018-12-30 14:07:08', 'apollo', '2018-12-30 14:07:08'),
-	(21, 3, 'shiro_redis_cache', '600000', '', 14, b'0', 'apollo', '2018-12-30 14:07:08', 'apollo', '2018-12-30 14:07:08'),
-	(22, 3, 'shiro_redis_session', '600000', '', 15, b'0', 'apollo', '2018-12-30 14:07:08', 'apollo', '2018-12-30 14:07:08'),
+	(21, 3, 'shiro_redis_cache', '600000', '', 14, b'1', 'apollo', '2018-12-30 14:07:08', 'apollo', '2019-01-30 14:19:18'),
+	(22, 3, 'shiro_redis_session', '600000', '', 15, b'1', 'apollo', '2018-12-30 14:07:08', 'apollo', '2019-01-30 14:19:27'),
 	(23, 3, 'server.port', '9083', '', 16, b'0', 'apollo', '2018-12-30 14:07:08', 'apollo', '2019-01-30 09:35:58'),
 	(24, 3, 'server.context-path', '/dubbo-app-system', '', 17, b'1', 'apollo', '2018-12-30 14:07:08', 'apollo', '2019-01-30 09:22:27'),
 	(25, 3, 'spring.redis.port', '6379', '', 18, b'0', 'apollo', '2018-12-30 14:07:08', 'apollo', '2018-12-30 14:07:08'),
@@ -603,9 +617,9 @@ INSERT INTO `item` (`Id`, `NamespaceId`, `Key`, `Value`, `Comment`, `LineNum`, `
 	(65, 4, 'spring.redis.host', '127.0.0.1', '', 20, b'0', 'apollo', '2018-12-30 14:08:54', 'apollo', '2018-12-30 14:08:54'),
 	(66, 4, 'spring.redis.password', '', '', 21, b'0', 'apollo', '2018-12-30 14:08:54', 'apollo', '2018-12-30 14:08:54'),
 	(67, 4, 'spring.redis.port', '6379', '', 22, b'0', 'apollo', '2018-12-30 14:08:54', 'apollo', '2018-12-30 14:08:54'),
-	(68, 4, 'shiro_redis_session', '600000', '', 23, b'0', 'apollo', '2018-12-30 14:08:54', 'apollo', '2018-12-30 14:08:54'),
-	(69, 4, 'mybatis_redis_cache', '600000', '', 24, b'0', 'apollo', '2018-12-30 14:08:54', 'apollo', '2018-12-30 14:08:54'),
-	(70, 4, 'shiro_redis_cache', '600000', '', 25, b'0', 'apollo', '2018-12-30 14:08:54', 'apollo', '2018-12-30 14:08:54'),
+	(68, 4, 'shiro_redis_session', '600000', '', 23, b'1', 'apollo', '2018-12-30 14:08:54', 'apollo', '2019-01-30 14:19:52'),
+	(69, 4, 'mybatis_redis_cache', '600000', '', 24, b'1', 'apollo', '2018-12-30 14:08:54', 'apollo', '2019-01-30 14:20:03'),
+	(70, 4, 'shiro_redis_cache', '600000', '', 25, b'1', 'apollo', '2018-12-30 14:08:54', 'apollo', '2019-01-30 14:19:58'),
 	(71, 4, '', '', '# Base packages to scan Dubbo Components (e.g @Service , @Reference)', 26, b'0', 'apollo', '2018-12-30 14:08:54', 'apollo', '2018-12-30 14:08:54'),
 	(72, 4, 'dubbo.scan.basePackages', 'com.wangsong', '', 27, b'0', 'apollo', '2018-12-30 14:08:54', 'apollo', '2018-12-30 14:08:54'),
 	(73, 4, '', '', '# Dubbo Config properties', 28, b'0', 'apollo', '2018-12-30 14:08:54', 'apollo', '2018-12-30 14:08:54'),
@@ -727,9 +741,9 @@ CREATE TABLE IF NOT EXISTS `release` (
   KEY `AppId_ClusterName_GroupName` (`AppId`(191),`ClusterName`(191),`NamespaceName`(191)),
   KEY `DataChange_LastTime` (`DataChange_LastTime`),
   KEY `IX_ReleaseKey` (`ReleaseKey`)
-) ENGINE=InnoDB AUTO_INCREMENT=26 DEFAULT CHARSET=utf8mb4 COMMENT='发布';
+) ENGINE=InnoDB AUTO_INCREMENT=28 DEFAULT CHARSET=utf8mb4 COMMENT='发布';
 
--- 正在导出表  apolloconfigdb.release 的数据：~25 rows (大约)
+-- 正在导出表  apolloconfigdb.release 的数据：~27 rows (大约)
 /*!40000 ALTER TABLE `release` DISABLE KEYS */;
 INSERT INTO `release` (`Id`, `ReleaseKey`, `Name`, `Comment`, `AppId`, `ClusterName`, `NamespaceName`, `Configurations`, `IsAbandoned`, `IsDeleted`, `DataChange_CreatedBy`, `DataChange_CreatedTime`, `DataChange_LastModifiedBy`, `DataChange_LastTime`) VALUES
 	(1, '20161009155425-d3a0749c6e20bc15', '20161009155424-release', 'Sample发布', 'SampleApp', 'default', 'application', '{"timeout":"100"}', b'0', b'0', 'default', '2018-12-30 13:13:37', '', '2018-12-30 13:13:37'),
@@ -756,7 +770,9 @@ INSERT INTO `release` (`Id`, `ReleaseKey`, `Name`, `Comment`, `AppId`, `ClusterN
 	(22, '20190130093602-e3988ce0a33e4987', '20190130093601-release', '', 'dubbo-app-system', 'default', 'application', '{"dubbo.application.id":"dubbo-app-system","dubbo.registry.id":"my-registry","spring.datasource.druid.test-On-Borrow":"false","spring.redis.host":"127.0.0.1","spring.datasource.druid.time-Between-Eviction-Runs-Millis":"60000","spring.datasource.druid.max-Active":"20","configLocation":"classpath:mybatis-config.xml","spring.datasource.druid.validation-Query":"SELECT 1 FROM DUAL","spring.datasource.druid.test-On-Return":"false","spring.datasource.driver-class-name":"com.mysql.jdbc.Driver","shiro_redis_cache":"600000","mybatis.mapper-locations":"classpath:mapping/*/*.xml","dubbo.registry.address":"zookeeper://127.0.0.1:2181","spring.datasource.druid.max-Wait":"60000","server.port":"9083","spring.datasource.druid.min-Idle":"5","spring.datasource.druid.filters":"stat,wall,logback","spring.datasource.druid.test-While-Idle":"true","dubbo.provider.filter":"providerFilter","dubbo.protocol.name":"dubbo","spring.redis.password":"","shiro_redis_session":"600000","spring.datasource.druid.initial-Size":"5","server.context-path":"/dubbo-app-system","spring.redis.port":"6379","dubbo.application.name":"dubbo-app-system","dubbo.protocol.id":"dubbo","spring.datasource.password":"root","spring.datasource.username":"root","dubbo.scan.basePackages":"com.wangsong","spring.datasource.druid.min-Evictable-Idle-Time-Millis":"300000","spring.datasource.url":"jdbc:mysql://localhost:3306/dubbo-app?useUnicode\\u003dtrue\\u0026characterEncoding\\u003dutf-8","dubbo.protocol.port":"20881"}', b'0', b'0', 'apollo', '2019-01-30 09:36:02', 'apollo', '2019-01-30 09:36:02'),
 	(23, '20190130093705-aa7b8ce0a33e4988', '20190130093703-release', '', 'dubbo-app-zuul', 'default', 'application', '{"zuul.routes.dubbo-app-system.stripPrefix":"false","dubbo-app-system.ribbon.listOfServers":"http://localhost:8083,http://localhost:8089","zuul.sensitiveHeaders":"\\"*\\"","server.port":"1101","zuul.routes.dubbo-app-system.path":"/dubbo-app-system/**","dubbo-app-schedule.ribbon.listOfServers":"http://localhost:8085","zuul.routes.dubbo-app-schedule.stripPrefix":"false","zuul.routes.dubbo-app-schedule.path":"/dubbo-app-schedule/**"}', b'0', b'0', 'apollo', '2019-01-30 09:37:05', 'apollo', '2019-01-30 09:37:05'),
 	(24, '20190130093935-aa7b8ce0a33e4989', '20190130093934-release', '', 'dubbo-app-zuul', 'default', 'application', '{"zuul.routes.dubbo-app-system.stripPrefix":"false","dubbo-app-system.ribbon.listOfServers":"http://localhost:8083,http://localhost:9083","zuul.sensitiveHeaders":"\\"*\\"","server.port":"1101","zuul.routes.dubbo-app-system.path":"/dubbo-app-system/**","dubbo-app-schedule.ribbon.listOfServers":"http://localhost:8085","zuul.routes.dubbo-app-schedule.stripPrefix":"false","zuul.routes.dubbo-app-schedule.path":"/dubbo-app-schedule/**"}', b'0', b'0', 'apollo', '2019-01-30 09:39:36', 'apollo', '2019-01-30 09:39:36'),
-	(25, '20190130094104-aa7b8ce0a33e498a', '20190130094103-release', '', 'dubbo-app-zuul', 'default', 'application', '{"zuul.routes.dubbo-app-system.stripPrefix":"false","dubbo-app-system.ribbon.listOfServers":"http://localhost:9083,http://localhost:9083","zuul.sensitiveHeaders":"\\"*\\"","server.port":"1101","zuul.routes.dubbo-app-system.path":"/dubbo-app-system/**","dubbo-app-schedule.ribbon.listOfServers":"http://localhost:8085","zuul.routes.dubbo-app-schedule.stripPrefix":"false","zuul.routes.dubbo-app-schedule.path":"/dubbo-app-schedule/**"}', b'0', b'0', 'apollo', '2019-01-30 09:41:05', 'apollo', '2019-01-30 09:41:05');
+	(25, '20190130094104-aa7b8ce0a33e498a', '20190130094103-release', '', 'dubbo-app-zuul', 'default', 'application', '{"zuul.routes.dubbo-app-system.stripPrefix":"false","dubbo-app-system.ribbon.listOfServers":"http://localhost:9083,http://localhost:9083","zuul.sensitiveHeaders":"\\"*\\"","server.port":"1101","zuul.routes.dubbo-app-system.path":"/dubbo-app-system/**","dubbo-app-schedule.ribbon.listOfServers":"http://localhost:8085","zuul.routes.dubbo-app-schedule.stripPrefix":"false","zuul.routes.dubbo-app-schedule.path":"/dubbo-app-schedule/**"}', b'0', b'0', 'apollo', '2019-01-30 09:41:05', 'apollo', '2019-01-30 09:41:05'),
+	(26, '20190130141930-e3988ce0a36c024d', '20190130141929-release', '', 'dubbo-app-system', 'default', 'application', '{"dubbo.application.id":"dubbo-app-system","dubbo.registry.id":"my-registry","spring.datasource.druid.test-On-Borrow":"false","spring.redis.host":"127.0.0.1","spring.datasource.druid.time-Between-Eviction-Runs-Millis":"60000","spring.datasource.druid.max-Active":"20","configLocation":"classpath:mybatis-config.xml","spring.datasource.druid.validation-Query":"SELECT 1 FROM DUAL","spring.datasource.druid.test-On-Return":"false","spring.datasource.driver-class-name":"com.mysql.jdbc.Driver","mybatis.mapper-locations":"classpath:mapping/*/*.xml","dubbo.registry.address":"zookeeper://127.0.0.1:2181","spring.datasource.druid.max-Wait":"60000","server.port":"9083","spring.datasource.druid.min-Idle":"5","spring.datasource.druid.filters":"stat,wall,logback","spring.datasource.druid.test-While-Idle":"true","dubbo.provider.filter":"providerFilter","dubbo.protocol.name":"dubbo","spring.redis.password":"","spring.datasource.druid.initial-Size":"5","server.context-path":"/dubbo-app-system","spring.redis.port":"6379","dubbo.application.name":"dubbo-app-system","dubbo.protocol.id":"dubbo","spring.datasource.password":"root","spring.datasource.username":"root","dubbo.scan.basePackages":"com.wangsong","spring.datasource.druid.min-Evictable-Idle-Time-Millis":"300000","spring.datasource.url":"jdbc:mysql://localhost:3306/dubbo-app?useUnicode\\u003dtrue\\u0026characterEncoding\\u003dutf-8","dubbo.protocol.port":"20881"}', b'0', b'0', 'apollo', '2019-01-30 14:19:31', 'apollo', '2019-01-30 14:19:31'),
+	(27, '20190130142012-8f408ce0a36c024e', '20190130142011-release', '', 'dubbo-app-schedule', 'default', 'application', '{"dubbo.application.id":"dubbo-app-schedule","spring.datasource.druid.test-On-Borrow":"false","dubbo.registry.id":"my-registry","spring.datasource.druid.time-Between-Eviction-Runs-Millis":"60000","spring.redis.host":"127.0.0.1","regCenter.namespace":"elastic-job-lite-springboot","spring.datasource.druid.max-Active":"20","configLocation":"classpath:mybatis-config.xml","spring.datasource.druid.validation-Query":"SELECT 1 FROM DUAL","spring.datasource.druid.test-On-Return":"false","spring.datasource.driver-class-name":"com.mysql.jdbc.Driver","mybatis.mapper-locations":"classpath:mapping/*/*.xml","spring.datasource.druid.max-Wait":"60000","dubbo.registry.address":"zookeeper://127.0.0.1:2181","regCenter.serverList":"localhost:2181","spring.datasource.druid.min-Idle":"5","server.port":"8085","spring.datasource.druid.filters":"stat,wall,logback","simpleJob.cron":"0/5 * * * * ?","spring.datasource.druid.test-While-Idle":"true","spring.redis.password":"","dubbo.protocol.name":"dubbo","spring.datasource.druid.initial-Size":"5","server.context-path":"/dubbo-app-schedule","spring.redis.port":"6379","dubbo.application.name":"dubbo-app-schedule","dubbo.protocol.id":"dubbo","spring.datasource.password":"root","spring.datasource.username":"root","dubbo.scan.basePackages":"com.wangsong","spring.datasource.druid.min-Evictable-Idle-Time-Millis":"300000","spring.datasource.url":"jdbc:mysql://localhost:3306/dubbo-app?useUnicode\\u003dtrue\\u0026characterEncoding\\u003dutf-8","dubbo.protocol.port":"20882","simpleJob.shardingItemParameters":"0\\u003dBeijing,1\\u003dShanghai,2\\u003dGuangzhou","simpleJob.shardingTotalCount":"3"}', b'0', b'0', 'apollo', '2019-01-30 14:20:13', 'apollo', '2019-01-30 14:20:13');
 /*!40000 ALTER TABLE `release` ENABLE KEYS */;
 
 -- 导出  表 apolloconfigdb.releasehistory 结构
@@ -779,9 +795,9 @@ CREATE TABLE IF NOT EXISTS `releasehistory` (
   KEY `IX_Namespace` (`AppId`,`ClusterName`,`NamespaceName`,`BranchName`),
   KEY `IX_ReleaseId` (`ReleaseId`),
   KEY `IX_DataChange_LastTime` (`DataChange_LastTime`)
-) ENGINE=InnoDB AUTO_INCREMENT=30 DEFAULT CHARSET=utf8mb4 COMMENT='发布历史';
+) ENGINE=InnoDB AUTO_INCREMENT=32 DEFAULT CHARSET=utf8mb4 COMMENT='发布历史';
 
--- 正在导出表  apolloconfigdb.releasehistory 的数据：~29 rows (大约)
+-- 正在导出表  apolloconfigdb.releasehistory 的数据：~31 rows (大约)
 /*!40000 ALTER TABLE `releasehistory` DISABLE KEYS */;
 INSERT INTO `releasehistory` (`Id`, `AppId`, `ClusterName`, `NamespaceName`, `BranchName`, `ReleaseId`, `PreviousReleaseId`, `Operation`, `OperationContext`, `IsDeleted`, `DataChange_CreatedBy`, `DataChange_CreatedTime`, `DataChange_LastModifiedBy`, `DataChange_LastTime`) VALUES
 	(1, 'SampleApp', 'default', 'application', 'default', 1, 0, 0, '{}', b'0', 'apollo', '2018-12-30 13:13:37', 'apollo', '2018-12-30 13:13:37'),
@@ -812,7 +828,9 @@ INSERT INTO `releasehistory` (`Id`, `AppId`, `ClusterName`, `NamespaceName`, `Br
 	(26, 'dubbo-app-system', 'default', 'application', 'default', 22, 6, 0, '{"isEmergencyPublish":false}', b'0', 'apollo', '2019-01-30 09:36:02', 'apollo', '2019-01-30 09:36:02'),
 	(27, 'dubbo-app-zuul', 'default', 'application', 'default', 23, 21, 0, '{"isEmergencyPublish":false}', b'0', 'apollo', '2019-01-30 09:37:05', 'apollo', '2019-01-30 09:37:05'),
 	(28, 'dubbo-app-zuul', 'default', 'application', 'default', 24, 23, 0, '{"isEmergencyPublish":false}', b'0', 'apollo', '2019-01-30 09:39:36', 'apollo', '2019-01-30 09:39:36'),
-	(29, 'dubbo-app-zuul', 'default', 'application', 'default', 25, 24, 0, '{"isEmergencyPublish":false}', b'0', 'apollo', '2019-01-30 09:41:05', 'apollo', '2019-01-30 09:41:05');
+	(29, 'dubbo-app-zuul', 'default', 'application', 'default', 25, 24, 0, '{"isEmergencyPublish":false}', b'0', 'apollo', '2019-01-30 09:41:05', 'apollo', '2019-01-30 09:41:05'),
+	(30, 'dubbo-app-system', 'default', 'application', 'default', 26, 22, 0, '{"isEmergencyPublish":false}', b'0', 'apollo', '2019-01-30 14:19:31', 'apollo', '2019-01-30 14:19:31'),
+	(31, 'dubbo-app-schedule', 'default', 'application', 'default', 27, 4, 0, '{"isEmergencyPublish":false}', b'0', 'apollo', '2019-01-30 14:20:13', 'apollo', '2019-01-30 14:20:13');
 /*!40000 ALTER TABLE `releasehistory` ENABLE KEYS */;
 
 -- 导出  表 apolloconfigdb.releasemessage 结构
@@ -823,14 +841,14 @@ CREATE TABLE IF NOT EXISTS `releasemessage` (
   PRIMARY KEY (`Id`),
   KEY `DataChange_LastTime` (`DataChange_LastTime`),
   KEY `IX_Message` (`Message`(191))
-) ENGINE=InnoDB AUTO_INCREMENT=29 DEFAULT CHARSET=utf8mb4 COMMENT='发布消息';
+) ENGINE=InnoDB AUTO_INCREMENT=31 DEFAULT CHARSET=utf8mb4 COMMENT='发布消息';
 
 -- 正在导出表  apolloconfigdb.releasemessage 的数据：~3 rows (大约)
 /*!40000 ALTER TABLE `releasemessage` DISABLE KEYS */;
 INSERT INTO `releasemessage` (`Id`, `Message`, `DataChange_LastTime`) VALUES
-	(3, 'dubbo-app-schedule+default+application', '2018-12-30 14:08:59'),
-	(25, 'dubbo-app-system+default+application', '2019-01-30 09:36:02'),
-	(28, 'dubbo-app-zuul+default+application', '2019-01-30 09:41:05');
+	(28, 'dubbo-app-zuul+default+application', '2019-01-30 09:41:05'),
+	(29, 'dubbo-app-system+default+application', '2019-01-30 14:19:31'),
+	(30, 'dubbo-app-schedule+default+application', '2019-01-30 14:20:13');
 /*!40000 ALTER TABLE `releasemessage` ENABLE KEYS */;
 
 -- 导出  表 apolloconfigdb.serverconfig 结构
