@@ -40,7 +40,7 @@
 - 4.启动zookeeper
 - 5.启动redis
 - 6.启动dubbo-app-system位置com.wangsong.Application
-- 7.将https://gitee.com/vmaps/app-ui放入dubbo-app-zuul\src\main\resources\static\html 更改对应include.js
+- 7.将https://github.com/vmaps3/admin-ui 放入dubbo-app-zuul\src\main\resources\ 更改对应include.js
 - 8.启动dubbo-app-zuul
 - 9.访问dubbo-app-zuul端口/html/login.html
 
