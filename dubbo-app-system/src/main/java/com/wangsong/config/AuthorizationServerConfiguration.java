@@ -1,7 +1,6 @@
 package com.wangsong.config;
 
 import com.alibaba.dubbo.config.annotation.Reference;
-import com.wangsong.system.dubbo.SystemApiService;
 import com.wangsong.system.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;

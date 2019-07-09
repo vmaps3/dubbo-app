@@ -2,11 +2,7 @@ package com.wangsong.schedule.controller;
 
 
 import com.alibaba.dubbo.config.annotation.Reference;
-import com.wangsong.system.dubbo.SystemApiService;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.cache.annotation.CacheEvict;
-import org.springframework.cache.annotation.CachePut;
-import org.springframework.cache.annotation.Cacheable;
+import com.wangsong.system.rpc.SystemApiService;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -27,6 +23,7 @@ public class ScheduleJobController {
 
     @Reference(check = false)
     private SystemApiService systemApiService;
+
     /**
      * 获取定时任务 json
      */
