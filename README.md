@@ -35,14 +35,12 @@
 ## 部署
 
 - 1.导入数据库脚本dubbo-app-sql下sql文件（包含配置中心配置）
-- 2.安装nginx配置参考nginx.txt
-- 3.启动apollo（详情参考官方）
-- 4.启动zookeeper
-- 5.启动redis
-- 6.启动dubbo-app-system位置com.wangsong.Application
-- 7.将https://github.com/vmaps3/admin-ui 放入dubbo-app-zuul\src\main\resources\ 更改对应include.js
-- 8.启动dubbo-app-zuul
-- 9.访问dubbo-app-zuul端口/html/login.html
+- 2.启动apollo（详情参考官方）
+- 3.启动zookeeper
+- 4.启动redis
+- 5.启动dubbo-app-system
+- 6.启动dubbo-app-zuul
+- 7.访问http://127.0.0.1:1101/html/login.html
 
 ## qq交流群
 
