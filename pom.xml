@@ -11,7 +11,7 @@
         <module>system-api</module>
         <module>system</module>
         <module>schedule</module>
-        <module>zuul</module>
+        <module>gateway</module>
     </modules>
     <modelVersion>4.0.0</modelVersion>
     <groupId>com.wangsong</groupId>
