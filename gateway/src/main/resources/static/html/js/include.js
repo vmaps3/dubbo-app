@@ -3,7 +3,8 @@
 //var htmlURL = url+ "/html" ;
 
 //dubbo-app
-var url = "/";
+var url = "/system";
+var url = "/system";
 var htmlURL = "/html";
 
 //springcloud-app

@@ -6,8 +6,8 @@ import com.wangsong.common.model.CodeEnum;
 import com.wangsong.common.model.Result;
 import com.wangsong.system.model.Resources;
 import com.wangsong.system.model.User;
-import com.wangsong.system.model.UserDO;
 import com.wangsong.system.service.ResourcesService;
+import com.wangsong.system.service.UserService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiImplicitParams;
@@ -15,7 +15,6 @@ import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -27,7 +26,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 public class ResourcesController extends BaseController {
     @Autowired
     private ResourcesService resourcesService;
-
+    @Autowired
+    private UserService userService;
     @ApiOperation(value = "增加", httpMethod = "POST")
     @PreAuthorize("hasAuthority('/system/resources/add')")
     @RequestMapping(value = "/add")
@@ -39,7 +39,7 @@ public class ResourcesController extends BaseController {
 
     @ApiOperation(value = "删除", httpMethod = "POST")
     @ApiImplicitParams({
-            @ApiImplicitParam(name = "id", value = "id", paramType = "form"),
+        @ApiImplicitParam(name = "id", value = "id", paramType = "form"),
     })
     @PreAuthorize("hasAuthority('/system/resources/delete')")
     @RequestMapping(value = "/delete")
@@ -72,16 +72,18 @@ public class ResourcesController extends BaseController {
     @RequestMapping(value = "/findResourcesEMUByResources")
     @ResponseBody
     public Result findResourcesEMUByResources() {
-        UserDetails userDetails = (UserDetails) SecurityContextHolder.getContext()
-                .getAuthentication()
-                .getPrincipal();
-        String id= ((UserDO)userDetails).getId();
-        return new Result(CodeEnum.SUCCESS.getCode(), resourcesService.findResourcesEMUByResources(id));
+        String userDetails = (String) SecurityContextHolder.getContext()
+            .getAuthentication()
+            .getPrincipal();
+        User u=new User();
+        u.setUsername(userDetails);
+        User tByT = userService.findTByT(u);
+        return new Result(CodeEnum.SUCCESS.getCode(), resourcesService.findResourcesEMUByResources(tByT.getId()));
     }
 
     @ApiOperation(value = "单条", httpMethod = "POST")
     @ApiImplicitParams({
-            @ApiImplicitParam(name = "id", value = "id", paramType = "form"),
+        @ApiImplicitParam(name = "id", value = "id", paramType = "form"),
     })
     @RequestMapping(value = "/selectByPrimaryKey")
     @ResponseBody
