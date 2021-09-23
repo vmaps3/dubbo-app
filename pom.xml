@@ -117,7 +117,11 @@
                 <artifactId>mybatis-plus-boot-starter</artifactId>
                 <version>3.4.3.3</version>
             </dependency>
-
+            <dependency>
+                <groupId>com.baomidou</groupId>
+                <artifactId>mybatis-plus-generator</artifactId>
+                <version>3.4.1</version>
+            </dependency>
             <!-- https://mvnrepository.com/artifact/org.freemarker/freemarker -->
             <dependency>
                 <groupId>org.freemarker</groupId>
