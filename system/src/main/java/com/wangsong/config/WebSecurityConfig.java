@@ -1,7 +1,7 @@
 package com.wangsong.config;
 
 
-import com.wangsong.system.service.UserService;
+import com.wangsong.system.service.IUserService;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
@@ -19,11 +19,10 @@ import org.springframework.util.DigestUtils;
 @EnableGlobalMethodSecurity(prePostEnabled = true,securedEnabled =true)//激活方法上的PreAuthorize注解
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
-  private UserService userService;
+  private IUserService userService;
 
 
-
-  public WebSecurityConfig(UserService userService) {
+  public WebSecurityConfig(IUserService userService) {
     this.userService = userService;
   }
 
@@ -31,7 +30,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
   protected void configure(HttpSecurity http) throws Exception {
     http.headers().frameOptions().disable();
     http.cors().and().csrf().disable().authorizeRequests()
-        .antMatchers("/html/**","/login").permitAll()
+        .antMatchers("/html/**","/api/**","/hystrix.stream","/actuator/health").permitAll()
         .anyRequest().authenticated()
         .and()
         .addFilter(new JWTLoginFilter(authenticationManager(),userService))

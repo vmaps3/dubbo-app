@@ -1,7 +1,7 @@
 package com.wangsong.system.vo;
 
-import com.wangsong.system.model.User;
-import com.wangsong.system.model.UserRole;
+import com.wangsong.system.entity.User;
+import com.wangsong.system.entity.UserRole;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;

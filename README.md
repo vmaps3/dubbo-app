@@ -1,8 +1,8 @@
-# spring-cloud-alibaba-rbac
+# dubbo-app
 
 ## 系统介绍
 
-- spring-cloud-alibaba-rbac 是J2EE集群分布式基础开发平台，技术栈包括：spring-cloud-alibaba,dubbo、nacos，zuul、SpringBoot，MyBatis、Spring-Security业务模块包括：用户管理，角色管理、权限管理，字典管理，定时任务。
+- dubbo-app 是J2EE集群分布式基础开发平台，技术栈包括：spring-cloud-alibaba,dubbo、nacos，zuul、SpringBoot，MyBatis、Spring-Security业务模块包括：用户管理，角色管理、权限管理，字典管理，定时任务。
 
 ## 业务功能
 
