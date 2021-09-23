@@ -16,6 +16,144 @@
 CREATE DATABASE IF NOT EXISTS `dubbo-app` /*!40100 DEFAULT CHARACTER SET utf8 */;
 USE `dubbo-app`;
 
+-- 导出  表 dubbo-app.customer_user_amount 结构
+CREATE TABLE IF NOT EXISTS `customer_user_amount` (
+  `id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `user_id` bigint(20) NOT NULL DEFAULT '0',
+  `amount` bigint(20) NOT NULL DEFAULT '0',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- 正在导出表  dubbo-app.customer_user_amount 的数据：~0 rows (大约)
+/*!40000 ALTER TABLE `customer_user_amount` DISABLE KEYS */;
+/*!40000 ALTER TABLE `customer_user_amount` ENABLE KEYS */;
+
+-- 导出  表 dubbo-app.customer_user_amount_history 结构
+CREATE TABLE IF NOT EXISTS `customer_user_amount_history` (
+  `id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `user_id` bigint(20) DEFAULT NULL,
+  `type` int(11) DEFAULT NULL,
+  `amount` decimal(10,0) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- 正在导出表  dubbo-app.customer_user_amount_history 的数据：~0 rows (大约)
+/*!40000 ALTER TABLE `customer_user_amount_history` DISABLE KEYS */;
+/*!40000 ALTER TABLE `customer_user_amount_history` ENABLE KEYS */;
+
+-- 导出  表 dubbo-app.order 结构
+CREATE TABLE IF NOT EXISTS `order` (
+  `id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `user_id` bigint(20) NOT NULL DEFAULT '0',
+  `state` int(11) DEFAULT NULL COMMENT '1未支付，2已支付，3取消支付',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- 正在导出表  dubbo-app.order 的数据：~0 rows (大约)
+/*!40000 ALTER TABLE `order` DISABLE KEYS */;
+/*!40000 ALTER TABLE `order` ENABLE KEYS */;
+
+-- 导出  表 dubbo-app.order_details 结构
+CREATE TABLE IF NOT EXISTS `order_details` (
+  `id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `order_id` bigint(20) NOT NULL DEFAULT '0',
+  `spu_sku_id` bigint(20) NOT NULL DEFAULT '0',
+  `quantity` int(11) NOT NULL DEFAULT '0',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- 正在导出表  dubbo-app.order_details 的数据：~0 rows (大约)
+/*!40000 ALTER TABLE `order_details` DISABLE KEYS */;
+/*!40000 ALTER TABLE `order_details` ENABLE KEYS */;
+
+-- 导出  表 dubbo-app.spu 结构
+CREATE TABLE IF NOT EXISTS `spu` (
+  `id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `spu_type_id` bigint(20) NOT NULL DEFAULT '0',
+  `user_id` bigint(20) NOT NULL DEFAULT '0',
+  `name` varchar(50) NOT NULL DEFAULT '0',
+  `version` int(11) NOT NULL DEFAULT '0',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- 正在导出表  dubbo-app.spu 的数据：~0 rows (大约)
+/*!40000 ALTER TABLE `spu` DISABLE KEYS */;
+/*!40000 ALTER TABLE `spu` ENABLE KEYS */;
+
+-- 导出  表 dubbo-app.spu_sku 结构
+CREATE TABLE IF NOT EXISTS `spu_sku` (
+  `id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `spu_id` bigint(20) NOT NULL DEFAULT '0',
+  `stock` int(11) NOT NULL DEFAULT '0',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- 正在导出表  dubbo-app.spu_sku 的数据：~0 rows (大约)
+/*!40000 ALTER TABLE `spu_sku` DISABLE KEYS */;
+/*!40000 ALTER TABLE `spu_sku` ENABLE KEYS */;
+
+-- 导出  表 dubbo-app.spu_sku_stock_history 结构
+CREATE TABLE IF NOT EXISTS `spu_sku_stock_history` (
+  `id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `spu_sku_id` bigint(20) NOT NULL DEFAULT '0',
+  `stock` int(11) NOT NULL DEFAULT '0',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- 正在导出表  dubbo-app.spu_sku_stock_history 的数据：~0 rows (大约)
+/*!40000 ALTER TABLE `spu_sku_stock_history` DISABLE KEYS */;
+/*!40000 ALTER TABLE `spu_sku_stock_history` ENABLE KEYS */;
+
+-- 导出  表 dubbo-app.spu_type 结构
+CREATE TABLE IF NOT EXISTS `spu_type` (
+  `id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `name` varchar(50) NOT NULL DEFAULT '0',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- 正在导出表  dubbo-app.spu_type 的数据：~0 rows (大约)
+/*!40000 ALTER TABLE `spu_type` DISABLE KEYS */;
+/*!40000 ALTER TABLE `spu_type` ENABLE KEYS */;
+
+-- 导出  表 dubbo-app.spu_type_attributes 结构
+CREATE TABLE IF NOT EXISTS `spu_type_attributes` (
+  `id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `spu_type_id` bigint(20) NOT NULL DEFAULT '0',
+  `name` varchar(50) NOT NULL DEFAULT '0',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- 正在导出表  dubbo-app.spu_type_attributes 的数据：~0 rows (大约)
+/*!40000 ALTER TABLE `spu_type_attributes` DISABLE KEYS */;
+/*!40000 ALTER TABLE `spu_type_attributes` ENABLE KEYS */;
+
+-- 导出  表 dubbo-app.spu_type_attributes_value 结构
+CREATE TABLE IF NOT EXISTS `spu_type_attributes_value` (
+  `id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `type` int(11) NOT NULL DEFAULT '0',
+  `spu_id` bigint(20) NOT NULL DEFAULT '0',
+  `sku_id` bigint(20) NOT NULL DEFAULT '0',
+  `spu_type_attributes_id` bigint(20) NOT NULL DEFAULT '0',
+  `spu_type_value_id` varchar(50) NOT NULL DEFAULT '0',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- 正在导出表  dubbo-app.spu_type_attributes_value 的数据：~0 rows (大约)
+/*!40000 ALTER TABLE `spu_type_attributes_value` DISABLE KEYS */;
+/*!40000 ALTER TABLE `spu_type_attributes_value` ENABLE KEYS */;
+
+-- 导出  表 dubbo-app.spu_type_value 结构
+CREATE TABLE IF NOT EXISTS `spu_type_value` (
+  `id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `spu_type_attributes_id` bigint(20) NOT NULL DEFAULT '0',
+  `value` varchar(50) NOT NULL DEFAULT '0',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- 正在导出表  dubbo-app.spu_type_value 的数据：~0 rows (大约)
+/*!40000 ALTER TABLE `spu_type_value` DISABLE KEYS */;
+/*!40000 ALTER TABLE `spu_type_value` ENABLE KEYS */;
+
 -- 导出  表 dubbo-app.system_resources 结构
 CREATE TABLE IF NOT EXISTS `system_resources` (
   `id` bigint(20) NOT NULL AUTO_INCREMENT,
