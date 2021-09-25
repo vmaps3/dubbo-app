@@ -20,6 +20,8 @@
 
 		$(function(){
 			var json=[{"text": "菜单","children":[]}];
+
+
 			if(getResources("/system")){
 			    var system={"text": "系统管理","children":[]};
                 if(getResources("/system/user")){
@@ -38,6 +40,12 @@
                 json[0].children.push(system);
               
 			}
+
+
+			var order={"text": "订单管理","children":[]};
+			order.children.push({"text": "商品管理","attributes": {"url": "/order/products/list.html"}});
+            json[0].children.push(order);
+
             $('#tree').tree({
 				data: json,
 			 	onClick: function(node){

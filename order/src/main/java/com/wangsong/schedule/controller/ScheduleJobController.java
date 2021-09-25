@@ -39,7 +39,7 @@ public class ScheduleJobController {
     @ResponseBody
     public Object add(String text) {
 
-        return systemApiService.getUser(text);
+        return systemApiService.getUserId(text);
     }
 
 

@@ -17,7 +17,7 @@ public class UserDO implements Serializable {
     long serialVersionUID = -1390703452625033155L;
 
     @ApiModelProperty(value = "id")
-    private String id;
+    private Long id;
     @ApiModelProperty(value = "账户名")
     private String username;
     @ApiModelProperty(value = "密码")

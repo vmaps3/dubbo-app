@@ -2,10 +2,12 @@ package com.wangsong.system.model;
 
 import cn.hutool.core.util.StrUtil;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.ToString;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
+import java.io.Serializable;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.HashSet;
@@ -16,15 +18,17 @@ import java.util.Set;
  */
 @Getter
 @ToString
-public class CustomUserDetails extends UserDO implements UserDetails {
+@NoArgsConstructor
+public class CustomUserDetails extends UserDO implements UserDetails, Serializable {
 
     private static final long serialVersionUID = 1702923242319850756L;
 
-    private final boolean enabled;
-    private final boolean accountNonExpired;
-    private final boolean credentialsNonExpired;
-    private final boolean accountNonLocked;
-    private final Set<GrantedAuthority> authorities;
+    private boolean enabled;
+    private boolean accountNonExpired;
+    private boolean credentialsNonExpired;
+    private boolean accountNonLocked;
+    private Set<GrantedAuthority> authorities;
+
 
     public CustomUserDetails(UserDO user, boolean enabled, boolean accountNonExpired, boolean credentialsNonExpired, boolean accountNonLocked, Collection<? extends GrantedAuthority> authorities) {
         if (user != null

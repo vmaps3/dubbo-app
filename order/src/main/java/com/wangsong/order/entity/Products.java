@@ -1,13 +1,10 @@
-package com.wangsong.system.entity;
+package com.wangsong.order.entity;
 
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableId;
-import com.baomidou.mybatisplus.annotation.TableName;
+import java.io.Serializable;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
-
-import java.io.Serializable;
-import java.math.BigDecimal;
 
 /**
  * <p>
@@ -15,22 +12,22 @@ import java.math.BigDecimal;
  * </p>
  *
  * @author jobob
- * @since 2021-09-18
+ * @since 2021-09-25
  */
 @Data
 @EqualsAndHashCode(callSuper = false)
-@TableName("system_user")
-public class User implements Serializable {
+public class Products implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
     @TableId(value = "id", type = IdType.AUTO)
     private Long id;
 
-    private String username;
+    private Long userId;
 
-    private String password;
+    private String name;
 
-    private BigDecimal amount;
+    private Integer stock;
+
 
 }

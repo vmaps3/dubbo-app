@@ -15,6 +15,7 @@ import com.wangsong.system.entity.User;
 import com.wangsong.system.entity.UserRole;
 import com.wangsong.system.mapper.UserMapper;
 import com.wangsong.system.model.CustomUserDetails;
+import com.wangsong.system.model.ResourcesDO;
 import com.wangsong.system.model.UserDO;
 import com.wangsong.system.service.IResourcesService;
 import com.wangsong.system.service.IRoleResourcesService;
@@ -175,11 +176,16 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements IU
         queryWrapper4.eq("type", 2);
         queryWrapper4.orderByAsc("sort");
         List<Resources> resourcesList = resourcesService.list(queryWrapper4);
-
+        List<ResourcesDO> resourcesDOList=new ArrayList<>();
+        for(Resources resources :resourcesList){
+            ResourcesDO resourcesDO=new ResourcesDO();
+            BeanUtils.copyProperties(resources,resourcesDO);
+            resourcesDOList.add(resourcesDO);
+        }
         UserDO userDO = new UserDO();
         BeanUtils.copyProperties(user, userDO);
         // Not involve authorities, so pass null to authorities
-        return new CustomUserDetails(userDO, true, true, true, true, resourcesList);
+        return new CustomUserDetails(userDO, true, true, true, true, resourcesDOList);
 
     }
 

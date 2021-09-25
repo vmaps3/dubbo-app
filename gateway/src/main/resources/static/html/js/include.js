@@ -4,7 +4,7 @@
 
 //dubbo-app
 var url = "/system";
-var url = "/system";
+var orderUrl = "/order";
 var htmlURL = "/html";
 
 //springcloud-app
