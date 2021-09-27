@@ -28,7 +28,7 @@
 
 				$.ajax({
 					 url:orderUrl+'/order/products/selectByPrimaryKey',
-					 type:'post',
+					 type:'get',
 					 data:'id='+getQueryString("id"),
 					 success:function(data){
 						var v=data.data;

@@ -2,13 +2,16 @@ package com.wangsong.order.entity;
 
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableId;
+
 import java.io.Serializable;
+import java.math.BigDecimal;
+
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
 /**
  * <p>
- * 
+ *
  * </p>
  *
  * @author jobob
@@ -28,6 +31,6 @@ public class Products implements Serializable {
     private String name;
 
     private Integer stock;
-
+    private BigDecimal amount;
 
 }

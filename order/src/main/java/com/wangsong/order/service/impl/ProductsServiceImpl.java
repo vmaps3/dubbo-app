@@ -35,11 +35,13 @@ public class ProductsServiceImpl extends ServiceImpl<ProductsMapper, Products> i
 
     @Reference(check = false)
     private SystemApiService systemApiService;
-    
+
     @Override
     @Transactional
     public void add(Products products, String userDetails) {
-        Result<UserDO> userId = systemApiService.getUserId(userDetails);
+        UserDO userDO = new UserDO();
+        userDO.setUsername(userDetails);
+        Result<UserDO> userId = systemApiService.getUser(userDO);
         products.setUserId(userId.getData().getId());
         save(products);
         ProductsHistory productsHistory = new ProductsHistory();

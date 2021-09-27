@@ -7,6 +7,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.io.Serializable;
+import java.math.BigDecimal;
 
 @Data
 @NoArgsConstructor
@@ -23,4 +24,5 @@ public class UserDO implements Serializable {
     @ApiModelProperty(value = "密码")
     private String password;
 
+    private BigDecimal amount;
 }
