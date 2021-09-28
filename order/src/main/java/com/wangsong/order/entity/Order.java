@@ -28,7 +28,7 @@ public class Order implements Serializable {
     private Long productsId;
 
     /**
-     * 1未支付，2已支付，3取消支付
+     * 1已支付，2已回调，3取消支付
      */
     private Integer state;
 

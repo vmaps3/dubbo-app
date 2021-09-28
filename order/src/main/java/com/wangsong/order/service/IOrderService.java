@@ -16,4 +16,6 @@ public interface IOrderService extends IService<Order> {
 
     @Transactional
     void pay(Long[] productsIds, String username);
+
+    void callback(Long id);
 }

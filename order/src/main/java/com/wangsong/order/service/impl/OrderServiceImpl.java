@@ -51,8 +51,6 @@ public class OrderServiceImpl extends ServiceImpl<OrderMapper, Order> implements
 
         //订单批量
         List<Order> orderList = new ArrayList();
-        List<UserDO> userDOs = new ArrayList();
-        List<Map> userAmountHistorys = new ArrayList();
 
         //总价
         BigDecimal amount = new BigDecimal(0);
@@ -75,23 +73,10 @@ public class OrderServiceImpl extends ServiceImpl<OrderMapper, Order> implements
             Order order = new Order();
             order.setProductsId(product.getId());
             order.setUserId(user1.getId());
-            order.setState(0);
+            order.setState(1);
             orderList.add(order);
 
-            //卖家信息
-            UserDO userDO2 = new UserDO();
-            userDO2.setId(product.getUserId());
-            Result<UserDO> userResult2 = systemApiService.getUser(userDO2);
-            UserDO user2 = userResult2.getData();
 
-            //卖家增加金额
-            user2.setAmount(user2.getAmount().add(product.getAmount()));
-            userDOs.add(user2);
-
-            Map<String, Object> map = new HashMap<>();
-            map.put("userId", user2.getId());
-            map.put("amount", product.getAmount());
-            userAmountHistorys.add(map);
         }
 
         //检查买家余额
@@ -103,22 +88,47 @@ public class OrderServiceImpl extends ServiceImpl<OrderMapper, Order> implements
         user1.setAmount(user1.getAmount().subtract(amount));
         //更新买家用户
         systemApiService.updateUser(ListUtil.toList(user1));
-        //更新卖家用户
-        systemApiService.updateUser(userDOs);
+
 
         //买家金额记录
         systemApiService.saveUserAmountHistory(user1.getId(), amount.multiply(new BigDecimal(-1)));
 
-        //卖家金额记录
-        for (Map<String, Object> map : userAmountHistorys) {
-            systemApiService.saveUserAmountHistory(Convert.toLong(map.get("userId")), Convert.toBigDecimal(map.get("amount")));
-
-        }
 
         //订单
         saveBatch(orderList);
 
         //更新产品库存
         productsService.updateBatchById(products);
+    }
+
+    @Override
+    @Transactional
+    public void callback(Long id) {
+
+        Order order = getById(id);
+        order.setState(2);
+
+        Products products = productsService.getById(order.getProductsId());
+
+
+        //卖家信息
+        UserDO userDO2 = new UserDO();
+        userDO2.setId(products.getUserId());
+        Result<UserDO> userResult2 = systemApiService.getUser(userDO2);
+        UserDO user2 = userResult2.getData();
+
+        //卖家增加金额
+        user2.setAmount(user2.getAmount().add(products.getAmount()));
+
+        //更新卖家用户
+        systemApiService.updateUser(ListUtil.toList(user2));
+
+
+        //卖家金额记录
+        systemApiService.saveUserAmountHistory(user2.getId(),
+                products.getAmount());
+
+
+        updateById(order);
     }
 }

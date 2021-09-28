@@ -9,18 +9,12 @@ import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.wangsong.common.model.CodeEnum;
 import com.wangsong.common.model.GetEasyUIData;
-import com.wangsong.system.entity.Resources;
-import com.wangsong.system.entity.RoleResources;
-import com.wangsong.system.entity.User;
-import com.wangsong.system.entity.UserRole;
+import com.wangsong.system.entity.*;
 import com.wangsong.system.mapper.UserMapper;
 import com.wangsong.system.model.CustomUserDetails;
 import com.wangsong.system.model.ResourcesDO;
 import com.wangsong.system.model.UserDO;
-import com.wangsong.system.service.IResourcesService;
-import com.wangsong.system.service.IRoleResourcesService;
-import com.wangsong.system.service.IUserRoleService;
-import com.wangsong.system.service.IUserService;
+import com.wangsong.system.service.*;
 import com.wangsong.system.vo.UserAddModel;
 import com.wangsong.system.vo.UserPage;
 import com.wangsong.system.vo.UserVO;
@@ -51,6 +45,8 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements IU
     private IResourcesService resourcesService;
     @Autowired
     private IRoleResourcesService roleResourcesService;
+    @Autowired
+    private IUserAmountHistoryService userAmountHistoryService;
 
     @Override
     public GetEasyUIData list(UserPage user) {
@@ -69,6 +65,11 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements IU
         Long[] roleIds = user.getRoleId();
         user.setPassword(DigestUtil.md5Hex(user.getPassword()));
         save(user);
+        UserAmountHistory userAmountHistory = new UserAmountHistory();
+        userAmountHistory.setAmount(user.getAmount());
+        userAmountHistory.setUserId(user.getId());
+        userAmountHistory.setType(1);
+        userAmountHistoryService.save(userAmountHistory);
         if (roleIds == null) {
             return;
         }
@@ -91,7 +92,16 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements IU
         } else {
             user.setPassword(null);
         }
+        User user2 = getById(user.getId());
         updateById(user);
+
+        UserAmountHistory userAmountHistory = new UserAmountHistory();
+        userAmountHistory.setAmount(user.getAmount().subtract(user2.getAmount()));
+        userAmountHistory.setUserId(user.getId());
+        userAmountHistory.setType(1);
+        userAmountHistoryService.save(userAmountHistory);
+
+
         UpdateWrapper updateWrapper = new UpdateWrapper();
         updateWrapper.eq("user_id", user.getId());
         userRoleMapper.remove(updateWrapper);
@@ -176,10 +186,10 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements IU
         queryWrapper4.eq("type", 2);
         queryWrapper4.orderByAsc("sort");
         List<Resources> resourcesList = resourcesService.list(queryWrapper4);
-        List<ResourcesDO> resourcesDOList=new ArrayList<>();
-        for(Resources resources :resourcesList){
-            ResourcesDO resourcesDO=new ResourcesDO();
-            BeanUtils.copyProperties(resources,resourcesDO);
+        List<ResourcesDO> resourcesDOList = new ArrayList<>();
+        for (Resources resources : resourcesList) {
+            ResourcesDO resourcesDO = new ResourcesDO();
+            BeanUtils.copyProperties(resources, resourcesDO);
             resourcesDOList.add(resourcesDO);
         }
         UserDO userDO = new UserDO();
