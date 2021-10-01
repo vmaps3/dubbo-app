@@ -29,10 +29,7 @@ public class ProductsController extends BaseController {
 
     @PostMapping(value = "/add")
     public Result add(Products products) {
-        String userDetails = (String) SecurityContextHolder.getContext()
-                .getAuthentication()
-                .getPrincipal();
-        productsService.add(products,userDetails);
+        productsService.add(products);
 
         return new Result(CodeEnum.SUCCESS.getCode(), null);
     }

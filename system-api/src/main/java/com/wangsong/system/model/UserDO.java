@@ -24,5 +24,4 @@ public class UserDO implements Serializable {
     @ApiModelProperty(value = "密码")
     private String password;
 
-    private BigDecimal amount;
 }

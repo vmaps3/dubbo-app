@@ -45,8 +45,7 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements IU
     private IResourcesService resourcesService;
     @Autowired
     private IRoleResourcesService roleResourcesService;
-    @Autowired
-    private IUserAmountHistoryService userAmountHistoryService;
+
 
     @Override
     public GetEasyUIData list(UserPage user) {
@@ -65,11 +64,7 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements IU
         Long[] roleIds = user.getRoleId();
         user.setPassword(DigestUtil.md5Hex(user.getPassword()));
         save(user);
-        UserAmountHistory userAmountHistory = new UserAmountHistory();
-        userAmountHistory.setAmount(user.getAmount());
-        userAmountHistory.setUserId(user.getId());
-        userAmountHistory.setType(1);
-        userAmountHistoryService.save(userAmountHistory);
+
         if (roleIds == null) {
             return;
         }
@@ -95,11 +90,7 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements IU
         User user2 = getById(user.getId());
         updateById(user);
 
-        UserAmountHistory userAmountHistory = new UserAmountHistory();
-        userAmountHistory.setAmount(user.getAmount().subtract(user2.getAmount()));
-        userAmountHistory.setUserId(user.getId());
-        userAmountHistory.setType(1);
-        userAmountHistoryService.save(userAmountHistory);
+
 
 
         UpdateWrapper updateWrapper = new UpdateWrapper();

@@ -14,8 +14,5 @@ public interface SystemApiService extends UserDetailsService {
 
     Result<UserDO> getUser(UserDO userDO);
 
-    Result updateUser(List<UserDO> userDOs);
-
-    Result saveUserAmountHistory(Long userId,
-                                 BigDecimal amount);
+    void updatePlatformAmount(BigDecimal amount);
 }

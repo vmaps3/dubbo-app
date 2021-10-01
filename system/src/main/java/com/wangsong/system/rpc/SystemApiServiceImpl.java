@@ -4,12 +4,13 @@ package com.wangsong.system.rpc;
 import cn.hutool.core.util.ObjectUtil;
 import cn.hutool.core.util.StrUtil;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
-import com.baomidou.mybatisplus.core.conditions.update.UpdateWrapper;
 import com.wangsong.common.model.Result;
+import com.wangsong.system.entity.PlatformAmount;
+import com.wangsong.system.entity.PlatformHistory;
 import com.wangsong.system.entity.User;
-import com.wangsong.system.entity.UserAmountHistory;
 import com.wangsong.system.model.UserDO;
-import com.wangsong.system.service.IUserAmountHistoryService;
+import com.wangsong.system.service.IPlatformAmountService;
+import com.wangsong.system.service.IPlatformHistoryService;
 import com.wangsong.system.service.IUserService;
 import org.apache.dubbo.config.annotation.Service;
 import org.springframework.beans.BeanUtils;
@@ -28,7 +29,10 @@ public class SystemApiServiceImpl implements SystemApiService {
     private IUserService userService;
 
     @Autowired
-    private IUserAmountHistoryService userAmountHistoryService;
+    private IPlatformAmountService platformAmountService;
+
+    @Autowired
+    private IPlatformHistoryService platformHistoryService;
 
     @Override
     public Result<UserDetails> getUser(String user) {
@@ -59,26 +63,21 @@ public class SystemApiServiceImpl implements SystemApiService {
     }
 
     @Override
-    public Result updateUser(List<UserDO> userDOs) {
-
-        List<User> users = new ArrayList<>();
-        for (UserDO userDO : userDOs) {
-            User user = new User();
-            BeanUtils.copyProperties(userDO, user);
-            users.add(user);
+    public void updatePlatformAmount(BigDecimal amount) {
+        PlatformAmount platformAmount = platformAmountService.getOne(new QueryWrapper<>());
+        if (ObjectUtil.isNull(platformAmount)) {
+            platformAmount = new PlatformAmount();
+            platformAmount.setAmount(amount);
+            platformAmountService.save(platformAmount);
+            PlatformHistory platformHistory=new PlatformHistory();
+            platformHistory.setAmount(amount);
+            platformHistoryService.save(platformHistory);
+            return;
         }
-
-        userService.updateBatchById(users);
-        return new Result("", null);
-    }
-
-    @Override
-    public Result saveUserAmountHistory(Long userId,
-                                        BigDecimal amount) {
-        UserAmountHistory userAmountHistory = new UserAmountHistory();
-        userAmountHistory.setUserId(userId);
-        userAmountHistory.setAmount(amount);
-        userAmountHistoryService.save(userAmountHistory);
-        return new Result("", null);
+        platformAmount.setAmount(platformAmount.getAmount().add(amount));
+        platformAmountService.updateById(platformAmount);
+        PlatformHistory platformHistory=new PlatformHistory();
+        platformHistory.setAmount(amount);
+        platformHistoryService.save(platformHistory);
     }
 }

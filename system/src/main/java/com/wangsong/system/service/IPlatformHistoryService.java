@@ -1,7 +1,7 @@
 package com.wangsong.system.service;
 
-import com.wangsong.system.entity.UserAmountHistory;
 import com.baomidou.mybatisplus.extension.service.IService;
+import com.wangsong.system.entity.PlatformHistory;
 
 /**
  * <p>
@@ -9,8 +9,8 @@ import com.baomidou.mybatisplus.extension.service.IService;
  * </p>
  *
  * @author jobob
- * @since 2021-09-25
+ * @since 2021-10-01
  */
-public interface IUserAmountHistoryService extends IService<UserAmountHistory> {
+public interface IPlatformHistoryService extends IService<PlatformHistory> {
 
 }

@@ -1,7 +1,7 @@
 package com.wangsong.system.mapper;
 
-import com.wangsong.system.entity.UserAmountHistory;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import com.wangsong.system.entity.PlatformHistory;
 
 /**
  * <p>
@@ -9,8 +9,8 @@ import com.baomidou.mybatisplus.core.mapper.BaseMapper;
  * </p>
  *
  * @author jobob
- * @since 2021-09-25
+ * @since 2021-10-01
  */
-public interface UserAmountHistoryMapper extends BaseMapper<UserAmountHistory> {
+public interface PlatformHistoryMapper extends BaseMapper<PlatformHistory> {
 
 }

@@ -31,6 +31,4 @@ public class User implements Serializable {
 
     private String password;
 
-    private BigDecimal amount;
-
 }

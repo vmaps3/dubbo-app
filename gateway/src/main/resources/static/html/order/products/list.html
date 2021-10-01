@@ -9,16 +9,13 @@
 function del(){
 	var row = $("#dg").datagrid('getSelections');
 	if(row.length!=0) {
-		 $.messager.confirm("确认", "确认删除吗？", function (r) {
+		 $.messager.confirm("确认", "确认购买吗？", function (r) {
             if (r) {
-                var myArray=new Array();
-                for(var i=0;i<row.length;i++){
-                    myArray.push(row[i].id);
-                }
+
                 $.ajax({
-                     url:orderUrl+'/order/products/delete',
+                     url:orderUrl+'/order/order/pay',
                      type:'post',
-                     data:"id="+myArray,
+                     data:"id="+row[0].id,
                      success:function(data){
                          if(data.result=="success"){
                             window.location=htmlURL+"/order/products/list.html";
@@ -89,10 +86,10 @@ $(function(){
        rownumbers="true" fitColumns="true" singleSelect="false">
     <thead>
     <tr>
-        <th field="" data-options="checkbox:true"></th>
+        <th field="" data-options="checkbox:false"></th>
         <th field="name" width="50">名称</th>
         <th field="stock" width="50">库存</th>
-        <th field="userId" width="50">账号id</th>
+        <th field="amount" width="50">价格</th>
 
     </tr>
     </thead>
@@ -107,7 +104,7 @@ $(function(){
        onclick="add()">新增</a>
     <a id="update" href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-edit" plain="true" onclick="upd()">编辑</a>
     <a id="delete" href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-remove" plain="true"
-       onclick="del()">删除</a>
+       onclick="del()">购买</a>
 </div>
 </body>
 </html>

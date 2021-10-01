@@ -5,7 +5,6 @@ import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.wangsong.common.model.GetEasyUIData;
-import com.wangsong.common.model.Result;
 import com.wangsong.order.entity.Products;
 import com.wangsong.order.entity.ProductsHistory;
 import com.wangsong.order.mapper.ProductsMapper;
@@ -13,12 +12,13 @@ import com.wangsong.order.service.IProductsHistoryService;
 import com.wangsong.order.service.IProductsService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.wangsong.order.vo.ProductsPage;
-import com.wangsong.system.model.UserDO;
 import com.wangsong.system.rpc.SystemApiService;
 import org.apache.dubbo.config.annotation.Reference;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
+import java.math.BigDecimal;
 
 /**
  * <p>
@@ -38,16 +38,16 @@ public class ProductsServiceImpl extends ServiceImpl<ProductsMapper, Products> i
 
     @Override
     @Transactional
-    public void add(Products products, String userDetails) {
-        UserDO userDO = new UserDO();
-        userDO.setUsername(userDetails);
-        Result<UserDO> userId = systemApiService.getUser(userDO);
-        products.setUserId(userId.getData().getId());
+    public void add(Products products) {
         save(products);
         ProductsHistory productsHistory = new ProductsHistory();
         productsHistory.setProductsId(products.getId());
         productsHistory.setStock(products.getStock());
         productsHistoryService.save(productsHistory);
+
+        systemApiService.updatePlatformAmount(products.getAmount().
+                multiply(new BigDecimal(-1).
+                        multiply(new BigDecimal(products.getStock()))));
     }
 
     @Override
@@ -59,6 +59,9 @@ public class ProductsServiceImpl extends ServiceImpl<ProductsMapper, Products> i
         productsHistory.setProductsId(products.getId());
         productsHistory.setStock(products.getStock() - productsOld.getStock());
         productsHistoryService.save(productsHistory);
+        BigDecimal subtract = products.getAmount().multiply(new BigDecimal(products.getStock()))
+                .subtract(productsOld.getAmount().multiply(new BigDecimal(productsOld.getStock())));
+        systemApiService.updatePlatformAmount(subtract.multiply(new BigDecimal(-1)));
 
     }
 

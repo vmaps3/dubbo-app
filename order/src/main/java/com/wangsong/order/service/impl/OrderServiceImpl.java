@@ -1,13 +1,19 @@
 package com.wangsong.order.service.impl;
 
 import cn.hutool.core.collection.ListUtil;
-import cn.hutool.core.convert.Convert;
+import cn.hutool.core.util.StrUtil;
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.baomidou.mybatisplus.core.metadata.IPage;
+import com.wangsong.common.model.GetEasyUIData;
+import com.wangsong.common.model.Page;
 import com.wangsong.common.model.Result;
-import com.wangsong.order.entity.Order;
+import com.wangsong.order.entity.OrderInfo;
 import com.wangsong.order.entity.Products;
+import com.wangsong.order.entity.ProductsHistory;
 import com.wangsong.order.mapper.OrderMapper;
 import com.wangsong.order.service.IOrderService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import com.wangsong.order.service.IProductsHistoryService;
 import com.wangsong.order.service.IProductsService;
 import com.wangsong.system.model.UserDO;
 import com.wangsong.system.rpc.SystemApiService;
@@ -18,9 +24,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 /**
  * <p>
@@ -31,7 +35,7 @@ import java.util.Map;
  * @since 2021-09-25
  */
 @Service
-public class OrderServiceImpl extends ServiceImpl<OrderMapper, Order> implements IOrderService {
+public class OrderServiceImpl extends ServiceImpl<OrderMapper, OrderInfo> implements IOrderService {
 
 
     @Reference(check = false)
@@ -40,95 +44,99 @@ public class OrderServiceImpl extends ServiceImpl<OrderMapper, Order> implements
     @Autowired
     private IProductsService productsService;
 
+    @Autowired
+    private IProductsHistoryService productsHistoryService;
+
     @Override
     @Transactional
-    public void pay(Long[] productsIds, String username) {
+    public void pay(Long id, String username) {
         //买家信息
         UserDO userDO1 = new UserDO();
         userDO1.setUsername(username);
         Result<UserDO> userResult1 = systemApiService.getUser(userDO1);
         UserDO user1 = userResult1.getData();
 
-        //订单批量
-        List<Order> orderList = new ArrayList();
-
-        //总价
-        BigDecimal amount = new BigDecimal(0);
 
         //购买商品列表
-        List<Products> products = productsService.listByIds(ListUtil.toList(productsIds));
-
-        for (Products product : products) {
-            //商品库存不足报错
-            if (product.getStock() < 1) {
-                throw new RuntimeException("库存不足");
-            }
-            //产品库存减一
-            product.setStock(product.getStock() - 1);
-
-            //总金额累加
-            amount.add(product.getAmount());
-
-            //组装订单
-            Order order = new Order();
-            order.setProductsId(product.getId());
-            order.setUserId(user1.getId());
-            order.setState(1);
-            orderList.add(order);
+        Products product = productsService.getById(id);
 
 
+        //商品库存不足报错
+        if (product.getStock() < 1) {
+            throw new RuntimeException("库存不足");
         }
-
-        //检查买家余额
-        if (amount.compareTo(user1.getAmount()) == -1) {
-            throw new RuntimeException("余额不足");
-        }
-
-        //买家减金额
-        user1.setAmount(user1.getAmount().subtract(amount));
-        //更新买家用户
-        systemApiService.updateUser(ListUtil.toList(user1));
+        //产品库存减一
+        product.setStock(product.getStock() - 1);
 
 
-        //买家金额记录
-        systemApiService.saveUserAmountHistory(user1.getId(), amount.multiply(new BigDecimal(-1)));
+        //组装订单
+        OrderInfo order = new OrderInfo();
+        order.setProductsId(product.getId());
+        order.setUserId(user1.getId());
+        order.setState(1);
 
 
         //订单
-        saveBatch(orderList);
+        save(order);
 
         //更新产品库存
-        productsService.updateBatchById(products);
+        productsService.updateById(product);
+
+
     }
 
     @Override
     @Transactional
     public void callback(Long id) {
 
-        Order order = getById(id);
+        OrderInfo order = getById(id);
         order.setState(2);
 
         Products products = productsService.getById(order.getProductsId());
 
 
-        //卖家信息
-        UserDO userDO2 = new UserDO();
-        userDO2.setId(products.getUserId());
-        Result<UserDO> userResult2 = systemApiService.getUser(userDO2);
-        UserDO user2 = userResult2.getData();
-
-        //卖家增加金额
-        user2.setAmount(user2.getAmount().add(products.getAmount()));
-
-        //更新卖家用户
-        systemApiService.updateUser(ListUtil.toList(user2));
-
-
         //卖家金额记录
-        systemApiService.saveUserAmountHistory(user2.getId(),
-                products.getAmount());
+        systemApiService.updatePlatformAmount(products.getAmount());
 
 
         updateById(order);
+
+        ProductsHistory productsHistory = new ProductsHistory();
+        productsHistory.setProductsId(order.getProductsId());
+        productsHistory.setStock(-1);
+        productsHistoryService.save(productsHistory);
+    }
+
+    @Override
+    @Transactional
+    public void timeout(Long id) {
+
+        OrderInfo order = getById(id);
+        order.setState(3);
+
+        Products products = productsService.getById(order.getProductsId());
+        products.setStock(products.getStock() + 1);
+
+        //卖家金额记录
+        //systemApiService.updatePlatformAmount(products.getAmount());
+
+
+        updateById(order);
+        productsService.updateById(products);
+
+        ProductsHistory productsHistory = new ProductsHistory();
+        productsHistory.setProductsId(products.getId());
+        productsHistory.setStock(1);
+        productsHistoryService.save(productsHistory);
+    }
+
+    @Override
+    public GetEasyUIData lists(Page page) {
+        IPage<OrderInfo> page2 = new com.baomidou.mybatisplus.extension.plugins.pagination.Page<>(
+                page.getPage(), page.getRows());
+        QueryWrapper<OrderInfo> queryWrapper = new QueryWrapper();
+
+        IPage<OrderInfo> page1 = page(page2,queryWrapper);
+        return new GetEasyUIData(page1.getRecords(), page1.getTotal());
     }
 }

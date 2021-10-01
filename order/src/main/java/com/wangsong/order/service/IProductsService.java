@@ -15,7 +15,7 @@ import com.wangsong.order.vo.ProductsPage;
  */
 public interface IProductsService extends IService<Products> {
 
-    void add(Products products, String userDetails);
+    void add(Products products);
 
     void updates(Products products);
 

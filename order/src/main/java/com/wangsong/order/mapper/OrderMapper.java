@@ -1,7 +1,7 @@
 package com.wangsong.order.mapper;
 
-import com.wangsong.order.entity.Order;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import com.wangsong.order.entity.OrderInfo;
 
 /**
  * <p>
@@ -11,6 +11,6 @@ import com.baomidou.mybatisplus.core.mapper.BaseMapper;
  * @author jobob
  * @since 2021-09-25
  */
-public interface OrderMapper extends BaseMapper<Order> {
+public interface OrderMapper extends BaseMapper<OrderInfo> {
 
 }

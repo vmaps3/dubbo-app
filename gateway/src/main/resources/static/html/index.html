@@ -44,6 +44,8 @@
 
 			var order={"text": "订单管理","children":[]};
 			order.children.push({"text": "商品管理","attributes": {"url": "/order/products/list.html"}});
+            order.children.push({"text": "订单管理","attributes": {"url": "/order/order/list.html"}});
+
             json[0].children.push(order);
 
             $('#tree').tree({

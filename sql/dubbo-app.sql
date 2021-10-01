@@ -16,35 +16,53 @@
 CREATE DATABASE IF NOT EXISTS `dubbo-app` /*!40100 DEFAULT CHARACTER SET utf8 */;
 USE `dubbo-app`;
 
--- 导出  表 dubbo-app.order 结构
-CREATE TABLE IF NOT EXISTS `order` (
+-- 导出  表 dubbo-app.order_info 结构
+CREATE TABLE IF NOT EXISTS `order_info` (
   `id` bigint(20) NOT NULL AUTO_INCREMENT,
   `user_id` bigint(20) NOT NULL DEFAULT '0',
   `products_id` bigint(20) NOT NULL DEFAULT '0',
-  `state` int(11) DEFAULT NULL COMMENT '1未支付，2已支付，3取消支付',
+  `state` int(11) DEFAULT NULL COMMENT '1已支付，2已回调，3取消支付',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
--- 正在导出表  dubbo-app.order 的数据：~0 rows (大约)
-/*!40000 ALTER TABLE `order` DISABLE KEYS */;
-/*!40000 ALTER TABLE `order` ENABLE KEYS */;
+-- 正在导出表  dubbo-app.order_info 的数据：~0 rows (大约)
+/*!40000 ALTER TABLE `order_info` DISABLE KEYS */;
+/*!40000 ALTER TABLE `order_info` ENABLE KEYS */;
+
+-- 导出  表 dubbo-app.platform_amount 结构
+CREATE TABLE IF NOT EXISTS `platform_amount` (
+  `id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `amount` decimal(10,0) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- 正在导出表  dubbo-app.platform_amount 的数据：~0 rows (大约)
+/*!40000 ALTER TABLE `platform_amount` DISABLE KEYS */;
+/*!40000 ALTER TABLE `platform_amount` ENABLE KEYS */;
+
+-- 导出  表 dubbo-app.platform_history 结构
+CREATE TABLE IF NOT EXISTS `platform_history` (
+  `id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `type` int(11) DEFAULT NULL,
+  `amount` decimal(10,0) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- 正在导出表  dubbo-app.platform_history 的数据：~0 rows (大约)
+/*!40000 ALTER TABLE `platform_history` DISABLE KEYS */;
+/*!40000 ALTER TABLE `platform_history` ENABLE KEYS */;
 
 -- 导出  表 dubbo-app.products 结构
 CREATE TABLE IF NOT EXISTS `products` (
   `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `user_id` bigint(20) NOT NULL DEFAULT '0',
   `name` varchar(50) NOT NULL DEFAULT '0',
   `stock` int(11) NOT NULL DEFAULT '0',
+  `amount` decimal(10,0) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- 正在导出表  dubbo-app.products 的数据：~0 rows (大约)
 /*!40000 ALTER TABLE `products` DISABLE KEYS */;
-INSERT INTO `products` (`id`, `user_id`, `name`, `stock`) VALUES
-	(1, 1, '123', 123),
-	(2, 1, '123', 123),
-	(3, 1, '123', 123),
-	(4, 1, '123', 123);
 /*!40000 ALTER TABLE `products` ENABLE KEYS */;
 
 -- 导出  表 dubbo-app.products_history 结构
@@ -53,15 +71,10 @@ CREATE TABLE IF NOT EXISTS `products_history` (
   `products_id` bigint(20) NOT NULL DEFAULT '0',
   `stock` int(11) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- 正在导出表  dubbo-app.products_history 的数据：~0 rows (大约)
 /*!40000 ALTER TABLE `products_history` DISABLE KEYS */;
-INSERT INTO `products_history` (`id`, `products_id`, `stock`) VALUES
-	(1, 2, 123),
-	(2, 4, 123),
-	(3, 3, 123),
-	(4, 1, 123);
 /*!40000 ALTER TABLE `products_history` ENABLE KEYS */;
 
 -- 导出  表 dubbo-app.system_resources 结构
@@ -145,28 +158,14 @@ CREATE TABLE IF NOT EXISTS `system_user` (
   `id` bigint(20) NOT NULL AUTO_INCREMENT,
   `username` varchar(50) DEFAULT NULL,
   `password` varchar(50) DEFAULT NULL,
-  `amount` decimal(10,0) DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 
 -- 正在导出表  dubbo-app.system_user 的数据：~1 rows (大约)
 /*!40000 ALTER TABLE `system_user` DISABLE KEYS */;
-INSERT INTO `system_user` (`id`, `username`, `password`, `amount`) VALUES
-	(1, 'wangsong', '532da1c5da9fb86bf61b2a63487f300c', NULL);
+INSERT INTO `system_user` (`id`, `username`, `password`) VALUES
+	(1, 'wangsong', '532da1c5da9fb86bf61b2a63487f300c');
 /*!40000 ALTER TABLE `system_user` ENABLE KEYS */;
-
--- 导出  表 dubbo-app.system_user_amount_history 结构
-CREATE TABLE IF NOT EXISTS `system_user_amount_history` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `user_id` bigint(20) DEFAULT NULL,
-  `type` int(11) DEFAULT NULL,
-  `amount` decimal(10,0) DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
--- 正在导出表  dubbo-app.system_user_amount_history 的数据：~0 rows (大约)
-/*!40000 ALTER TABLE `system_user_amount_history` DISABLE KEYS */;
-/*!40000 ALTER TABLE `system_user_amount_history` ENABLE KEYS */;
 
 -- 导出  表 dubbo-app.system_user_role 结构
 CREATE TABLE IF NOT EXISTS `system_user_role` (
