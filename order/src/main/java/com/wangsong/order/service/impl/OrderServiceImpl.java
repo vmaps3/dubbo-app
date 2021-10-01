@@ -18,12 +18,14 @@ import com.wangsong.order.service.IProductsService;
 import com.wangsong.system.model.UserDO;
 import com.wangsong.system.rpc.SystemApiService;
 import org.apache.dubbo.config.annotation.Reference;
+import org.springframework.amqp.core.AmqpTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 /**
@@ -46,6 +48,19 @@ public class OrderServiceImpl extends ServiceImpl<OrderMapper, OrderInfo> implem
 
     @Autowired
     private IProductsHistoryService productsHistoryService;
+
+    @Autowired
+    private AmqpTemplate template;
+
+    @Override
+    public void send(Long id, String username) {
+        HashMap<String,Object> hashMap=new HashMap<>();
+        hashMap.put("id",id);
+        hashMap.put("username",username);
+        template.convertAndSend("queue", hashMap);
+
+    }
+
 
     @Override
     @Transactional

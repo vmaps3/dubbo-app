@@ -39,7 +39,7 @@ public class OrderController extends BaseController {
         String userDetails = (String) SecurityContextHolder.getContext()
                 .getAuthentication()
                 .getPrincipal();
-        orderService.pay(id, userDetails);
+        orderService.send(id, userDetails);
         return new Result(CodeEnum.SUCCESS.getCode(), null);
     }
 
