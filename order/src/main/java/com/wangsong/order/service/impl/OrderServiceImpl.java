@@ -19,6 +19,8 @@ import com.wangsong.system.model.UserDO;
 import com.wangsong.system.rpc.SystemApiService;
 import org.apache.dubbo.config.annotation.Reference;
 import org.springframework.amqp.core.AmqpTemplate;
+import org.springframework.amqp.core.Message;
+import org.springframework.amqp.core.MessageProperties;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -54,9 +56,9 @@ public class OrderServiceImpl extends ServiceImpl<OrderMapper, OrderInfo> implem
 
     @Override
     public void send(Long id, String username) {
-        HashMap<String,Object> hashMap=new HashMap<>();
-        hashMap.put("id",id);
-        hashMap.put("username",username);
+        HashMap<String, Object> hashMap = new HashMap<>();
+        hashMap.put("id", id);
+        hashMap.put("username", username);
         template.convertAndSend("queue", hashMap);
 
     }
@@ -97,6 +99,10 @@ public class OrderServiceImpl extends ServiceImpl<OrderMapper, OrderInfo> implem
         //更新产品库存
         productsService.updateById(product);
 
+        template.convertAndSend("user.order.delay_exchange", "user.order.delay_key", order.getId(), message -> {
+            message.getMessageProperties().setExpiration("10000");
+            return message;
+        });
 
     }
 
@@ -125,8 +131,12 @@ public class OrderServiceImpl extends ServiceImpl<OrderMapper, OrderInfo> implem
     @Override
     @Transactional
     public void timeout(Long id) {
-
         OrderInfo order = getById(id);
+
+        if (order.getState() == 2) {
+            return;
+        }
+
         order.setState(3);
 
         Products products = productsService.getById(order.getProductsId());
@@ -139,10 +149,6 @@ public class OrderServiceImpl extends ServiceImpl<OrderMapper, OrderInfo> implem
         updateById(order);
         productsService.updateById(products);
 
-        ProductsHistory productsHistory = new ProductsHistory();
-        productsHistory.setProductsId(products.getId());
-        productsHistory.setStock(1);
-        productsHistoryService.save(productsHistory);
     }
 
     @Override
@@ -151,7 +157,7 @@ public class OrderServiceImpl extends ServiceImpl<OrderMapper, OrderInfo> implem
                 page.getPage(), page.getRows());
         QueryWrapper<OrderInfo> queryWrapper = new QueryWrapper();
 
-        IPage<OrderInfo> page1 = page(page2,queryWrapper);
+        IPage<OrderInfo> page1 = page(page2, queryWrapper);
         return new GetEasyUIData(page1.getRecords(), page1.getTotal());
     }
 }

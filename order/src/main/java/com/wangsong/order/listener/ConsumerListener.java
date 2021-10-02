@@ -21,4 +21,11 @@ public class ConsumerListener {
         String username = Convert.toStr(hashMap.get("username"));
         orderService.pay(id, username);
     }
+    //监听消息队列
+    @RabbitListener(queues = "user.order.receive_queue")
+    public void consumeMessage(Long id)  {
+        orderService.timeout(id);
+    }
+
+
 }  
