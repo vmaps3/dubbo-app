@@ -23,9 +23,12 @@
 
 - 1.导入数据库脚本sql下sql文件
 - 2.启动nacos
-- 3.启动system
-- 4.启动gateway
-- 5.访问http://127.0.0.1:1101/html/login.html
+- 3.启动rabbitmq
+- 4.启动redis
+- 5.启动system
+- 6.启动order
+- 7.启动gateway
+- 8.访问http://127.0.0.1:1101/html/login.html
 
 ## qq交流群
 
