@@ -13,6 +13,8 @@ import org.springframework.web.bind.annotation.*;
 
 import com.wangsong.common.controller.BaseController;
 
+import java.util.HashMap;
+
 /**
  * <p>
  * 前端控制器
@@ -42,7 +44,7 @@ public class ProductsController extends BaseController {
 
     @GetMapping(value = "/list")
     public Result list(ProductsPage productsPage) {
-        GetEasyUIData list = productsService.lists(productsPage);
+        HashMap<String, Object> list = productsService.lists(productsPage);
         return new Result(CodeEnum.SUCCESS.getCode(), list);
     }
 

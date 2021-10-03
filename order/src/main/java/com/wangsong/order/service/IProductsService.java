@@ -1,9 +1,10 @@
 package com.wangsong.order.service;
 
-import com.wangsong.common.model.GetEasyUIData;
 import com.wangsong.order.entity.Products;
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.wangsong.order.vo.ProductsPage;
+
+import java.util.HashMap;
 
 /**
  * <p>
@@ -19,7 +20,7 @@ public interface IProductsService extends IService<Products> {
 
     void updates(Products products);
 
-    GetEasyUIData lists(ProductsPage productsPage);
+    HashMap<String, Object> lists(ProductsPage productsPage);
 
     Products selectByPrimaryKey(Long id);
 }

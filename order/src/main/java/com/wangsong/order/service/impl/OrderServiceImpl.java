@@ -1,6 +1,9 @@
 package com.wangsong.order.service.impl;
 
 import cn.hutool.core.collection.ListUtil;
+import cn.hutool.core.convert.impl.UUIDConverter;
+import cn.hutool.core.lang.UUID;
+import cn.hutool.core.lang.generator.UUIDGenerator;
 import cn.hutool.core.util.StrUtil;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
@@ -18,6 +21,8 @@ import com.wangsong.order.service.IProductsService;
 import com.wangsong.system.model.UserDO;
 import com.wangsong.system.rpc.SystemApiService;
 import org.apache.dubbo.config.annotation.Reference;
+import org.redisson.api.RSemaphore;
+import org.redisson.api.RedissonClient;
 import org.springframework.amqp.core.AmqpTemplate;
 import org.springframework.amqp.core.Message;
 import org.springframework.amqp.core.MessageProperties;
@@ -54,8 +59,28 @@ public class OrderServiceImpl extends ServiceImpl<OrderMapper, OrderInfo> implem
     @Autowired
     private AmqpTemplate template;
 
+    @Autowired
+    private RedissonClient redissonClient;
+
     @Override
-    public void send(Long id, String username) {
+    public String getSemaphore() {
+        String uuid = UUID.randomUUID().toString();
+        RSemaphore semaphore = redissonClient.getSemaphore(uuid);
+        semaphore.addPermits(1);
+        return uuid;
+    }
+
+    @Override
+    public void send(Long id, String username, String uuid) {
+        RSemaphore semaphore = redissonClient.getSemaphore(uuid);
+
+        //使用
+
+        boolean b = semaphore.tryAcquire();//获得一个许可
+        if (!b) {
+            return;
+        }
+
         HashMap<String, Object> hashMap = new HashMap<>();
         hashMap.put("id", id);
         hashMap.put("username", username);

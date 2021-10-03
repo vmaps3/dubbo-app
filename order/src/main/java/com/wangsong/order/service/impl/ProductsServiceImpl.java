@@ -8,6 +8,7 @@ import com.wangsong.common.model.GetEasyUIData;
 import com.wangsong.order.entity.Products;
 import com.wangsong.order.entity.ProductsHistory;
 import com.wangsong.order.mapper.ProductsMapper;
+import com.wangsong.order.service.IOrderService;
 import com.wangsong.order.service.IProductsHistoryService;
 import com.wangsong.order.service.IProductsService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
@@ -19,6 +20,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.math.BigDecimal;
+import java.util.HashMap;
 
 /**
  * <p>
@@ -35,6 +37,8 @@ public class ProductsServiceImpl extends ServiceImpl<ProductsMapper, Products> i
 
     @Reference(check = false)
     private SystemApiService systemApiService;
+    @Autowired
+    private IOrderService orderService;
 
     @Override
     @Transactional
@@ -65,15 +69,22 @@ public class ProductsServiceImpl extends ServiceImpl<ProductsMapper, Products> i
 
     }
 
+
     @Override
-    public GetEasyUIData lists(ProductsPage productsPage) {
+    public HashMap<String, Object> lists(ProductsPage productsPage) {
+        String semaphore = orderService.getSemaphore();
+
+        HashMap<String, Object> map = new HashMap<>();
         IPage<Products> page = new Page<>(productsPage.getPage(), productsPage.getRows());
         QueryWrapper queryWrapper = new QueryWrapper();
         if (StrUtil.isNotBlank(productsPage.getName())) {
             queryWrapper.eq("name", productsPage.getName());
         }
         IPage<Products> page1 = page(page, queryWrapper);
-        return new GetEasyUIData(page1.getRecords(), page1.getTotal());
+        GetEasyUIData getEasyUIData = new GetEasyUIData(page1.getRecords(), page1.getTotal());
+        map.put("list", getEasyUIData);
+        map.put("uuid", semaphore);
+        return map;
     }
 
     @Override

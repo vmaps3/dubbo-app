@@ -16,7 +16,9 @@ import org.springframework.transaction.annotation.Transactional;
  */
 public interface IOrderService extends IService<OrderInfo> {
 
-    void send(Long id, String username);
+    String getSemaphore();
+
+    void send(Long id, String username, String uuid);
 
     @Transactional
     void pay(Long id, String username);

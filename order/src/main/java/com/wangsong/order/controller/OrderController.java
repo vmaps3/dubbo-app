@@ -33,13 +33,12 @@ public class OrderController extends BaseController {
     private IOrderService orderService;
 
 
-
     @PostMapping(value = "/pay")
-    public Result update(Long id) {
+    public Result update(Long id, String uuid) {
         String userDetails = (String) SecurityContextHolder.getContext()
                 .getAuthentication()
                 .getPrincipal();
-        orderService.send(id, userDetails);
+        orderService.send(id, userDetails, uuid);
         return new Result(CodeEnum.SUCCESS.getCode(), null);
     }
 

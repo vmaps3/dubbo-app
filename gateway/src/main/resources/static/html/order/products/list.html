@@ -5,6 +5,8 @@
     <title>User list</title>
     <script type="text/javascript" src="../../js/include.js"></script>
     <script type="text/javascript">
+
+var uuid;
 //删除
 function del(){
 	var row = $("#dg").datagrid('getSelections');
@@ -15,7 +17,7 @@ function del(){
                 $.ajax({
                      url:orderUrl+'/order/order/pay',
                      type:'post',
-                     data:"id="+row[0].id,
+                     data:"id="+row[0].id+"&uuid="+uuid,
                      success:function(data){
                          if(data.result=="success"){
                             window.location=htmlURL+"/order/products/list.html";
@@ -58,7 +60,8 @@ function cx(pageNumber, pageSize){
         data:obj,
         type:'get',
         success:function(data){
-            $('#dg').datagrid('loadData',data.data);
+            $('#dg').datagrid('loadData',data.data.list);
+            uuid = data.data.uuid;
         }
     });
 }
