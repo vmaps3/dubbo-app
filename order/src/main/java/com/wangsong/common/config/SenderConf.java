@@ -81,4 +81,34 @@ public class SenderConf {
         return BindingBuilder.bind(userOrderReceiveQueue()).to(userOrderReceiveExchange()).with("user.order.receive_key");
     }
 
+    /**
+     * 死信接收交换机
+     *
+     * @return
+     */
+    @Bean
+    public DirectExchange productsDirectExchange() {
+        return new DirectExchange("products");
+    }
+
+    /**
+     * 死信接收队列
+     *
+     * @return
+     */
+    @Bean
+    public Queue productsQueue() {
+        return new Queue("products");
+    }
+
+    /**
+     * 死信交换机绑定消费队列
+     *
+     * @return
+     */
+    @Bean
+    public Binding productsBinding() {
+        return BindingBuilder.bind(productsQueue()).to(productsDirectExchange()).with("products");
+    }
+
 }

@@ -1,0 +1,31 @@
+1.mysql执行
+
+CREATE USER canal IDENTIFIED BY 'canal';  
+GRANT SELECT, REPLICATION SLAVE, REPLICATION CLIENT ON *.* TO 'canal'@'%';
+-- GRANT ALL PRIVILEGES ON *.* TO 'canal'@'%' ;
+FLUSH PRIVILEGES;
+
+--------------------------------------------------------------------------------------------------
+
+2.修改my.ini
+[mysqld]
+log-bin=mysql-bin # 开启 binlog
+binlog-format=ROW # 选择 ROW 模式
+server_id=1 # 配置 MySQL replaction 需要定义，不要和 canal 的 slaveId 重复
+
+
+--------------------------------------------------------------------------------------------------
+3.修改canal.properties
+canal.serverMode = rabbitMQ
+
+rabbitmq.host = 127.0.0.1:5672
+rabbitmq.virtual.host =/
+rabbitmq.exchange = products
+rabbitmq.username = guest
+rabbitmq.password = guest
+
+--------------------------------------------------------------------------------------------------
+
+
+4.修改instance.properties
+canal.mq.topic=products
