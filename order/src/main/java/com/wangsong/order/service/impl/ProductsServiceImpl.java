@@ -1,13 +1,16 @@
 package com.wangsong.order.service.impl;
 
 import cn.hutool.core.util.StrUtil;
+import com.alibaba.fastjson.JSONArray;
+import com.alibaba.fastjson.JSONObject;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
-import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.wangsong.common.model.GetEasyUIData;
 import com.wangsong.order.entity.Products;
+import com.wangsong.order.entity.ProductsES;
 import com.wangsong.order.entity.ProductsHistory;
 import com.wangsong.order.mapper.ProductsMapper;
+import com.wangsong.order.mapper.ProductsRepository;
 import com.wangsong.order.service.IOrderService;
 import com.wangsong.order.service.IProductsHistoryService;
 import com.wangsong.order.service.IProductsService;
@@ -15,12 +18,18 @@ import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.wangsong.order.vo.ProductsPage;
 import com.wangsong.system.rpc.SystemApiService;
 import org.apache.dubbo.config.annotation.Reference;
+import org.elasticsearch.index.query.QueryBuilders;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.elasticsearch.core.query.NativeSearchQuery;
+import org.springframework.data.elasticsearch.core.query.NativeSearchQueryBuilder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.math.BigDecimal;
 import java.util.HashMap;
+import java.util.List;
 
 /**
  * <p>
@@ -39,6 +48,8 @@ public class ProductsServiceImpl extends ServiceImpl<ProductsMapper, Products> i
     private SystemApiService systemApiService;
     @Autowired
     private IOrderService orderService;
+    @Autowired
+    private ProductsRepository productsRepository;
 
     @Override
     @Transactional
@@ -75,13 +86,35 @@ public class ProductsServiceImpl extends ServiceImpl<ProductsMapper, Products> i
         String semaphore = orderService.getSemaphore();
 
         HashMap<String, Object> map = new HashMap<>();
-        IPage<Products> page = new Page<>(productsPage.getPage(), productsPage.getRows());
-        QueryWrapper queryWrapper = new QueryWrapper();
+        //IPage<ProductsES> page = new Page<>(productsPage.getPage(), productsPage.getRows());
+        //QueryWrapper queryWrapper = new QueryWrapper();
+        NativeSearchQueryBuilder nativeSearchQueryBuilder = new NativeSearchQueryBuilder();
         if (StrUtil.isNotBlank(productsPage.getName())) {
-            queryWrapper.eq("name", productsPage.getName());
+            //queryWrapper.eq("name", productsPage.getName());
+            nativeSearchQueryBuilder.withQuery(QueryBuilders.matchPhraseQuery("name",
+                    productsPage.getName()));
         }
-        IPage<Products> page1 = page(page, queryWrapper);
-        GetEasyUIData getEasyUIData = new GetEasyUIData(page1.getRecords(), page1.getTotal());
+
+
+        NativeSearchQuery build = nativeSearchQueryBuilder.withPageable(PageRequest.of(
+                productsPage.getPage() - 1,
+                productsPage.getRows()))
+                .build();
+        Page<ProductsES> search = productsRepository.search(build);
+
+
+        //IPage<ProductsES> page1 = page(page, queryWrapper);
+        List<ProductsES> content = search.getContent();
+
+        String s = JSONObject.toJSONString(content);
+
+
+        List<Products> list = JSONObject.parseArray(s, Products.class);
+
+
+        GetEasyUIData getEasyUIData = new GetEasyUIData(list, search.getTotalElements());
+
+
         map.put("list", getEasyUIData);
         map.put("uuid", semaphore);
         return map;

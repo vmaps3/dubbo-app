@@ -25,11 +25,12 @@
 - 2.启动nacos
 - 3.启动rabbitmq
 - 4.启动redis
-- 5.启动canal
-- 6.启动system
-- 7.启动order
-- 8.启动gateway
-- 9.访问http://127.0.0.1:1101/html/login.html
+- 5.启动elasticsearch
+- 6.启动canal
+- 7.启动system
+- 8.启动order
+- 9.启动gateway
+- 10.访问http://127.0.0.1:1101/html/login.html
 
 ## qq交流群
 

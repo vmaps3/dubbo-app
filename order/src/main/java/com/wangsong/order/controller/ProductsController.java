@@ -2,13 +2,12 @@ package com.wangsong.order.controller;
 
 
 import com.wangsong.common.model.CodeEnum;
-import com.wangsong.common.model.GetEasyUIData;
 import com.wangsong.common.model.Result;
 import com.wangsong.order.entity.Products;
+import com.wangsong.order.entity.ProductsES;
 import com.wangsong.order.service.IProductsService;
 import com.wangsong.order.vo.ProductsPage;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
 
 import com.wangsong.common.controller.BaseController;
@@ -44,8 +43,8 @@ public class ProductsController extends BaseController {
 
     @GetMapping(value = "/list")
     public Result list(ProductsPage productsPage) {
-        HashMap<String, Object> list = productsService.lists(productsPage);
-        return new Result(CodeEnum.SUCCESS.getCode(), list);
+        HashMap<String, Object> lists = productsService.lists(productsPage);
+        return new Result(CodeEnum.SUCCESS.getCode(), lists);
     }
 
     @GetMapping(value = "/selectByPrimaryKey")

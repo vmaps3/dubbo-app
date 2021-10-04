@@ -1,6 +1,7 @@
 package com.wangsong.order.service;
 
 import com.wangsong.order.entity.Products;
+import com.wangsong.order.entity.ProductsES;
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.wangsong.order.vo.ProductsPage;
 

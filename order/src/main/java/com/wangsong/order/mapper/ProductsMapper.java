@@ -1,6 +1,7 @@
 package com.wangsong.order.mapper;
 
 import com.wangsong.order.entity.Products;
+import com.wangsong.order.entity.ProductsES;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 
 /**

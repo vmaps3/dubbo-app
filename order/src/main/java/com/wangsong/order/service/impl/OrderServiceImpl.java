@@ -1,10 +1,6 @@
 package com.wangsong.order.service.impl;
 
-import cn.hutool.core.collection.ListUtil;
-import cn.hutool.core.convert.impl.UUIDConverter;
 import cn.hutool.core.lang.UUID;
-import cn.hutool.core.lang.generator.UUIDGenerator;
-import cn.hutool.core.util.StrUtil;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.wangsong.common.model.GetEasyUIData;
@@ -12,6 +8,7 @@ import com.wangsong.common.model.Page;
 import com.wangsong.common.model.Result;
 import com.wangsong.order.entity.OrderInfo;
 import com.wangsong.order.entity.Products;
+import com.wangsong.order.entity.ProductsES;
 import com.wangsong.order.entity.ProductsHistory;
 import com.wangsong.order.mapper.OrderMapper;
 import com.wangsong.order.service.IOrderService;
@@ -24,16 +21,11 @@ import org.apache.dubbo.config.annotation.Reference;
 import org.redisson.api.RSemaphore;
 import org.redisson.api.RedissonClient;
 import org.springframework.amqp.core.AmqpTemplate;
-import org.springframework.amqp.core.Message;
-import org.springframework.amqp.core.MessageProperties;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.math.BigDecimal;
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 
 /**
  * <p>
