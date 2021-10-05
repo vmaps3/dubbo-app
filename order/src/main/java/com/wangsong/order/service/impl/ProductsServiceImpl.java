@@ -1,16 +1,16 @@
 package com.wangsong.order.service.impl;
 
+import cn.hutool.core.collection.ListUtil;
 import cn.hutool.core.util.StrUtil;
-import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
-import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
-import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.wangsong.common.model.GetEasyUIData;
 import com.wangsong.order.entity.Products;
 import com.wangsong.order.entity.ProductsES;
 import com.wangsong.order.entity.ProductsHistory;
+import com.wangsong.order.entity.ProductsRedis;
 import com.wangsong.order.mapper.ProductsMapper;
-import com.wangsong.order.mapper.ProductsRepository;
+import com.wangsong.order.mapper.ProductsESRepository;
+import com.wangsong.order.mapper.ProductsRedisSupport;
 import com.wangsong.order.service.IOrderService;
 import com.wangsong.order.service.IProductsHistoryService;
 import com.wangsong.order.service.IProductsService;
@@ -19,6 +19,7 @@ import com.wangsong.order.vo.ProductsPage;
 import com.wangsong.system.rpc.SystemApiService;
 import org.apache.dubbo.config.annotation.Reference;
 import org.elasticsearch.index.query.QueryBuilders;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -28,8 +29,10 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.math.BigDecimal;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Optional;
 
 /**
  * <p>
@@ -49,7 +52,9 @@ public class ProductsServiceImpl extends ServiceImpl<ProductsMapper, Products> i
     @Autowired
     private IOrderService orderService;
     @Autowired
-    private ProductsRepository productsRepository;
+    private ProductsESRepository productsRepository;
+    @Autowired
+    private ProductsRedisSupport productsRedisSupport;
 
     @Override
     @Transactional
@@ -106,13 +111,23 @@ public class ProductsServiceImpl extends ServiceImpl<ProductsMapper, Products> i
         //IPage<ProductsES> page1 = page(page, queryWrapper);
         List<ProductsES> content = search.getContent();
 
-        String s = JSONObject.toJSONString(content);
+        List<String> list = new ArrayList<>();
+
+        for (ProductsES productsES : content) {
+            list.add(productsES.getId());
+        }
+
+        Iterable<ProductsRedis> productsRedisList = productsRedisSupport.findAllById(list);
+
+        ArrayList<ProductsRedis> productsRedis1 = ListUtil.toList(productsRedisList);
+
+        String s = JSONObject.toJSONString(productsRedis1);
 
 
-        List<Products> list = JSONObject.parseArray(s, Products.class);
+        List<Products> productsList = JSONObject.parseArray(s, Products.class);
 
 
-        GetEasyUIData getEasyUIData = new GetEasyUIData(list, search.getTotalElements());
+        GetEasyUIData getEasyUIData = new GetEasyUIData(productsList, search.getTotalElements());
 
 
         map.put("list", getEasyUIData);
