@@ -1,19 +1,15 @@
 package com.wangsong.order.controller;
 
 
-import com.wangsong.common.model.CodeEnum;
-import com.wangsong.common.model.GetEasyUIData;
-import com.wangsong.common.model.Page;
-import com.wangsong.common.model.Result;
 import com.wangsong.order.service.IOrderService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import org.springframework.web.bind.annotation.RestController;
-import com.wangsong.common.controller.BaseController;
+
+import java.util.HashMap;
 
 /**
  * <p>
@@ -24,30 +20,27 @@ import com.wangsong.common.controller.BaseController;
  * @since 2021-09-25
  */
 @RestController
-@RequestMapping("/order/order")
-public class OrderController extends BaseController {
+@RequestMapping("/order")
+public class OrderController {
     @Autowired
     private IOrderService orderService;
-
-
-    @PostMapping(value = "/pay")
-    public Result update(Long id, String uuid) {
-        String userDetails = (String) SecurityContextHolder.getContext()
-                .getAuthentication()
-                .getPrincipal();
-        orderService.send(id, userDetails, uuid);
-        return new Result(CodeEnum.SUCCESS.getCode(), null);
+    //http://127.0.0.1:1101/order/order/getSemaphore
+    @GetMapping(value = "/getSemaphore")
+    public String getSemaphore() {
+        return orderService.getSemaphore();
     }
 
-    @GetMapping(value = "/list")
-    public Result list(Page page) {
-        GetEasyUIData list = orderService.lists(page);
-        return new Result(CodeEnum.SUCCESS.getCode(), list);
+    //http://127.0.0.1:1101/order/order/pay?id=商品id&userId=1&uuid=信号量
+    @GetMapping(value = "/pay")
+    public String update(Long id, String userId, String uuid) {
+        orderService.send(id, userId, uuid);
+        return "1";
     }
 
-    @PostMapping(value = "/callback")
-    public Result callback(Long id) {
+    //http://127.0.0.1:1101/order/order/callback?id=订单号
+    @GetMapping(value = "/callback")
+    public String callback(Long id) {
         orderService.callback(id);
-        return new Result(CodeEnum.SUCCESS.getCode(), null);
+        return "1";
     }
 }

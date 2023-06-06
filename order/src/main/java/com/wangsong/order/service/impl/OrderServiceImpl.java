@@ -1,26 +1,17 @@
 package com.wangsong.order.service.impl;
 
 import cn.hutool.core.lang.UUID;
-import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
-import com.baomidou.mybatisplus.core.metadata.IPage;
-import com.wangsong.common.model.GetEasyUIData;
-import com.wangsong.common.model.Page;
-import com.wangsong.common.model.Result;
 import com.wangsong.order.entity.OrderInfo;
-import com.wangsong.order.entity.Products;
-import com.wangsong.order.entity.ProductsES;
-import com.wangsong.order.entity.ProductsHistory;
 import com.wangsong.order.mapper.OrderMapper;
 import com.wangsong.order.service.IOrderService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
-import com.wangsong.order.service.IProductsHistoryService;
-import com.wangsong.order.service.IProductsService;
-import com.wangsong.system.model.UserDO;
+import com.wangsong.system.dto.ProductsDTO;
 import com.wangsong.system.rpc.SystemApiService;
 import org.apache.dubbo.config.annotation.Reference;
 import org.redisson.api.RSemaphore;
 import org.redisson.api.RedissonClient;
 import org.springframework.amqp.core.AmqpTemplate;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -43,17 +34,12 @@ public class OrderServiceImpl extends ServiceImpl<OrderMapper, OrderInfo> implem
     private SystemApiService systemApiService;
 
     @Autowired
-    private IProductsService productsService;
-
-    @Autowired
-    private IProductsHistoryService productsHistoryService;
-
-    @Autowired
     private AmqpTemplate template;
 
     @Autowired
     private RedissonClient redissonClient;
 
+    //防重复提交
     @Override
     public String getSemaphore() {
         String uuid = UUID.randomUUID().toString();
@@ -62,12 +48,12 @@ public class OrderServiceImpl extends ServiceImpl<OrderMapper, OrderInfo> implem
         return uuid;
     }
 
+    //提交订单
     @Override
     public void send(Long id, String username, String uuid) {
         RSemaphore semaphore = redissonClient.getSemaphore(uuid);
 
         //使用
-
         boolean b = semaphore.tryAcquire();//获得一个许可
         if (!b) {
             return;
@@ -80,19 +66,15 @@ public class OrderServiceImpl extends ServiceImpl<OrderMapper, OrderInfo> implem
 
     }
 
-
+    //异步下单
     @Override
     @Transactional
     public void pay(Long id, String username) {
-        //买家信息
-        UserDO userDO1 = new UserDO();
-        userDO1.setUsername(username);
-        Result<UserDO> userResult1 = systemApiService.getUser(userDO1);
-        UserDO user1 = userResult1.getData();
 
 
         //购买商品列表
-        Products product = productsService.getById(id);
+
+        ProductsDTO product = systemApiService.getById(id);
 
 
         //商品库存不足报错
@@ -106,7 +88,7 @@ public class OrderServiceImpl extends ServiceImpl<OrderMapper, OrderInfo> implem
         //组装订单
         OrderInfo order = new OrderInfo();
         order.setProductsId(product.getId());
-        order.setUserId(user1.getId());
+        order.setUserId(Long.valueOf(username));
         order.setState(1);
 
 
@@ -114,7 +96,7 @@ public class OrderServiceImpl extends ServiceImpl<OrderMapper, OrderInfo> implem
         save(order);
 
         //更新产品库存
-        productsService.updateById(product);
+        systemApiService.updateById(product);
 
         template.convertAndSend("user.order.delay_exchange", "user.order.delay_key", order.getId(), message -> {
             message.getMessageProperties().setExpiration("10000");
@@ -123,6 +105,7 @@ public class OrderServiceImpl extends ServiceImpl<OrderMapper, OrderInfo> implem
 
     }
 
+    //支付回调
     @Override
     @Transactional
     public void callback(Long id) {
@@ -130,21 +113,11 @@ public class OrderServiceImpl extends ServiceImpl<OrderMapper, OrderInfo> implem
         OrderInfo order = getById(id);
         order.setState(2);
 
-        Products products = productsService.getById(order.getProductsId());
-
-
-        //卖家金额记录
-        systemApiService.updatePlatformAmount(products.getAmount());
-
-
         updateById(order);
 
-        ProductsHistory productsHistory = new ProductsHistory();
-        productsHistory.setProductsId(order.getProductsId());
-        productsHistory.setStock(-1);
-        productsHistoryService.save(productsHistory);
     }
 
+    //死信队列 超时
     @Override
     @Transactional
     public void timeout(Long id) {
@@ -156,7 +129,8 @@ public class OrderServiceImpl extends ServiceImpl<OrderMapper, OrderInfo> implem
 
         order.setState(3);
 
-        Products products = productsService.getById(order.getProductsId());
+        ProductsDTO products = systemApiService.getById(order.getProductsId());
+
         products.setStock(products.getStock() + 1);
 
         //卖家金额记录
@@ -164,17 +138,7 @@ public class OrderServiceImpl extends ServiceImpl<OrderMapper, OrderInfo> implem
 
 
         updateById(order);
-        productsService.updateById(products);
+        systemApiService.updateById(products);
 
-    }
-
-    @Override
-    public GetEasyUIData lists(Page page) {
-        IPage<OrderInfo> page2 = new com.baomidou.mybatisplus.extension.plugins.pagination.Page<>(
-                page.getPage(), page.getRows());
-        QueryWrapper<OrderInfo> queryWrapper = new QueryWrapper();
-
-        IPage<OrderInfo> page1 = page(page2, queryWrapper);
-        return new GetEasyUIData(page1.getRecords(), page1.getTotal());
     }
 }

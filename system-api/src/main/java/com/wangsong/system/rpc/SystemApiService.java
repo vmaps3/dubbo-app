@@ -1,18 +1,14 @@
 package com.wangsong.system.rpc;
 
 
-import com.wangsong.common.model.Result;
-import com.wangsong.system.model.UserDO;
-import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.core.userdetails.UserDetailsService;
+
+import com.wangsong.system.dto.ProductsDTO;
 
 import java.math.BigDecimal;
-import java.util.List;
 
-public interface SystemApiService extends UserDetailsService {
-    Result<UserDetails> getUser(String user);
+public interface SystemApiService  {
 
-    Result<UserDO> getUser(UserDO userDO);
+    void updateById(ProductsDTO productsDTO);
 
-    void updatePlatformAmount(BigDecimal amount);
+    ProductsDTO getById(Long amount);
 }
