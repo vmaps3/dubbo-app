@@ -14,9 +14,9 @@ public interface IOrderService {
 
     String getSemaphore();
 
-    void send(Long id, String username, String uuid);
+    void send(Long id, String uuid);
 
-    void pay(Long id, String username);
+    void pay(Long id);
 
     void callback(Long id);
 

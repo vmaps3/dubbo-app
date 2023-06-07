@@ -8,6 +8,7 @@ import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.wangsong.system.dto.ProductsDTO;
 import com.wangsong.system.rpc.SystemApiService;
 import org.apache.dubbo.config.annotation.Reference;
+import org.redisson.api.RLock;
 import org.redisson.api.RSemaphore;
 import org.redisson.api.RedissonClient;
 import org.springframework.amqp.core.AmqpTemplate;
@@ -50,58 +51,64 @@ public class OrderServiceImpl extends ServiceImpl<OrderMapper, OrderInfo> implem
 
     //提交订单
     @Override
-    public void send(Long id, String username, String uuid) {
+    public void send(Long id, String uuid) {
         RSemaphore semaphore = redissonClient.getSemaphore(uuid);
 
         //使用
         boolean b = semaphore.tryAcquire();//获得一个许可
         if (!b) {
-            return;
+            throw new RuntimeException("redis防重提交");
+
         }
 
-        HashMap<String, Object> hashMap = new HashMap<>();
-        hashMap.put("id", id);
-        hashMap.put("username", username);
-        template.convertAndSend("queue", hashMap);
+        Long aLong = systemApiService.productsStockDecrement(id);
+        if (aLong == 0) {
+            throw new RuntimeException("redis库存不足");
+        }
+
+        template.convertAndSend("queue", id);
 
     }
 
     //异步下单
     @Override
     @Transactional
-    public void pay(Long id, String username) {
+    public void pay(Long id) {
+        RLock lock = redissonClient.getLock("products" + id);
+        try {
+            lock.lock();
+
+            //购买商品列表
+
+            ProductsDTO product = systemApiService.getById(id);
 
 
-        //购买商品列表
+            //商品库存不足报错
+            if (product.getStock() < 1) {
+                throw new RuntimeException("库存不足");
+            }
+            //产品库存减一
+            product.setStock(product.getStock() - 1);
 
-        ProductsDTO product = systemApiService.getById(id);
+            //组装订单
+            OrderInfo order = new OrderInfo();
+            order.setProductsId(product.getId());
+            order.setState(1);
 
 
-        //商品库存不足报错
-        if (product.getStock() < 1) {
-            throw new RuntimeException("库存不足");
+            //订单
+            save(order);
+
+            //更新产品库存
+            systemApiService.updateById(product);
+
+            template.convertAndSend("user.order.delay_exchange", "user.order.delay_key", order.getId(), message -> {
+                message.getMessageProperties().setExpiration("10000");
+                return message;
+            });
+        } finally {
+            lock.unlock();
         }
-        //产品库存减一
-        product.setStock(product.getStock() - 1);
-
-
-        //组装订单
-        OrderInfo order = new OrderInfo();
-        order.setProductsId(product.getId());
-        order.setUserId(Long.valueOf(username));
-        order.setState(1);
-
-
-        //订单
-        save(order);
-
-        //更新产品库存
-        systemApiService.updateById(product);
-
-        template.convertAndSend("user.order.delay_exchange", "user.order.delay_key", order.getId(), message -> {
-            message.getMessageProperties().setExpiration("10000");
-            return message;
-        });
 
     }
 
@@ -121,24 +128,30 @@ public class OrderServiceImpl extends ServiceImpl<OrderMapper, OrderInfo> implem
     @Override
     @Transactional
     public void timeout(Long id) {
-        OrderInfo order = getById(id);
+        RLock lock = redissonClient.getLock("order" + id);
+        try {
+            lock.lock();
+            OrderInfo order = getById(id);
 
-        if (order.getState() == 2) {
-            return;
+            if (order.getState() == 2) {
+                return;
+            }
+
+            order.setState(3);
+
+            ProductsDTO products = systemApiService.getById(order.getProductsId());
+
+            products.setStock(products.getStock() + 1);
+            systemApiService.productsStockAdd(products.getId());
+
+            //卖家金额记录
+            //systemApiService.updatePlatformAmount(products.getAmount());
+
+
+            updateById(order);
+            systemApiService.updateById(products);
+        } finally {
+            lock.unlock();
         }
-
-        order.setState(3);
-
-        ProductsDTO products = systemApiService.getById(order.getProductsId());
-
-        products.setStock(products.getStock() + 1);
-
-        //卖家金额记录
-        //systemApiService.updatePlatformAmount(products.getAmount());
-
-
-        updateById(order);
-        systemApiService.updateById(products);
-
     }
 }

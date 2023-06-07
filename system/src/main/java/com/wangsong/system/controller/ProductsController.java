@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.*;
 
 
 import java.util.HashMap;
+import java.util.List;
 
 /**
  * <p>
@@ -30,11 +31,19 @@ public class ProductsController {
 
         return "1";
     }
+
     //http://127.0.0.1:1101/system/products/list?name=111
     @GetMapping(value = "/list")
-    public HashMap<String, Object> list(Products products) {
-        HashMap<String, Object> lists = productsService.lists(products);
+    public List<Products> list(Products products) {
+        List<Products> lists = productsService.lists(products);
         return lists;
+    }
+
+    //http://127.0.0.1:1101/system/products/delete
+    @GetMapping(value = "/delete")
+    public String list() {
+        productsService.deleteESAll();
+        return "1";
     }
 
 }

@@ -3,7 +3,7 @@ package com.wangsong.system.service;
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.wangsong.system.entity.Products;
 
-import java.util.HashMap;
+import java.util.List;
 
 /**
  * <p>
@@ -17,5 +17,17 @@ public interface IProductsService extends IService<Products> {
 
     void add(Products products);
 
-    HashMap<String, Object> lists(Products productsPage);
+    Long productsStockDecrement(Long id);
+
+    Long productsStockAdd(Long id);
+
+    List<Products> lists(Products productsPage);
+
+    void mqToES(Products products);
+
+    void deleteESAll();
+
+    Products getProductsById(Long id);
+
+    void updateProductsById(Products products);
 }

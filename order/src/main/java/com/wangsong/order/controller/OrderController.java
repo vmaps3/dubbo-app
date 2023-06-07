@@ -32,8 +32,8 @@ public class OrderController {
 
     //http://127.0.0.1:1101/order/order/pay?id=商品id&userId=1&uuid=信号量
     @GetMapping(value = "/pay")
-    public String update(Long id, String userId, String uuid) {
-        orderService.send(id, userId, uuid);
+    public String update(Long id, String uuid) {
+        orderService.send(id,uuid);
         return "1";
     }
 

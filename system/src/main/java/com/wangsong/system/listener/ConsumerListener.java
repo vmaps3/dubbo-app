@@ -31,14 +31,6 @@ public class ConsumerListener {
     //队列接受 binglog写入缓存
     @RabbitListener(queues = "products")
     public void test(Products products) {
-        String str = JSONObject.toJSONString(products);
-        ProductsES productsES = JSONObject.parseObject(str,ProductsES.class);
-        ProductsRedis productsRedis = JSONObject.parseObject(str,ProductsRedis.class);
-
-
-
-        productsRepository.save(productsES);
-        productsRedisSupport.save(productsRedis);
-
+        productsService.mqToES( products);
     }
 }  

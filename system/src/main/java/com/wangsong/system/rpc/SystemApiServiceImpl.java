@@ -8,8 +8,6 @@ import org.apache.dubbo.config.annotation.Service;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 
-import java.math.BigDecimal;
-
 @Service
 public class SystemApiServiceImpl implements SystemApiService {
     @Autowired
@@ -19,16 +17,26 @@ public class SystemApiServiceImpl implements SystemApiService {
     public void updateById(ProductsDTO productsDTO) {
         Products products = new Products();
         BeanUtils.copyProperties(productsDTO, products);
-        productsService.updateById(products);
+        productsService.updateProductsById(products);
     }
 
     @Override
     public ProductsDTO getById(Long id) {
-        com.wangsong.system.entity.Products byId = productsService.getById(id);
+        Products byId = productsService.getProductsById(id);
         ProductsDTO productsDTO = new ProductsDTO();
         BeanUtils.copyProperties(byId, productsDTO);
         return productsDTO;
 
     }
 
+    @Override
+    public Long productsStockDecrement(Long id) {
+        return productsService.productsStockDecrement(id);
+    }
+
+    @Override
+    public Long productsStockAdd(Long id) {
+        return productsService.productsStockAdd(id);
+
+    }
 }

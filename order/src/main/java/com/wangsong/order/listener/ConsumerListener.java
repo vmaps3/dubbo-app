@@ -17,10 +17,8 @@ public class ConsumerListener {
 
     //提交订单调用支付
     @RabbitListener(queues = "queue")    //监听器监听指定的Queue
-    public void processC(HashMap<String, Object> hashMap) {
-        Long id = Convert.toLong(hashMap.get("id"));
-        String username = Convert.toStr(hashMap.get("username"));
-        orderService.pay(id, username);
+    public void processC(Long id) {
+        orderService.pay(id);
     }
 
 
