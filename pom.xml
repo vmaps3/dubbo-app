@@ -7,8 +7,8 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <modules>
-        <module>system-api</module>
-        <module>system</module>
+        <module>user-api</module>
+        <module>user</module>
         <module>order</module>
         <module>gateway</module>
     </modules>
@@ -42,7 +42,7 @@
         <dependencies>
             <dependency>
                 <groupId>com.wangsong</groupId>
-                <artifactId>system-api</artifactId>
+                <artifactId>user-api</artifactId>
                 <version>0.0.1-SNAPSHOT</version>
             </dependency>
 

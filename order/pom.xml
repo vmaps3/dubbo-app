@@ -14,7 +14,7 @@
     <dependencies>
         <dependency>
             <groupId>com.wangsong</groupId>
-            <artifactId>system-api</artifactId>
+            <artifactId>user-api</artifactId>
         </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>

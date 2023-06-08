@@ -1,15 +1,13 @@
 package com.wangsong.order.controller;
 
 
-import com.wangsong.order.service.IOrderService;
+import com.wangsong.user.rpc.UserApiService;
+import org.apache.dubbo.config.annotation.Reference;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import org.springframework.web.bind.annotation.RestController;
-
-import java.util.HashMap;
 
 /**
  * <p>
@@ -22,25 +20,16 @@ import java.util.HashMap;
 @RestController
 @RequestMapping("/order")
 public class OrderController {
-    @Autowired
-    private IOrderService orderService;
-    //http://127.0.0.1:1101/order/order/getSemaphore
-    @GetMapping(value = "/getSemaphore")
-    public String getSemaphore() {
-        return orderService.getSemaphore();
+
+    @Reference(check = false)
+    private UserApiService userApiService;
+
+
+    //http://127.0.0.1:1101/order/order/rpc?string=11
+    @GetMapping(value = "/rpc")
+    public String getSemaphore(String string) {
+        return userApiService.rpc(string);
     }
 
-    //http://127.0.0.1:1101/order/order/pay?id=商品id&userId=1&uuid=信号量
-    @GetMapping(value = "/pay")
-    public String update(Long id, String uuid) {
-        orderService.send(id,uuid);
-        return "1";
-    }
 
-    //http://127.0.0.1:1101/order/order/callback?id=订单号
-    @GetMapping(value = "/callback")
-    public String callback(Long id) {
-        orderService.callback(id);
-        return "1";
-    }
 }

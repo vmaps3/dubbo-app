@@ -25,7 +25,6 @@
 - 启动rabbitmq
 - 启动redis
 - 启动elasticsearch
-- 启动canal
 - 启动system
 - 启动order
 - 启动gateway

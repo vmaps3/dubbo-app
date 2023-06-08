@@ -1,0 +1,8 @@
+com\wangsong\user\rpc\UserApiServiceImpl.class
+com\wangsong\user\service\IProductsService.class
+com\wangsong\UserApplication.class
+com\wangsong\config\ProviderFilter.class
+com\wangsong\user\controller\ProductsController.class
+com\wangsong\config\SenderConf.class
+com\wangsong\user\listener\ConsumerListener.class
+com\wangsong\user\service\impl\ProductsServiceImpl.class
