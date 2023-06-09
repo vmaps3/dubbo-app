@@ -58,36 +58,40 @@ public class ProductsServiceImpl implements IProductsService {
 
     @Override
     public Object productsCache() {
-        RBucket<Object> products1 = redissonClient.getBucket("productsBucket");
-        if (products1.isExists()) {
-            return products1.get();
-        }
-        RLock lock = redissonClient.getLock("productsLock");
-        try {
-            lock.lock();
-            products1 = redissonClient.getBucket("productsBucket");
-            if (!products1.isExists()) {
-                String test = "test";
-                products1.set(test);
-                return test;
-            }
 
-            return products1.get();
+        RReadWriteLock productsLock = redissonClient.getReadWriteLock("productsLock");
+        RBucket<Object> products1;
+        try {
+            productsLock.readLock().lock();
+            products1 = redissonClient.getBucket("productsBucket");
+            if (products1.isExists()) {
+                return products1.get();
+            }
         } finally {
-            lock.unlock();
+            productsLock.readLock().unlock();
         }
+        try {
+            productsLock.writeLock().lock();
+            String test = "test";
+            products1.set(test);
+            return test;
+        } finally {
+            productsLock.writeLock().unlock();
+
+        }
+
 
     }
 
     @Override
     public void productsCacheDelete() {
-        RLock lock = redissonClient.getLock("productsLock");
+        RReadWriteLock productsLock = redissonClient.getReadWriteLock("productsLock");
         try {
-            lock.lock();
+            productsLock.writeLock().lock();
             RBucket<Object> products1 = redissonClient.getBucket("productsBucket");
             products1.delete();
         } finally {
-            lock.unlock();
+            productsLock.writeLock().unlock();
         }
     }
 
